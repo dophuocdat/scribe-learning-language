@@ -5,9 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node -e \"const fs=require('fs');const vars=Object.entries(process.env).filter(([k])=>k.startsWith('VITE_')).map(([k,v])=>k+'='+v).join('\\n');if(vars){fs.writeFileSync('.env',vars);console.log('Generated .env with',vars.split('\\n').length,'vars')}\"",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "npm run build && npx wrangler pages deploy dist --project-name scribe --branch main"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.99.1",
