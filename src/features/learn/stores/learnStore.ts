@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { supabase } from '@/shared/lib/supabase'
+import { useXpStore } from '@/shared/stores/xpStore'
 import type {
   Course,
   Category,
@@ -70,10 +71,6 @@ interface LearnState {
     totalQuestions: number,
     timeSpent: number
   ) => Promise<UserQuizAttempt | null>
-
-  // Gamification
-  awardXp: (amount: number, source: string, sourceId?: string) => Promise<void>
-  updateStreak: () => Promise<void>
 }
 
 export const useLearnStore = create<LearnState>((set, get) => ({
@@ -373,8 +370,8 @@ export const useLearnStore = create<LearnState>((set, get) => ({
       })
 
       // Award XP for SRS review
-      await get().awardXp(5, 'srs_review', cardId)
-      await get().updateStreak()
+      await useXpStore.getState().awardXp(5, 'srs_review', cardId)
+      await useXpStore.getState().updateStreak()
     } catch (err) {
       console.error('[learnStore] reviewSrsCard:', err)
     }
@@ -402,21 +399,45 @@ export const useLearnStore = create<LearnState>((set, get) => ({
 
       if (error) throw error
 
-      // Award XP based on score percentage — reuse cached userId
-      const percent = totalQuestions > 0 ? score / totalQuestions : 0
-      const xpAmount = Math.round(10 + percent * 40) // 10–50 XP
+      // Check if quiz belongs to personal course (scan-generated) → skip XP
+      let isPersonal = false
+      try {
+        const { data: quiz } = await supabase
+          .from('quizzes')
+          .select('lesson_id')
+          .eq('id', quizId)
+          .single()
 
-      // Use RPC directly with cached user.id to avoid redundant getUser() calls
-      await supabase.rpc('award_xp_atomic', {
-        p_user_id: user.id,
-        p_amount: xpAmount,
-        p_source: 'quiz_complete',
-        p_source_id: quizId,
-      }).then(({ error: e }) => { if (e) console.error('[learnStore] awardXp in quiz:', e) })
+        if (quiz?.lesson_id) {
+          const { data: lesson } = await supabase
+            .from('lessons')
+            .select('course_id')
+            .eq('id', quiz.lesson_id)
+            .single()
 
-      await supabase.rpc('update_streak_atomic', {
-        p_user_id: user.id,
-      }).then(({ error: e }) => { if (e) console.error('[learnStore] updateStreak in quiz:', e) })
+          if (lesson?.course_id) {
+            const { data: course } = await supabase
+              .from('courses')
+              .select('is_personal')
+              .eq('id', lesson.course_id)
+              .single()
+
+            isPersonal = course?.is_personal === true
+          }
+        }
+      } catch {
+        // If check fails, award XP normally
+      }
+
+      if (!isPersonal) {
+        // Award XP based on score percentage
+        const percent = totalQuestions > 0 ? score / totalQuestions : 0
+        const xpAmount = Math.round(10 + percent * 40) // 10–50 XP
+
+        // Use centralized xpStore for XP + streak (handles notification + profile refresh)
+        await useXpStore.getState().awardXp(xpAmount, 'quiz_complete', quizId)
+        await useXpStore.getState().updateStreak()
+      }
 
       return data as UserQuizAttempt
     } catch (err) {
@@ -427,39 +448,4 @@ export const useLearnStore = create<LearnState>((set, get) => ({
     }
   },
 
-  // ===== GAMIFICATION =====
-  awardXp: async (amount: number, source: string, sourceId?: string) => {
-    try {
-      const { data: { user } } = await supabase.auth.getUser()
-      if (!user) return
-
-      // Atomic XP update via PostgreSQL RPC — prevents race conditions
-      const { error } = await supabase.rpc('award_xp_atomic', {
-        p_user_id: user.id,
-        p_amount: amount,
-        p_source: source,
-        p_source_id: sourceId || null,
-      })
-
-      if (error) throw error
-    } catch (err) {
-      console.error('[learnStore] awardXp:', err)
-    }
-  },
-
-  updateStreak: async () => {
-    try {
-      const { data: { user } } = await supabase.auth.getUser()
-      if (!user) return
-
-      // Atomic streak update via PostgreSQL RPC — prevents race conditions
-      const { error } = await supabase.rpc('update_streak_atomic', {
-        p_user_id: user.id,
-      })
-
-      if (error) throw error
-    } catch (err) {
-      console.error('[learnStore] updateStreak:', err)
-    }
-  },
 }))

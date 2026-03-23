@@ -1,5 +1,5 @@
 import { NavLink, Outlet, useNavigate } from 'react-router-dom'
-import { LayoutDashboard, BookOpen, FolderTree, GraduationCap, LogOut } from 'lucide-react'
+import { LayoutDashboard, BookOpen, FolderTree, GraduationCap, LogOut, Zap, Users } from 'lucide-react'
 import { useAuthStore } from '@/features/auth/stores/authStore'
 
 const adminTabs = [
@@ -7,6 +7,8 @@ const adminTabs = [
   { path: '/admin/courses', label: 'Khóa học', icon: BookOpen, end: false },
   { path: '/admin/categories', label: 'Danh mục', icon: FolderTree, end: false },
   { path: '/admin/levels', label: 'Cấp độ', icon: GraduationCap, end: false },
+  { path: '/admin/xp', label: 'Quản lý XP', icon: Zap, end: false },
+  { path: '/admin/users', label: 'Người dùng', icon: Users, end: false },
 ]
 
 export function AdminLayout() {

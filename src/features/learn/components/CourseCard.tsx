@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { BookOpen, Clock, Signal, Play, Trophy } from 'lucide-react'
+import { BookOpen, Clock, Signal, Play, Trophy, Zap } from 'lucide-react'
 import type { CourseWithMeta, CourseProgress } from '../stores/learnStore'
 
 const difficultyColors: Record<string, string> = {
@@ -113,6 +113,10 @@ export function CourseCard({ course, progress }: CourseCardProps) {
                   {course.estimated_time_minutes}p
                 </span>
               )}
+              <span className="flex items-center gap-1 text-amber-400/70">
+                <Zap className="w-3 h-3" />
+                {(course.lessons_count || 1) * 50} XP
+              </span>
             </div>
             {/* Continue / Start button */}
             {isStarted && !isCompleted && (

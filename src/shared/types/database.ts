@@ -81,6 +81,12 @@ export type Database = {
         Update: Partial<Omit<UserAchievement, 'id'>>
         Relationships: []
       }
+      user_scan_logs: {
+        Row: UserScanLog
+        Insert: Omit<UserScanLog, 'id' | 'created_at'>
+        Update: Partial<Omit<UserScanLog, 'id'>>
+        Relationships: []
+      }
     }
     Views: Record<string, never>
     Functions: {
@@ -247,6 +253,7 @@ export interface UserProfile {
   target_exam: 'TOEIC' | 'IELTS' | null
   target_score: number | null
   daily_goal_minutes: number
+  max_daily_scans: number
   created_at: string
   updated_at: string
 }
@@ -276,4 +283,17 @@ export interface UserAchievement {
   user_id: string
   achievement_id: string
   unlocked_at: string
+}
+
+export interface UserScanLog {
+  id: string
+  user_id: string
+  folder_id: string
+  content_hash: string
+  extracted_text: string | null
+  course_id: string | null
+  scan_status: 'scanned' | 'generating' | 'completed' | 'failed'
+  created_at: string
+  // Joined fields
+  course?: Course
 }

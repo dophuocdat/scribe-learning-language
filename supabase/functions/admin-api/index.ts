@@ -509,6 +509,188 @@ async function handleQuizQuestionsBatch(req: Request) {
   return jsonResponse(data, 201)
 }
 
+// --- Users Management ---
+async function handleUsers(req: Request, params: URLSearchParams) {
+  const db = createAdminClient()
+  const method = req.method
+  const action = params.get('action')
+
+  // GET /users — list all users with email + scan stats
+  if (method === 'GET' && !action) {
+    console.log('[admin-api] GET /users')
+
+    // Get user profiles
+    const { data: profiles, error: profErr } = await db
+      .from('user_profiles')
+      .select('*')
+      .order('created_at', { ascending: false })
+
+    if (profErr) return errorResponse(profErr.message)
+
+    // Get auth users for email info
+    const { data: { users: authUsers }, error: authErr } = await db.auth.admin.listUsers()
+    if (authErr) {
+      console.error('[admin-api] Auth listUsers error:', authErr)
+    }
+
+    // Map email to user profiles
+    const emailMap = new Map<string, { email: string; banned: boolean; lastSignIn: string | null }>()
+    if (authUsers) {
+      for (const au of authUsers) {
+        emailMap.set(au.id, {
+          email: au.email || '',
+          banned: au.banned_until ? new Date(au.banned_until) > new Date() : false,
+          lastSignIn: au.last_sign_in_at || null,
+        })
+      }
+    }
+
+    // Get today's scan counts per user
+    const todayStart = new Date()
+    todayStart.setHours(0, 0, 0, 0)
+
+    const { data: scanCounts } = await db
+      .from('user_scan_logs')
+      .select('user_id')
+      .gte('created_at', todayStart.toISOString())
+
+    const scanCountMap: Record<string, number> = {}
+    if (scanCounts) {
+      for (const s of scanCounts) {
+        scanCountMap[s.user_id] = (scanCountMap[s.user_id] || 0) + 1
+      }
+    }
+
+    const enriched = (profiles || []).map((p: Record<string, unknown>) => ({
+      ...p,
+      email: emailMap.get(p.id as string)?.email || '',
+      banned: emailMap.get(p.id as string)?.banned || false,
+      last_sign_in: emailMap.get(p.id as string)?.lastSignIn || null,
+      scans_today: scanCountMap[p.id as string] || 0,
+    }))
+
+    return jsonResponse(enriched)
+  }
+
+  // POST actions
+  if (method === 'POST' && action) {
+    const body = await req.json()
+    const userId = body.userId as string
+    if (!userId) return errorResponse('Missing userId')
+
+    switch (action) {
+      case 'reset-scans': {
+        // Delete today's scan logs for this user
+        console.log(`[admin-api] POST /users/reset-scans for ${userId}`)
+        const todayStart = new Date()
+        todayStart.setHours(0, 0, 0, 0)
+
+        const { error } = await db
+          .from('user_scan_logs')
+          .delete()
+          .eq('user_id', userId)
+          .gte('created_at', todayStart.toISOString())
+
+        if (error) return errorResponse(error.message)
+        return jsonResponse({ success: true, message: 'Scan count reset' })
+      }
+
+      case 'update-scan-limit': {
+        const maxScans = body.maxDailyScans as number
+        if (!maxScans || maxScans < 1 || maxScans > 100) {
+          return errorResponse('maxDailyScans must be between 1 and 100')
+        }
+        console.log(`[admin-api] POST /users/update-scan-limit: ${userId} → ${maxScans}`)
+
+        const { error } = await db
+          .from('user_profiles')
+          .update({ max_daily_scans: maxScans })
+          .eq('id', userId)
+
+        if (error) return errorResponse(error.message)
+        return jsonResponse({ success: true, maxDailyScans: maxScans })
+      }
+
+      case 'update-generation-limits': {
+        const maxVocab = body.maxVocabPerScan as number
+        const maxExercises = body.maxExercisesPerScan as number
+        const updates: Record<string, number> = {}
+
+        if (maxVocab !== undefined) {
+          if (maxVocab < 1 || maxVocab > 50) return errorResponse('maxVocabPerScan must be between 1 and 50')
+          updates.max_vocab_per_scan = maxVocab
+        }
+        if (maxExercises !== undefined) {
+          if (maxExercises < 1 || maxExercises > 30) return errorResponse('maxExercisesPerScan must be between 1 and 30')
+          updates.max_exercises_per_scan = maxExercises
+        }
+        if (Object.keys(updates).length === 0) return errorResponse('Provide maxVocabPerScan and/or maxExercisesPerScan')
+
+        console.log(`[admin-api] POST /users/update-generation-limits: ${userId} →`, updates)
+
+        const { error } = await db
+          .from('user_profiles')
+          .update(updates)
+          .eq('id', userId)
+
+        if (error) return errorResponse(error.message)
+        return jsonResponse({ success: true, message: 'Generation limits updated', ...updates })
+      }
+
+      case 'force-password-reset': {
+        console.log(`[admin-api] POST /users/force-password-reset for ${userId}`)
+
+        // Get user email first
+        const { data: { user }, error: getUserErr } = await db.auth.admin.getUserById(userId)
+        if (getUserErr || !user?.email) {
+          return errorResponse('Cannot find user email')
+        }
+
+        // Generate password reset link
+        const { data: linkData, error: linkErr } = await db.auth.admin.generateLink({
+          type: 'recovery',
+          email: user.email,
+        })
+
+        if (linkErr) return errorResponse(`Reset failed: ${linkErr.message}`)
+
+        return jsonResponse({
+          success: true,
+          message: `Password reset sent to ${user.email}`,
+          // Return the link so admin can also share it directly
+          resetLink: linkData?.properties?.action_link || null,
+        })
+      }
+
+      case 'toggle-ban': {
+        const ban = body.ban as boolean
+        console.log(`[admin-api] POST /users/toggle-ban: ${userId} → ${ban ? 'BAN' : 'UNBAN'}`)
+
+        if (ban) {
+          // Ban: set banned_until to far future
+          const { error } = await db.auth.admin.updateUserById(userId, {
+            ban_duration: '876000h', // ~100 years
+          })
+          if (error) return errorResponse(`Ban failed: ${error.message}`)
+        } else {
+          // Unban
+          const { error } = await db.auth.admin.updateUserById(userId, {
+            ban_duration: 'none',
+          })
+          if (error) return errorResponse(`Unban failed: ${error.message}`)
+        }
+
+        return jsonResponse({ success: true, banned: ban })
+      }
+
+      default:
+        return errorResponse(`Unknown action: ${action}`, 404)
+    }
+  }
+
+  return errorResponse('Invalid method or missing action', 405)
+}
+
 // ===== MAIN ROUTER =====
 Deno.serve(async (req: Request) => {
   console.log(`[admin-api] Incoming: ${req.method} ${req.url}`)
@@ -586,6 +768,8 @@ Deno.serve(async (req: Request) => {
         return await handleQuizQuestionsBatch(handlerReq)
       case 'difficulty-levels':
         return await handleDifficultyLevels(handlerReq, params)
+      case 'users':
+        return await handleUsers(handlerReq, params)
       default:
         return errorResponse(`Unknown resource: ${resource}`, 404)
     }

@@ -78,3 +78,13 @@ export async function invokeAiApi<T = any>(
 ): Promise<{ data: T | null; error: string | null }> {
   return invokeEdgeFunction<T>('ai-api', { _endpoint: endpoint, ...body })
 }
+
+/**
+ * Invoke the scan-api-user Edge Function (regular users).
+ */
+export async function invokeScanApiUser<T = any>(
+  endpoint: string,
+  body: Record<string, unknown>
+): Promise<{ data: T | null; error: string | null }> {
+  return invokeEdgeFunction<T>('scan-api-user', { _endpoint: endpoint, ...body })
+}

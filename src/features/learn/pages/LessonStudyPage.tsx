@@ -9,6 +9,7 @@ import {
   FileText,
   ChevronDown,
   ChevronUp,
+  Zap,
 } from 'lucide-react'
 import { useLearnStore } from '../stores/learnStore'
 import { VocabularyPractice } from '../components/VocabularyPractice'
@@ -173,6 +174,10 @@ export function LessonStudyPage() {
                   {quiz.title}
                   <span className="text-xs text-surface-200/30 font-normal">
                     ({quiz.quiz_type})
+                  </span>
+                  <span className="flex items-center gap-1 text-xs text-amber-400/60 font-normal ml-auto">
+                    <Zap className="w-3 h-3" />
+                    10-50 XP
                   </span>
                 </h3>
                 <QuizPlayer quiz={quiz} />

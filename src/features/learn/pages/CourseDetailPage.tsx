@@ -8,6 +8,7 @@ import {
   FileText,
   ChevronRight,
   Sparkles,
+  Zap,
 } from 'lucide-react'
 import { useLearnStore } from '../stores/learnStore'
 
@@ -138,6 +139,10 @@ export function CourseDetailPage() {
                 ~{currentCourse.estimated_time_minutes} phút
               </span>
             )}
+            <span className="flex items-center gap-1.5 text-amber-400/70">
+              <Zap className="w-4 h-4" />
+              Tối đa {courseLessons.length * 50} XP
+            </span>
           </div>
         </div>
       </div>
@@ -180,7 +185,13 @@ export function CourseDetailPage() {
                   )}
                 </div>
 
-                <ChevronRight className="w-4 h-4 text-surface-200/20 group-hover:text-primary-400 transition-colors shrink-0" />
+                <div className="flex items-center gap-3 shrink-0">
+                  <span className="flex items-center gap-1 text-[11px] text-amber-400/60">
+                    <Zap className="w-3 h-3" />
+                    ~50 XP
+                  </span>
+                  <ChevronRight className="w-4 h-4 text-surface-200/20 group-hover:text-primary-400 transition-colors" />
+                </div>
               </Link>
             ))}
           </div>

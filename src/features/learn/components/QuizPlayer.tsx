@@ -11,6 +11,7 @@ import {
   Target,
   Minus,
   Plus,
+  Zap,
 } from 'lucide-react'
 import type { Quiz, QuizQuestion } from '@/shared/types/database'
 import { useLearnStore } from '../stores/learnStore'
@@ -67,7 +68,8 @@ export function QuizPlayer({ quiz }: QuizPlayerProps) {
     }, 0)
     const percent = totalCount > 0 ? Math.round((correct / totalCount) * 100) : 0
     const passed = percent >= quiz.passing_score
-    return { correct, percent, passed }
+    const xpEarned = Math.round(10 + (totalCount > 0 ? correct / totalCount : 0) * 40)
+    return { correct, percent, passed, xpEarned }
   }, [phase, questions, answers, totalCount, quiz.passing_score])
 
   /* ---- Handlers ---- */
@@ -227,6 +229,12 @@ export function QuizPlayer({ quiz }: QuizPlayerProps) {
               Đúng {scoreInfo.correct}/{totalCount} câu ({scoreInfo.percent}%) · Yêu cầu:{' '}
               {quiz.passing_score}%
             </p>
+            <div className="flex items-center gap-1.5 mt-1.5">
+              <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-amber-500/15 border border-amber-500/20">
+                <Zap className="w-3.5 h-3.5 text-amber-400" />
+                <span className="text-sm font-bold text-amber-400">+{scoreInfo.xpEarned} XP</span>
+              </div>
+            </div>
           </div>
           <button
             onClick={handleStart}

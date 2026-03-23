@@ -5,6 +5,7 @@ import { AppLayout } from '@/shared/components/layout/AppLayout'
 import { LoginPage } from '@/features/auth/pages/LoginPage'
 import { DashboardPage } from '@/features/dashboard/pages/DashboardPage'
 import { ToastContainer } from '@/shared/components/ui/Toast'
+import { XpToast } from '@/shared/components/ui/XpToast'
 import { ErrorBoundary } from '@/shared/components/ui/ErrorBoundary'
 
 // Learn imports
@@ -14,6 +15,7 @@ import { LessonStudyPage } from '@/features/learn/pages/LessonStudyPage'
 import { SrsReviewPage } from '@/features/learn/pages/SrsReviewPage'
 import { LeaderboardPage } from '@/features/learn/pages/LeaderboardPage'
 import { ProfilePage } from '@/features/profile/pages/ProfilePage'
+import { SmartScanPage } from '@/features/scan/pages/SmartScanPage'
 
 // Admin imports
 import { AdminGuard } from '@/features/admin/components/AdminGuard'
@@ -26,6 +28,8 @@ import { LessonFormPage } from '@/features/admin/pages/LessonFormPage'
 import { CategoryManagerPage } from '@/features/admin/pages/CategoryManagerPage'
 import { CategoryCoursesPage } from '@/features/admin/pages/CategoryCoursesPage'
 import { DifficultyLevelPage } from '@/features/admin/pages/DifficultyLevelPage'
+import { XpManagementPage } from '@/features/admin/pages/XpManagementPage'
+import { UserManagementPage } from '@/features/admin/pages/UserManagementPage'
 
 // Placeholder pages — will be implemented in later phases
 function PlaceholderPage({ title }: { title: string }) {
@@ -99,8 +103,8 @@ export function App() {
           <Route path="courses" element={<CoursesCatalogPage />} />
           <Route path="courses/:courseId" element={<CourseDetailPage />} />
           <Route path="lessons/:lessonId" element={<LessonStudyPage />} />
-          <Route path="scan" element={<PlaceholderPage title="Smart Scan" />} />
-          <Route path="folders" element={<PlaceholderPage title="Thư mục cá nhân" />} />
+          <Route path="scan" element={<SmartScanPage />} />
+          <Route path="folders" element={<SmartScanPage />} />
           <Route path="review" element={<SrsReviewPage />} />
           <Route path="analytics" element={<PlaceholderPage title="Thống kê" />} />
           <Route path="leaderboard" element={<LeaderboardPage />} />
@@ -120,6 +124,8 @@ export function App() {
             <Route path="categories/:categoryId/courses" element={<CategoryCoursesPage />} />
             <Route path="categories/:categoryId/courses/new" element={<CourseFormPage />} />
             <Route path="levels" element={<DifficultyLevelPage />} />
+            <Route path="xp" element={<XpManagementPage />} />
+            <Route path="users" element={<UserManagementPage />} />
           </Route>
         </Route>
 
@@ -129,6 +135,7 @@ export function App() {
 
       {/* Global Toast Notifications */}
       <ToastContainer />
+      <XpToast />
       </ErrorBoundary>
     </BrowserRouter>
   )
