@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useAuthStore } from '@/features/auth/stores/authStore'
 import { supabase } from '@/shared/lib/supabase'
 import {
@@ -17,8 +17,12 @@ import {
   Lock,
   Eye,
   EyeOff,
+  Volume2,
+  Play,
 } from 'lucide-react'
 import { useToastStore } from '@/shared/stores/toastStore'
+import { useTTS } from '@/shared/hooks/useTTS'
+import { ACCENT_PRESETS, VOICE_LIST } from '@/features/listening-practice/lib/ttsService'
 
 export function ProfilePage() {
   const { user, profile, updateProfile } = useAuthStore()
@@ -37,12 +41,34 @@ export function ProfilePage() {
   const [showConfirmPw, setShowConfirmPw] = useState(false)
   const [changingPw, setChangingPw] = useState(false)
 
+  // TTS Voice settings (persisted in database)
+  const { speak, isSpeaking, stop } = useTTS()
+  const [ttsVoice, setTtsVoice] = useState('p225')
+  const [ttsAccent, setTtsAccent] = useState('en-US')
+  const [ttsSpeed, setTtsSpeed] = useState(1)
+
+  const handleVoiceChange = useCallback((voice: string) => {
+    setTtsVoice(voice)
+  }, [])
+
+  const handleAccentChange = useCallback((accent: string) => {
+    setTtsAccent(accent)
+  }, [])
+
+  const handleSpeedChange = useCallback((speed: number) => {
+    setTtsSpeed(speed)
+  }, [])
+
   useEffect(() => {
     if (profile) {
       setDisplayName(profile.display_name || '')
       setTargetExam(profile.target_exam || '')
       setTargetScore(profile.target_score?.toString() || '')
       setDailyGoal(profile.daily_goal_minutes?.toString() || '30')
+      // Load TTS settings from profile
+      setTtsVoice(profile.tts_voice || 'p225')
+      setTtsAccent(profile.tts_accent || 'en-US')
+      setTtsSpeed(profile.tts_speed ?? 1)
     }
   }, [profile])
 
@@ -66,6 +92,9 @@ export function ProfilePage() {
         target_exam: (targetExam as 'TOEIC' | 'IELTS') || null,
         target_score: targetScore ? parseInt(targetScore) : null,
         daily_goal_minutes: parseInt(dailyGoal) || 30,
+        tts_voice: ttsVoice,
+        tts_accent: ttsAccent,
+        tts_speed: ttsSpeed,
       })
       if (success) {
         addToast('success', 'Đã lưu thông tin cá nhân!')
@@ -340,6 +369,127 @@ export function ProfilePage() {
             )}
             {changingPw ? 'Đang đổi...' : 'Đổi mật khẩu'}
           </button>
+        </div>
+      </div>
+
+      {/* TTS Voice Settings Card */}
+      <div className="glass-card p-5">
+        <h3 className="text-base font-semibold text-surface-50 mb-4 flex items-center gap-2">
+          <Volume2 className="w-4 h-4 text-primary-400" /> Cài đặt giọng đọc
+        </h3>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Left column: Voice + Accent */}
+          <div className="space-y-4">
+            {/* Voice selection */}
+            <div>
+              <label className="block text-xs text-surface-200/60 mb-1.5 font-medium">
+                Giọng đọc
+              </label>
+              <select
+                value={ttsVoice}
+                onChange={(e) => handleVoiceChange(e.target.value)}
+                className="w-full bg-surface-800/50 border border-surface-700 rounded-xl px-4 py-2.5 text-sm text-surface-50 focus:outline-none focus:ring-2 focus:ring-primary-500/40 focus:border-primary-500/50 transition-all appearance-none"
+              >
+                {VOICE_LIST.map((v) => (
+                  <option key={v.id} value={v.id}>
+                    {v.gender === 'F' ? '👩' : '👨'} {v.label} — {v.accent} — {v.desc} [{v.engine === 'piper' ? '⚡ Piper' : 'VITS'}]
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Accent selection */}
+            <div>
+              <label className="block text-xs text-surface-200/60 mb-1.5 font-medium">
+                Accent / Phương ngữ
+              </label>
+              <div className="flex gap-2">
+                {ACCENT_PRESETS.map((a) => (
+                  <button
+                    key={a.value}
+                    onClick={() => handleAccentChange(a.value)}
+                    className={`flex-1 px-3 py-2 rounded-xl text-sm font-medium transition-all border ${
+                      ttsAccent === a.value
+                        ? 'bg-primary-500/20 border-primary-500/50 text-primary-400'
+                        : 'bg-surface-800/50 border-surface-700 text-surface-200/60 hover:border-surface-600'
+                    }`}
+                  >
+                    {a.label}
+                    <span className="block text-[10px] mt-0.5 opacity-60">{a.desc}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Right column: Speed + Test */}
+          <div className="space-y-4">
+            {/* Speed slider */}
+            <div>
+              <label className="block text-xs text-surface-200/60 mb-1.5 font-medium">
+                Tốc độ đọc: {ttsSpeed}x
+              </label>
+              <input
+                type="range"
+                min="0.5"
+                max="2"
+                step="0.25"
+                value={ttsSpeed}
+                onChange={(e) => handleSpeedChange(parseFloat(e.target.value))}
+                className="w-full h-2 bg-surface-800 rounded-full appearance-none cursor-pointer accent-primary-500"
+              />
+              <div className="flex justify-between text-[10px] text-surface-200/40 mt-1">
+                <span>0.5x chậm</span>
+                <span>1x bình thường</span>
+                <span>2x nhanh</span>
+              </div>
+            </div>
+
+            {/* Test voice button */}
+            <div>
+              <label className="block text-xs text-surface-200/60 mb-1.5 font-medium">
+                Nghe thử
+              </label>
+              <button
+                onClick={() => {
+                  if (isSpeaking) {
+                    stop()
+                  } else {
+                    speak('Hello! Welcome to Scribe, your English learning companion. Let us practice together!', ttsSpeed, ttsAccent, ttsVoice)
+                  }
+                }}
+                className={`w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-medium transition-all border ${
+                  isSpeaking
+                    ? 'bg-red-500/20 border-red-500/50 text-red-400 hover:bg-red-500/30'
+                    : 'bg-primary-500/10 border-primary-500/30 text-primary-400 hover:bg-primary-500/20'
+                }`}
+              >
+                <Play className={`w-4 h-4 ${isSpeaking ? 'animate-pulse' : ''}`} />
+                {isSpeaking ? 'Dừng phát' : '▶ Nghe thử giọng đọc'}
+              </button>
+              <p className="text-[10px] text-surface-200/40 mt-1.5 text-center">
+                Giọng: {ttsVoice} • Accent: {ttsAccent} • Speed: {ttsSpeed}x
+              </p>
+            </div>
+
+            {/* Current voice info badge */}
+            <div className="bg-surface-800/30 rounded-xl p-3 flex items-center gap-3">
+              <div className="w-8 h-8 rounded-lg bg-primary-500/20 flex items-center justify-center">
+                <Volume2 className="w-4 h-4 text-primary-400" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="text-xs font-medium text-surface-50">
+                  {VOICE_LIST.find(v => v.id === ttsVoice)?.engine === 'piper' ? '🎙️ Piper Engine' : '🐸 Coqui VITS Engine'}
+                </div>
+                <div className="text-[10px] text-surface-200/50 mt-0.5">
+                  {VOICE_LIST.find(v => v.id === ttsVoice)?.engine === 'piper'
+                    ? 'Giọng tự nhiên • Cực nhanh ~0.5s'
+                    : 'Hugging Face Spaces • 109 giọng'}
+                </div>
+              </div>
+              <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" title="Online" />
+            </div>
+          </div>
         </div>
       </div>
 

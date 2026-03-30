@@ -264,6 +264,9 @@ export interface UserProfile {
   max_daily_plagiarism_checks: number
   max_daily_paraphrase_checks: number
   max_daily_listening_exercises: number
+  tts_voice: string
+  tts_accent: string
+  tts_speed: number
   created_at: string
   updated_at: string
 }

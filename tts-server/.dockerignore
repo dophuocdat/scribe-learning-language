@@ -1,0 +1,6 @@
+tts-server/.venv/
+tts-server/cache/
+tts-server/__pycache__/
+*.pyc
+*.wav
+*.mp3

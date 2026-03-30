@@ -1,0 +1,15 @@
+# Coqui TTS Server - Dependencies
+# PyTorch CPU (install first)
+torch
+torchaudio
+
+# Coqui TTS (maintained fork)
+coqui-tts
+
+# Web server
+fastapi
+uvicorn[standard]
+
+# Audio processing
+soundfile
+numpy

@@ -20,7 +20,7 @@ interface AuthState {
   signUpWithEmail: (email: string, password: string, displayName: string) => Promise<void>
   signOut: () => Promise<void>
   fetchProfile: (userId: string) => Promise<void>
-  updateProfile: (data: Partial<Pick<UserProfile, 'display_name' | 'avatar_url' | 'target_exam' | 'target_score' | 'daily_goal_minutes'>>) => Promise<boolean>
+  updateProfile: (data: Partial<Pick<UserProfile, 'display_name' | 'avatar_url' | 'target_exam' | 'target_score' | 'daily_goal_minutes' | 'tts_voice' | 'tts_accent' | 'tts_speed'>>) => Promise<boolean>
 }
 
 export const useAuthStore = create<AuthState>((set, get) => ({

@@ -1,31 +1,61 @@
 import { useState, useCallback, useRef, useEffect } from 'react'
+import { useAuthStore } from '@/features/auth/stores/authStore'
 
 /*
- * ─── TTS STRATEGY (v5) ────────────────────────────────────────────────
+ * ─── TTS STRATEGY (v6 — Coqui TTS) ───────────────────────────────────
  *
- * Problem history:
- * - speechSynthesis: unreliable on mobile (no sound)
- * - Google TTS URL directly: CORS blocked (403)
- * - Supabase TTS proxy: 401 because verify_jwt was still enabled
+ * Fallback chain:
+ *   1. 🐸 Coqui VITS (HF Space) — best quality, 109 voices, ~2-6s
+ *   2. 🔊 Google TTS proxy (Supabase) — reliable fallback
+ *   3. 🗣️ Web Speech API — browser built-in, always works
  *
- * Fix (v5):
- * - TTS proxy redeployed via MCP with verify_jwt=false (CONFIRMED)
- * - On mobile: use TTS proxy (no auth needed now)
- * - On desktop: use speechSynthesis (fast, local)
- * - audio_url takes priority if available
+ * Priority: audio_url > Coqui TTS > Google TTS > speechSynthesis
  *
  * CRITICAL: audio.play() must be SYNCHRONOUS from user gesture.
  * ─────────────────────────────────────────────────────────────────────
  */
 
-const IS_MOBILE = typeof navigator !== 'undefined' &&
-  /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent)
+// ─── TTS Configuration ──────────────────────────────────────────
+const TTS_BASE = 'https://kiro-d-scribe-tts.hf.space'
+
+/** Piper voice IDs (routed to /api/tts-piper) */
+const PIPER_VOICES = new Set(['amy', 'ryan'])
+
+/** VITS speaker mapping per accent (fallback when no voice specified) */
+const VITS_SPEAKERS: Record<string, string> = {
+  'en-US': 'p243',     // Male, clear US-like
+  'en-GB': 'p225',     // Female, British
+  'en-AU': 'p245',     // Male, varied accent
+  'en-default': 'p225', // Female, clear
+}
+
+/** In-memory URL cache to avoid re-generating same text */
+const ttsUrlCache = new Map<string, string>()
+
+/** Build TTS URL — auto-routes Piper vs VITS based on voice ID */
+function getTTSUrl(text: string, accent = 'en-US', voice?: string): string {
+  const encoded = encodeURIComponent(text.slice(0, 500))
+  
+  // Piper voices → /api/tts-piper
+  if (voice && PIPER_VOICES.has(voice)) {
+    return `${TTS_BASE}/api/tts-piper?text=${encoded}&voice=${voice}`
+  }
+  
+  // VITS voices → /api/tts
+  const speaker = voice || VITS_SPEAKERS[accent] || VITS_SPEAKERS['en-default']
+  return `${TTS_BASE}/api/tts?text=${encoded}&speaker=${speaker}`
+}
 
 /** Build the Supabase TTS proxy URL — NO auth needed */
 function getTTSProxyUrl(text: string, lang = 'en'): string {
   const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
   const encoded = encodeURIComponent(text.slice(0, 200))
   return `${supabaseUrl}/functions/v1/tts?text=${encoded}&lang=${lang}`
+}
+
+/** Cache key for text+accent */
+function cacheKey(text: string, accent: string): string {
+  return `${accent}:${text.slice(0, 100)}`
 }
 
 export function useTTS() {
@@ -171,27 +201,50 @@ export function useTTS() {
     []
   )
 
-  /* ─── SPEAK (SYNCHRONOUS!) ─────────────────────────────────────── */
+  /* ─── SPEAK (v6 — Multi-engine TTS with fallback chain) ────────────── */
 
   const speak = useCallback(
-    (text: string, rate: number = 1) => {
+    (text: string, rate?: number, accent?: string, voice?: string) => {
+      // Auto-inject user's saved TTS preferences from profile
+      const profile = useAuthStore.getState().profile
+      const effectiveVoice = voice ?? profile?.tts_voice ?? 'amy'
+      const effectiveAccent = accent ?? profile?.tts_accent ?? 'en-US'
+      const effectiveRate = rate ?? profile?.tts_speed ?? 1
+
       stop()
 
-      if (IS_MOBILE) {
-        // MOBILE: Use Supabase TTS proxy (verify_jwt=false, no auth needed)
-        // Fallback to speechSynthesis if proxy fails
-        const url = getTTSProxyUrl(text)
-        playUrl(url, rate, () => {
-          console.warn('[TTS] Proxy failed, trying speechSynthesis')
-          speakWithBrowserTTS(text, rate)
+      const key = cacheKey(text, effectiveAccent + effectiveVoice)
+
+      // ❶ Check in-memory cache
+      const cachedUrl = ttsUrlCache.get(key)
+      if (cachedUrl) {
+        console.log('[TTS] Cache hit')
+        playUrl(cachedUrl, effectiveRate)
+        return
+      }
+
+      // ❷ Try TTS server (auto-routes Piper vs VITS)
+      const ttsUrl = getTTSUrl(text, effectiveAccent, effectiveVoice)
+      playUrl(ttsUrl, effectiveRate, () => {
+        console.warn('[TTS] Primary TTS failed, trying Google TTS proxy')
+
+        // ❸ Fallback: Google TTS proxy (Supabase)
+        const googleUrl = getTTSProxyUrl(text)
+        playUrl(googleUrl, effectiveRate, () => {
+          console.warn('[TTS] Google proxy failed, trying speechSynthesis')
+
+          // ❹ Final fallback: Web Speech API
+          speakWithBrowserTTS(text, effectiveRate)
         })
-      } else {
-        // DESKTOP: Use speechSynthesis (fast, reliable)
-        if (window.speechSynthesis) {
-          speakWithBrowserTTS(text, rate)
-        } else {
-          playUrl(getTTSProxyUrl(text), rate)
-        }
+      })
+
+      // Cache the URL (will be used if it succeeds)
+      ttsUrlCache.set(key, ttsUrl)
+
+      // Limit cache size
+      if (ttsUrlCache.size > 200) {
+        const firstKey = ttsUrlCache.keys().next().value
+        if (firstKey) ttsUrlCache.delete(firstKey)
       }
     },
     [stop, playUrl, speakWithBrowserTTS]

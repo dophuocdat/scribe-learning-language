@@ -1,0 +1,30 @@
+services:
+  tts-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: scribe-tts
+    restart: always          # ← Auto-start on boot
+    ports:
+      - "8100:8100"
+    volumes:
+      - tts-cache:/app/cache     # Persist audio cache
+      - tts-voices:/app/voices   # Persist voice references
+    environment:
+      - COQUI_TOS_AGREED=1
+      - PORT=8100
+    deploy:
+      resources:
+        limits:
+          memory: 4G         # VITS needs ~1.5GB, buffer for safety
+        reservations:
+          memory: 2G
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8100/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  tts-cache:
+  tts-voices:
