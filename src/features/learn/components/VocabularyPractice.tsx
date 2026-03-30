@@ -5,6 +5,7 @@ import {
   Gamepad2,
   Keyboard,
   Volume2,
+  Puzzle,
   ChevronRight,
   RotateCcw,
   CheckCircle2,
@@ -17,9 +18,10 @@ import {
 } from 'lucide-react'
 import type { Vocabulary } from '@/shared/types/database'
 import { useLearnStore } from '../stores/learnStore'
+import { WordScramble } from './WordScramble'
 import { useTTS, SPEED_OPTIONS, DEFAULT_SPEED } from '@/shared/hooks/useTTS'
 
-type PracticeMode = 'list' | 'flashcard' | 'match' | 'type'
+type PracticeMode = 'list' | 'flashcard' | 'match' | 'type' | 'scramble'
 
 interface VocabularyPracticeProps {
   vocabulary: Vocabulary[]
@@ -73,6 +75,7 @@ export function VocabularyPractice({ vocabulary }: VocabularyPracticeProps) {
     { id: 'flashcard' as const, icon: Layers, label: 'Flashcard' },
     { id: 'match' as const, icon: Gamepad2, label: 'Nối từ' },
     { id: 'type' as const, icon: Keyboard, label: 'Gõ từ' },
+    { id: 'scramble' as const, icon: Puzzle, label: 'Xáo chữ' },
   ]
 
   if (vocabulary.length === 0) {
@@ -109,6 +112,7 @@ export function VocabularyPractice({ vocabulary }: VocabularyPracticeProps) {
       {mode === 'flashcard' && <FlashcardMode vocabulary={vocabulary} />}
       {mode === 'match' && <MatchingGame vocabulary={vocabulary} />}
       {mode === 'type' && <TypingPractice vocabulary={vocabulary} />}
+      {mode === 'scramble' && <WordScramble vocabulary={vocabulary} />}
     </div>
   )
 }

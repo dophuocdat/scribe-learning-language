@@ -16,6 +16,9 @@ import { SrsReviewPage } from '@/features/learn/pages/SrsReviewPage'
 import { LeaderboardPage } from '@/features/learn/pages/LeaderboardPage'
 import { ProfilePage } from '@/features/profile/pages/ProfilePage'
 import { SmartScanPage } from '@/features/scan/pages/SmartScanPage'
+import { WritingToolsPage } from '@/features/writing-tools/pages/WritingToolsPage'
+import { ListeningPracticePage } from '@/features/listening-practice/pages/ListeningPracticePage'
+import { DailyReviewPage } from '@/features/review-tracking/pages/DailyReviewPage'
 
 // Admin imports
 import { AdminGuard } from '@/features/admin/components/AdminGuard'
@@ -105,7 +108,10 @@ export function App() {
           <Route path="lessons/:lessonId" element={<LessonStudyPage />} />
           <Route path="scan" element={<SmartScanPage />} />
           <Route path="folders" element={<SmartScanPage />} />
+          <Route path="writing-tools" element={<WritingToolsPage />} />
+          <Route path="listening" element={<ListeningPracticePage />} />
           <Route path="review" element={<SrsReviewPage />} />
+          <Route path="daily-review" element={<DailyReviewPage />} />
           <Route path="analytics" element={<PlaceholderPage title="Thống kê" />} />
           <Route path="leaderboard" element={<LeaderboardPage />} />
           <Route path="profile" element={<ProfilePage />} />

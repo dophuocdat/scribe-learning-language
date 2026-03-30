@@ -13,16 +13,19 @@ import {
 import { Link } from 'react-router-dom'
 import { useAuthStore } from '@/features/auth/stores/authStore'
 import { useLearnStore } from '@/features/learn/stores/learnStore'
+import { useReviewTrackingStore } from '@/features/review-tracking/stores/reviewTrackingStore'
 
 export function DashboardPage() {
   const { profile } = useAuthStore()
   const { courses, srsStats, fetchPublishedCourses, fetchSrsCards, loadingCourses } =
     useLearnStore()
+  const { dueCount, fetchLessonsDue } = useReviewTrackingStore()
 
   useEffect(() => {
     fetchPublishedCourses()
     fetchSrsCards()
-  }, [fetchPublishedCourses, fetchSrsCards])
+    fetchLessonsDue()
+  }, [fetchPublishedCourses, fetchSrsCards, fetchLessonsDue])
 
   return (
     <div className="space-y-8 animate-fade-in">
@@ -47,7 +50,7 @@ export function DashboardPage() {
       </section>
 
       {/* Quick Actions */}
-      <section className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <QuickAction
           to="/scan"
           icon={<ScanLine className="w-6 h-6" />}
@@ -56,8 +59,15 @@ export function DashboardPage() {
           gradient="from-primary-600 to-primary-500"
         />
         <QuickAction
-          to="/review"
+          to="/daily-review"
           icon={<Brain className="w-6 h-6" />}
+          title="Ôn tập hàng ngày"
+          description={dueCount > 0 ? `${dueCount} bài cần ôn hôm nay` : 'Không có bài cần ôn'}
+          gradient="from-amber-600 to-amber-400"
+        />
+        <QuickAction
+          to="/review"
+          icon={<Sparkles className="w-6 h-6" />}
           title="Ôn tập SRS"
           description={`${srsStats.dueToday} từ cần ôn hôm nay`}
           gradient="from-accent-600 to-accent-400"

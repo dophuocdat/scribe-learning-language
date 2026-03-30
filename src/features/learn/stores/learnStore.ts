@@ -439,6 +439,49 @@ export const useLearnStore = create<LearnState>((set, get) => ({
         await useXpStore.getState().updateStreak()
       }
 
+      // Auto-track lesson progress for daily review scheduling
+      try {
+        const { data: quizData } = await supabase
+          .from('quizzes')
+          .select('lesson_id')
+          .eq('id', quizId)
+          .single()
+
+        if (quizData?.lesson_id) {
+          const { data: lessonData } = await supabase
+            .from('lessons')
+            .select('id, course_id')
+            .eq('id', quizData.lesson_id)
+            .single()
+
+          if (lessonData?.course_id) {
+            const scorePct = totalQuestions > 0 ? Math.round((score / totalQuestions) * 100) : 0
+            await supabase
+              .from('user_lesson_progress')
+              .upsert({
+                user_id: user.id,
+                lesson_id: lessonData.id,
+                course_id: lessonData.course_id,
+                status: scorePct >= 85 ? 'completed' : 'started',
+                completion_count: 1,
+                best_score_percent: scorePct,
+                total_time_spent_sec: timeSpent,
+                // Set to start of next day (midnight UTC) so review is available next morning
+                next_review_at: (() => {
+                  const tomorrow = new Date()
+                  tomorrow.setUTCDate(tomorrow.getUTCDate() + 1)
+                  tomorrow.setUTCHours(0, 0, 0, 0)
+                  return tomorrow.toISOString()
+                })(),
+              }, {
+                onConflict: 'user_id,lesson_id',
+              })
+          }
+        }
+      } catch (trackErr) {
+        console.warn('[learnStore] Auto-track lesson progress failed:', trackErr)
+      }
+
       return data as UserQuizAttempt
     } catch (err) {
       console.error('[learnStore] submitQuizAttempt:', err)

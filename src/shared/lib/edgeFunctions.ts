@@ -88,3 +88,13 @@ export async function invokeScanApiUser<T = any>(
 ): Promise<{ data: T | null; error: string | null }> {
   return invokeEdgeFunction<T>('scan-api-user', { _endpoint: endpoint, ...body })
 }
+
+/**
+ * Invoke the writing-api Edge Function (grammar & plagiarism checker).
+ */
+export async function invokeWritingApi<T = any>(
+  endpoint: string,
+  body: Record<string, unknown>
+): Promise<{ data: T | null; error: string | null }> {
+  return invokeEdgeFunction<T>('writing-api', { _endpoint: endpoint, ...body })
+}

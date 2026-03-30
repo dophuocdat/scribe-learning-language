@@ -13,6 +13,8 @@ import {
   Shield,
   LogOut,
   X,
+  PenTool,
+  Headphones,
 } from 'lucide-react'
 import { useAuthStore } from '@/features/auth/stores/authStore'
 
@@ -24,6 +26,8 @@ const tabs = [
 ]
 
 const moreItems = [
+  { path: '/writing-tools', label: 'Công cụ viết', icon: PenTool },
+  { path: '/listening', label: 'Luyện nghe', icon: Headphones },
   { path: '/leaderboard', label: 'Bảng xếp hạng', icon: Trophy },
   { path: '/analytics', label: 'Thống kê', icon: BarChart3 },
   { path: '/profile', label: 'Hồ sơ', icon: UserCircle },

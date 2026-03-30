@@ -1,34 +1,27 @@
 import { useState, useCallback, useRef, useEffect } from 'react'
 
 /*
- * ─── TTS STRATEGY ───────────────────────────────────────────────────
+ * ─── TTS STRATEGY (v5) ────────────────────────────────────────────────
  *
- * Mobile browsers have many issues with speechSynthesis (Web Speech API):
- * - iOS Safari: voices load async, gets stuck, often produces no sound
- * - Android Chrome: ignores lang, limited voices
- * - Both: autoplay policies can block audio
+ * Problem history:
+ * - speechSynthesis: unreliable on mobile (no sound)
+ * - Google TTS URL directly: CORS blocked (403)
+ * - Supabase TTS proxy: 401 because verify_jwt was still enabled
  *
- * Google Translate TTS URL is blocked with 403 when called cross-origin
- * from the browser (needs cookies/referrer from google.com domain).
+ * Fix (v5):
+ * - TTS proxy redeployed via MCP with verify_jwt=false (CONFIRMED)
+ * - On mobile: use TTS proxy (no auth needed now)
+ * - On desktop: use speechSynthesis (fast, local)
+ * - audio_url takes priority if available
  *
- * SOLUTION: Supabase Edge Function `/tts?text=word&lang=en` acts as a
- * server-side proxy — fetches audio from Google TTS and returns it from
- * our own Supabase domain. No CORS issues, works on ALL browsers.
- *
- * Fallback chain:
- * 1. audio_url (if vocabulary has pre-generated audio)
- * 2. Supabase TTS proxy (reliable on all platforms)
- * 3. speechSynthesis (desktop fallback, fast)
- *
- * CRITICAL for mobile: audio.play() must be called SYNCHRONOUSLY
- * from the user gesture (click/tap) call stack. No async/await!
+ * CRITICAL: audio.play() must be SYNCHRONOUS from user gesture.
  * ─────────────────────────────────────────────────────────────────────
  */
 
 const IS_MOBILE = typeof navigator !== 'undefined' &&
   /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent)
 
-/** Build the Supabase TTS proxy URL */
+/** Build the Supabase TTS proxy URL — NO auth needed */
 function getTTSProxyUrl(text: string, lang = 'en'): string {
   const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
   const encoded = encodeURIComponent(text.slice(0, 200))
@@ -41,11 +34,11 @@ export function useTTS() {
   const voicesRef = useRef<SpeechSynthesisVoice[]>([])
   const voicesLoadedRef = useRef(false)
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
-  const lastCallRef = useRef(0) // cooldown debounce timestamp
+  const lastCallRef = useRef(0)
 
-  // Pre-load voices for desktop speechSynthesis
+  // Pre-load voices for speechSynthesis
   useEffect(() => {
-    if (!window.speechSynthesis) return
+    if (typeof window === 'undefined' || !window.speechSynthesis) return
 
     const loadVoices = () => {
       const v = window.speechSynthesis.getVoices()
@@ -57,6 +50,9 @@ export function useTTS() {
 
     loadVoices()
     window.speechSynthesis.addEventListener('voiceschanged', loadVoices)
+    setTimeout(loadVoices, 100)
+    setTimeout(loadVoices, 500)
+
     return () => {
       window.speechSynthesis.removeEventListener('voiceschanged', loadVoices)
     }
@@ -90,9 +86,6 @@ export function useTTS() {
     (url: string, rate: number = 1, onFail?: () => void) => {
       stop()
 
-      // Do NOT set crossOrigin — it triggers CORS preflight which
-      // many audio servers (including our Supabase proxy) handle fine,
-      // but it's unnecessary and can cause issues with some CDNs.
       const audio = new Audio(url)
       audio.playbackRate = rate
       audio.volume = 1
@@ -104,18 +97,19 @@ export function useTTS() {
       }
 
       audio.onerror = () => {
+        console.warn('[TTS] Audio playback failed, trying fallback')
         setIsSpeaking(false)
         audioRef.current = null
         if (onFail) onFail()
       }
 
-      // CRITICAL: Call play() IMMEDIATELY — synchronous from user gesture.
-      // Do not defer to canplaythrough or any other event.
+      // CRITICAL: Call play() IMMEDIATELY — synchronous from user gesture
       const promise = audio.play()
       if (promise) {
         promise
           .then(() => setIsSpeaking(true))
           .catch(() => {
+            console.warn('[TTS] audio.play() rejected')
             setIsSpeaking(false)
             audioRef.current = null
             if (onFail) onFail()
@@ -125,11 +119,11 @@ export function useTTS() {
     [stop]
   )
 
-  /* ─── SPEAK WITH BROWSER TTS (desktop only) ────────────────────── */
+  /* ─── SPEAK WITH BROWSER TTS (desktop) ─────────────────────────── */
 
   const speakWithBrowserTTS = useCallback(
     (text: string, rate: number = 1) => {
-      if (!window.speechSynthesis) return
+      if (typeof window === 'undefined' || !window.speechSynthesis) return
 
       window.speechSynthesis.cancel()
 
@@ -177,20 +171,22 @@ export function useTTS() {
     []
   )
 
-  /* ─── SPEAK (SYNCHRONOUS — no async/await!) ────────────────────── */
+  /* ─── SPEAK (SYNCHRONOUS!) ─────────────────────────────────────── */
 
   const speak = useCallback(
     (text: string, rate: number = 1) => {
       stop()
 
       if (IS_MOBILE) {
-        // MOBILE: Use Supabase TTS proxy (server-side, reliable)
-        // Fallback: try speechSynthesis if proxy fails
+        // MOBILE: Use Supabase TTS proxy (verify_jwt=false, no auth needed)
+        // Fallback to speechSynthesis if proxy fails
         const url = getTTSProxyUrl(text)
-        playUrl(url, rate, () => speakWithBrowserTTS(text, rate))
+        playUrl(url, rate, () => {
+          console.warn('[TTS] Proxy failed, trying speechSynthesis')
+          speakWithBrowserTTS(text, rate)
+        })
       } else {
-        // DESKTOP: Use speechSynthesis (fast, works well)
-        // Fallback: Supabase TTS proxy
+        // DESKTOP: Use speechSynthesis (fast, reliable)
         if (window.speechSynthesis) {
           speakWithBrowserTTS(text, rate)
         } else {
@@ -211,11 +207,11 @@ export function useTTS() {
     [stop, playUrl, speak]
   )
 
-  /* ─── SMART SPEAK WORD (SYNCHRONOUS + 500ms COOLDOWN) ──────────── */
+  /* ─── SMART SPEAK WORD (500ms COOLDOWN) ────────────────────────── */
 
   const speakWord = useCallback(
     (word: string, audioUrl: string | null | undefined, rate: number = 1) => {
-      // 500ms cooldown to prevent spam calls to edge function
+      // 500ms cooldown
       const now = Date.now()
       if (now - lastCallRef.current < 500) return
       lastCallRef.current = now

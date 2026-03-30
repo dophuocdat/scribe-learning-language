@@ -87,6 +87,12 @@ export type Database = {
         Update: Partial<Omit<UserScanLog, 'id'>>
         Relationships: []
       }
+      writing_checks: {
+        Row: WritingCheck
+        Insert: Omit<WritingCheck, 'id' | 'created_at'>
+        Update: Partial<Omit<WritingCheck, 'id'>>
+        Relationships: []
+      }
     }
     Views: Record<string, never>
     Functions: {
@@ -254,6 +260,10 @@ export interface UserProfile {
   target_score: number | null
   daily_goal_minutes: number
   max_daily_scans: number
+  max_daily_grammar_checks: number
+  max_daily_plagiarism_checks: number
+  max_daily_paraphrase_checks: number
+  max_daily_listening_exercises: number
   created_at: string
   updated_at: string
 }
@@ -296,4 +306,15 @@ export interface UserScanLog {
   created_at: string
   // Joined fields
   course?: Course
+}
+
+export interface WritingCheck {
+  id: string
+  user_id: string
+  check_type: 'grammar' | 'plagiarism' | 'paraphrase'
+  input_text: string
+  input_char_count: number
+  result: Record<string, unknown> | null
+  quality_score: number | null
+  created_at: string
 }
