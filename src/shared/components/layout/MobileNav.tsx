@@ -15,6 +15,8 @@ import {
   X,
   PenTool,
   Headphones,
+  Mic,
+  BookOpenText,
 } from 'lucide-react'
 import { useAuthStore } from '@/features/auth/stores/authStore'
 
@@ -26,8 +28,10 @@ const tabs = [
 ]
 
 const moreItems = [
-  { path: '/writing-tools', label: 'Công cụ viết', icon: PenTool },
   { path: '/listening', label: 'Luyện nghe', icon: Headphones },
+  { path: '/speaking', label: 'Luyện nói', icon: Mic },
+  { path: '/reading', label: 'Luyện đọc', icon: BookOpenText },
+  { path: '/writing', label: 'Luyện viết', icon: PenTool },
   { path: '/leaderboard', label: 'Bảng xếp hạng', icon: Trophy },
   { path: '/analytics', label: 'Thống kê', icon: BarChart3 },
   { path: '/profile', label: 'Hồ sơ', icon: UserCircle },

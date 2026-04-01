@@ -16,6 +16,8 @@ import {
   PenTool,
   Headphones,
   CalendarCheck,
+  Mic,
+  BookOpenText,
 } from 'lucide-react'
 import { useAuthStore } from '@/features/auth/stores/authStore'
 
@@ -23,8 +25,12 @@ const navItems = [
   { path: '/', label: 'Trang chủ', icon: Home },
   { path: '/courses', label: 'Khóa học', icon: BookOpen },
   { path: '/scan', label: 'Smart Scan', icon: ScanLine },
-  { path: '/writing-tools', label: 'Công cụ viết', icon: PenTool },
+  // ─── Luyện tập ───
   { path: '/listening', label: 'Luyện nghe', icon: Headphones },
+  { path: '/speaking', label: 'Luyện nói', icon: Mic },
+  { path: '/reading', label: 'Luyện đọc', icon: BookOpenText },
+  { path: '/writing', label: 'Luyện viết', icon: PenTool },
+  // ─── Ôn tập ───
   { path: '/daily-review', label: 'Ôn tập hàng ngày', icon: CalendarCheck },
   { path: '/review', label: 'Ôn tập SRS', icon: Brain },
   { path: '/leaderboard', label: 'Bảng xếp hạng', icon: Trophy },

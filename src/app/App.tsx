@@ -17,7 +17,10 @@ import { LeaderboardPage } from '@/features/learn/pages/LeaderboardPage'
 import { ProfilePage } from '@/features/profile/pages/ProfilePage'
 import { SmartScanPage } from '@/features/scan/pages/SmartScanPage'
 import { WritingToolsPage } from '@/features/writing-tools/pages/WritingToolsPage'
-import { ListeningPracticePage } from '@/features/listening-practice/pages/ListeningPracticePage'
+import { WritingPage } from '@/features/writing/pages/WritingPage'
+import { ListeningPage } from '@/features/listening/pages/ListeningPage'
+import { SpeakingPage } from '@/features/speaking/pages/SpeakingPage'
+import { ReadingPage } from '@/features/reading/pages/ReadingPage'
 import { DailyReviewPage } from '@/features/review-tracking/pages/DailyReviewPage'
 
 // Admin imports
@@ -109,7 +112,10 @@ export function App() {
           <Route path="scan" element={<SmartScanPage />} />
           <Route path="folders" element={<SmartScanPage />} />
           <Route path="writing-tools" element={<WritingToolsPage />} />
-          <Route path="listening" element={<ListeningPracticePage />} />
+          <Route path="writing" element={<WritingPage />} />
+          <Route path="listening" element={<ListeningPage />} />
+          <Route path="speaking" element={<SpeakingPage />} />
+          <Route path="reading" element={<ReadingPage />} />
           <Route path="review" element={<SrsReviewPage />} />
           <Route path="daily-review" element={<DailyReviewPage />} />
           <Route path="analytics" element={<PlaceholderPage title="Thống kê" />} />
