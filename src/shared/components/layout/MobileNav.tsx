@@ -17,6 +17,7 @@ import {
   Headphones,
   Mic,
   BookOpenText,
+  Map,
 } from 'lucide-react'
 import { useAuthStore } from '@/features/auth/stores/authStore'
 
@@ -27,11 +28,16 @@ const tabs = [
   { path: '/review', label: 'Ôn tập', icon: Brain },
 ]
 
+const skillItems = [
+  { path: '/listening', label: 'Nghe', icon: Headphones },
+  { path: '/speaking', label: 'Nói', icon: Mic },
+  { path: '/reading', label: 'Đọc', icon: BookOpenText },
+  { path: '/writing', label: 'Viết', icon: PenTool },
+]
+
 const moreItems = [
-  { path: '/listening', label: 'Luyện nghe', icon: Headphones },
-  { path: '/speaking', label: 'Luyện nói', icon: Mic },
-  { path: '/reading', label: 'Luyện đọc', icon: BookOpenText },
-  { path: '/writing', label: 'Luyện viết', icon: PenTool },
+  { path: '/learning-path', label: 'Lộ trình học', icon: Map },
+  { path: '/daily-review', label: 'Ôn tập hàng ngày', icon: Brain },
   { path: '/leaderboard', label: 'Bảng xếp hạng', icon: Trophy },
   { path: '/analytics', label: 'Thống kê', icon: BarChart3 },
   { path: '/profile', label: 'Hồ sơ', icon: UserCircle },
@@ -65,7 +71,7 @@ export function MobileNav() {
     return () => document.removeEventListener('mousedown', handleClick)
   }, [showMore])
 
-  const moreActivePaths = [...moreItems, ...adminItems].map(i => i.path)
+  const moreActivePaths = [...skillItems, ...moreItems, ...adminItems].map(i => i.path)
   const isMoreActive = moreActivePaths.some(p =>
     p === '/' ? location.pathname === '/' : location.pathname.startsWith(p)
   )
@@ -106,6 +112,34 @@ export function MobileNav() {
 
           {/* Menu items */}
           <div className="p-2 space-y-0.5">
+            {/* Skill items grid */}
+            <p className="px-3 py-1.5 text-[10px] font-semibold text-surface-200/30 uppercase tracking-wider">Luyện kỹ năng</p>
+            <div className="grid grid-cols-4 gap-1 px-1 pb-1">
+              {skillItems.map((item) => {
+                const isActive = location.pathname.startsWith(item.path)
+                return (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    className={`
+                      flex flex-col items-center gap-1 py-2.5 rounded-xl
+                      transition-all duration-200
+                      ${isActive
+                        ? 'bg-primary-500/15 text-primary-400'
+                        : 'text-surface-200/60 active:bg-surface-700/40'
+                      }
+                    `}
+                  >
+                    <item.icon className={`w-5 h-5 ${isActive ? 'text-primary-400' : 'text-surface-200/40'}`} />
+                    <span className="text-[11px] font-medium">{item.label}</span>
+                  </Link>
+                )
+              })}
+            </div>
+
+            <div className="my-1 mx-2 border-t border-surface-700/50" />
+
+            {/* Other items */}
             {moreItems.map((item) => {
               const isActive = item.path === '/'
                 ? location.pathname === '/'

@@ -22,6 +22,7 @@ import { ListeningPage } from '@/features/listening/pages/ListeningPage'
 import { SpeakingPage } from '@/features/speaking/pages/SpeakingPage'
 import { ReadingPage } from '@/features/reading/pages/ReadingPage'
 import { DailyReviewPage } from '@/features/review-tracking/pages/DailyReviewPage'
+import { LearningPathPage } from '@/features/learning-path/pages/LearningPathPage'
 
 // Admin imports
 import { AdminGuard } from '@/features/admin/components/AdminGuard'
@@ -106,6 +107,7 @@ export function App() {
           }
         >
           <Route index element={<DashboardPage />} />
+          <Route path="learning-path" element={<LearningPathPage />} />
           <Route path="courses" element={<CoursesCatalogPage />} />
           <Route path="courses/:courseId" element={<CourseDetailPage />} />
           <Route path="lessons/:lessonId" element={<LessonStudyPage />} />

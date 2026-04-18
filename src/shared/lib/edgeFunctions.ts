@@ -90,11 +90,52 @@ export async function invokeScanApiUser<T = any>(
 }
 
 /**
- * Invoke the writing-api Edge Function (grammar & plagiarism checker).
+ * Invoke the writing-api Edge Function.
+ * Uses a longer timeout (120s) since generate-lesson-skills may take 30+ seconds
+ * with sequential AI calls and fallbacks.
  */
 export async function invokeWritingApi<T = any>(
   endpoint: string,
   body: Record<string, unknown>
 ): Promise<{ data: T | null; error: string | null }> {
-  return invokeEdgeFunction<T>('writing-api', { _endpoint: endpoint, ...body })
+  const TIMEOUT_MS = 120_000 // 2 minutes
+
+  try {
+    const { data: { session } } = await supabase.auth.getSession()
+    const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
+    const url = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/writing-api`
+
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), TIMEOUT_MS)
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': anonKey,
+        'Authorization': `Bearer ${session?.access_token || anonKey}`,
+      },
+      body: JSON.stringify({ _endpoint: endpoint, ...body }),
+      signal: controller.signal,
+    })
+
+    clearTimeout(timeoutId)
+
+    if (!response.ok) {
+      const errBody = await response.json().catch(() => ({}))
+      const errMsg = errBody?.error || `HTTP ${response.status}`
+      console.error('[writing-api]:', errMsg)
+      return { data: null, error: errMsg }
+    }
+
+    const data = await response.json()
+    return { data: data as T, error: null }
+  } catch (err) {
+    if ((err as Error).name === 'AbortError') {
+      console.error('[writing-api]: Request timed out after', TIMEOUT_MS / 1000, 's')
+      return { data: null, error: 'Request timed out. Vui lòng thử lại hoặc giảm số lượng bài.' }
+    }
+    console.error('[writing-api]:', err)
+    return { data: null, error: (err as Error).message }
+  }
 }

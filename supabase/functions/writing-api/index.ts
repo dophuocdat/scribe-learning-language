@@ -1977,6 +1977,226 @@ async function handleEvaluateShadowing(req: Request, _userId: string) {
   }
 }
 
+// ===== LESSON SKILL EXERCISES HANDLER =====
+
+async function handleGenerateLessonSkills(req: Request, _userId: string) {
+  const { lesson_id, skills_count } = await req.json()
+  if (!lesson_id) return errorResponse('Missing lesson_id')
+
+  const serviceClient = getServiceClient()
+
+  // Fetch lesson content + vocabulary
+  const { data: lesson, error: lessonErr } = await serviceClient
+    .from('lessons')
+    .select('id, title, raw_content, processed_content, ai_summary')
+    .eq('id', lesson_id)
+    .single()
+
+  if (lessonErr || !lesson) return errorResponse('Lesson not found', 404)
+
+  const { data: vocabulary } = await serviceClient
+    .from('vocabulary')
+    .select('word, definition_vi, definition_en, example_sentence, part_of_speech')
+    .eq('lesson_id', lesson_id)
+    .limit(50)
+
+  const lessonContent = lesson.processed_content || lesson.raw_content || ''
+  const vocabList = (vocabulary || []).map((v: any) => `${v.word} (${v.part_of_speech || ''}): ${v.definition_vi || v.definition_en || ''}`).join('\n')
+  const counts = skills_count || { listening: 1, speaking: 1, reading: 1, writing: 1 }
+
+  console.log(`[writing-api] Generate lesson skills for: ${lesson.title}, vocab: ${vocabulary?.length || 0}`)
+
+  const results: { skill: string; mode: string; title: string; title_vi: string; content: unknown }[] = []
+
+  // Generate Listening exercise
+  for (let i = 0; i < (counts.listening || 1); i++) {
+    try {
+      const prompt = `You are an English language teacher creating a DICTATION listening exercise.
+CONTEXT: This exercise is based on a lesson titled "${lesson.title}".
+LESSON CONTENT (use vocabulary and themes from this):
+${lessonContent.substring(0, 2000)}
+
+VOCABULARY TO INCLUDE:
+${vocabList.substring(0, 1000)}
+
+IMPORTANT: This is exercise ${i + 1} of ${counts.listening || 1}. Each exercise MUST have a UNIQUE topic/sentence. Do NOT repeat topics.${i > 0 ? '\nPreviously generated topics to AVOID repeating: ' + results.filter(r => r.skill === 'listening').map(r => r.title).join(', ') : ''}
+
+TASK: Create a dictation exercise using 2-4 vocabulary words from the list above in a natural sentence.
+
+Return JSON:
+{
+  "topic_title": "Short unique topic name in English (3-5 words, e.g. 'Environmental Impact of Deforestation')",
+  "topic_title_vi": "Tên chủ đề ngắn gọn bằng tiếng Việt",
+  "text": "English sentence using lesson vocabulary (10-20 words)",
+  "translation_vi": "Vietnamese translation",
+  "word_count": 15,
+  "difficulty_note_vi": "Short note about difficulty",
+  "key_vocabulary": [{ "word": "word", "meaning_vi": "meaning" }]
+}`
+      const raw = await callGemini(prompt, 4096)
+      const content = extractJson(raw)
+      const topicTitle = content?.topic_title || `Dictation ${i + 1}`
+      const topicTitleVi = content?.topic_title_vi || topicTitle
+      results.push({
+        skill: 'listening', mode: 'dictation',
+        title: `Listening: ${topicTitle}`,
+        title_vi: `Nghe chép: ${topicTitleVi}`,
+        content,
+      })
+    } catch (err) {
+      console.error('[writing-api] Listening generation failed:', err)
+    }
+  }
+
+  // Generate Speaking exercise
+  for (let i = 0; i < (counts.speaking || 1); i++) {
+    try {
+      const prompt = `You are an English pronunciation coach creating a PRONUNCIATION exercise.
+CONTEXT: Based on lesson "${lesson.title}".
+VOCABULARY:
+${vocabList.substring(0, 1000)}
+
+IMPORTANT: This is exercise ${i + 1} of ${counts.speaking || 1}. Each exercise MUST have a UNIQUE sentence and focus on different sounds.${i > 0 ? '\nPreviously generated topics to AVOID: ' + results.filter(r => r.skill === 'speaking').map(r => r.title).join(', ') : ''}
+
+TASK: Create a pronunciation practice sentence using 2-3 vocabulary words from the lesson.
+
+Return JSON:
+{
+  "topic_title": "Short unique topic name (e.g. 'Stress Patterns in Compound Nouns')",
+  "topic_title_vi": "Tên chủ đề bằng tiếng Việt",
+  "sentence": "English sentence for pronunciation practice",
+  "sentence_vi": "Vietnamese translation",
+  "phonetic_guide": "/IPA transcription/",
+  "key_sounds": [{ "sound": "th", "tip_vi": "Pronunciation tip in Vietnamese", "ipa": "/\u03b8/" }],
+  "difficulty_note_vi": "Note about pronunciation difficulty"
+}`
+      const raw = await callGemini(prompt, 4096)
+      const content = extractJson(raw)
+      const topicTitle = content?.topic_title || `Pronunciation ${i + 1}`
+      const topicTitleVi = content?.topic_title_vi || topicTitle
+      results.push({
+        skill: 'speaking', mode: 'pronunciation',
+        title: `Speaking: ${topicTitle}`,
+        title_vi: `Phát âm: ${topicTitleVi}`,
+        content,
+      })
+    } catch (err) {
+      console.error('[writing-api] Speaking generation failed:', err)
+    }
+  }
+
+  // Generate Reading exercise
+  for (let i = 0; i < (counts.reading || 1); i++) {
+    try {
+      const prompt = `You are an English teacher creating a READING COMPREHENSION exercise.
+CONTEXT: Based on lesson "${lesson.title}".
+LESSON CONTENT:
+${lessonContent.substring(0, 2000)}
+VOCABULARY:
+${vocabList.substring(0, 1000)}
+
+IMPORTANT: This is exercise ${i + 1} of ${counts.reading || 1}. Each exercise MUST cover a DIFFERENT aspect/sub-topic of the lesson.${i > 0 ? '\nPreviously generated topics to AVOID: ' + results.filter(r => r.skill === 'reading').map(r => r.title).join(', ') : ''}
+
+TASK: Create a short reading passage (100-200 words) related to the lesson topic, with 3-4 comprehension questions.
+
+Return JSON:
+{
+  "topic_title": "Short unique article title (e.g. 'The Hidden Cost of Fast Fashion')",
+  "topic_title_vi": "Tên bài đọc bằng tiếng Việt",
+  "title": "Article title",
+  "content": "Reading passage text (100-200 words) using lesson vocabulary",
+  "word_count": 150,
+  "questions": [
+    { "question": "Question text", "type": "mcq", "options": ["A", "B", "C", "D"], "correct_answer": "A", "explanation_vi": "Explanation" }
+  ],
+  "vocabulary": [{ "word": "word", "meaning_vi": "meaning", "ipa": "/ipa/", "part_of_speech": "noun", "example": "example sentence" }]
+}`
+      const raw = await callGemini(prompt, 8192)
+      const content = extractJson(raw)
+      const topicTitle = content?.topic_title || content?.title || `Reading ${i + 1}`
+      const topicTitleVi = content?.topic_title_vi || topicTitle
+      results.push({
+        skill: 'reading', mode: 'level_reading',
+        title: `Reading: ${topicTitle}`,
+        title_vi: `Đọc hiểu: ${topicTitleVi}`,
+        content,
+      })
+    } catch (err) {
+      console.error('[writing-api] Reading generation failed:', err)
+    }
+  }
+
+  // Generate Writing exercise
+  for (let i = 0; i < (counts.writing || 1); i++) {
+    try {
+      const prompt = `You are an English teacher creating a SENTENCE BUILDING exercise.
+CONTEXT: Based on lesson "${lesson.title}".
+VOCABULARY:
+${vocabList.substring(0, 1000)}
+
+IMPORTANT: This is exercise ${i + 1} of ${counts.writing || 1}. Each exercise MUST use DIFFERENT vocabulary and create a UNIQUE sentence.${i > 0 ? '\nPreviously generated sentences to AVOID: ' + results.filter(r => r.skill === 'writing').map(r => (r.content as any)?.correct_sentence || '').join('; ') : ''}
+
+TASK: Create a sentence building exercise using vocabulary from the lesson. The student arranges shuffled words into a correct sentence.
+
+Return JSON:
+{
+  "topic_title": "Short unique topic (e.g. 'Passive Voice with Modal Verbs')",
+  "topic_title_vi": "Tên chủ đề bằng tiếng Việt",
+  "correct_sentence": "The correct English sentence using lesson vocabulary",
+  "words_shuffled": ["array", "of", "shuffled", "words"],
+  "distractors": ["1-2", "wrong", "words"],
+  "grammar_hint_vi": "Grammar hint in Vietnamese",
+  "translation_vi": "Vietnamese translation"
+}`
+      const raw = await callGemini(prompt, 4096)
+      const content = extractJson(raw)
+      const topicTitle = content?.topic_title || `Sentence ${i + 1}`
+      const topicTitleVi = content?.topic_title_vi || topicTitle
+      results.push({
+        skill: 'writing', mode: 'sentence_building',
+        title: `Writing: ${topicTitle}`,
+        title_vi: `Viết câu: ${topicTitleVi}`,
+        content,
+      })
+    } catch (err) {
+      console.error('[writing-api] Writing generation failed:', err)
+    }
+  }
+
+  if (results.length === 0) {
+    return errorResponse('Failed to generate any exercises', 500)
+  }
+
+  // Save to DB
+  const exercises = results.map((r, i) => ({
+    lesson_id: lesson_id,
+    skill: r.skill,
+    mode: r.mode,
+    title: r.title,
+    title_vi: r.title_vi,
+    instruction_vi: null,
+    content: r.content,
+    order_index: i,
+  }))
+
+  const { data: saved, error: saveErr } = await serviceClient
+    .from('lesson_skill_exercises')
+    .insert(exercises)
+    .select('id, skill, mode, title')
+
+  if (saveErr) {
+    console.error('[writing-api] Save exercises error:', saveErr)
+    return errorResponse(`Failed to save: ${saveErr.message}`, 500)
+  }
+
+  console.log(`[writing-api] Generated ${saved?.length || 0} skill exercises for lesson ${lesson_id}`)
+
+  return jsonResponse({
+    exercises: saved,
+    total: saved?.length || 0,
+  })
+}
+
 // ═══════════════════════════════════════════════════════════
 // ═══════ MAIN ROUTER ══════════════════════════════════════
 // ═══════════════════════════════════════════════════════════
@@ -2084,6 +2304,10 @@ Deno.serve(async (req: Request) => {
         return await handleGenerateEssayPrompt(handlerReq, userId)
       case 'evaluate-essay':
         return await handleEvaluateEssay(handlerReq, userId)
+
+      // ─── Lesson Skill Exercises ───
+      case 'generate-lesson-skills':
+        return await handleGenerateLessonSkills(handlerReq, userId)
 
       default:
         return errorResponse(`Unknown endpoint: ${endpoint}`, 404)

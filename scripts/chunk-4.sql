@@ -1,0 +1,13 @@
+INSERT INTO quiz_questions (quiz_id, question_text, question_type, options, correct_answer, explanation, order_index) VALUES
+('8b372e76-b24a-4478-9044-4d576dfca373', 'Tính từ nào diễn tả cảm giác chán nản?', 'multiple_choice', '["Excited","Bored","Happy","Surprised"]'::jsonb, 'Bored', '''Bored'' là cảm giác chán nản.', 1),
+('939fbb43-b743-464e-8b52-8dd9bd506788', 'Thiết bị dùng để gõ chữ trên máy tính là gì?', 'multiple_choice', '["Mouse","Screen","Keyboard","Printer"]'::jsonb, 'Keyboard', '''Keyboard'' là bàn phím.', 1),
+('c20f9f73-0f69-4463-bd8e-f188bdf183c4', 'Người quản lý trong văn phòng gọi là gì?', 'multiple_choice', '["Employee","Client","Manager","Customer"]'::jsonb, 'Manager', '''Manager'' là người quản lý.', 1),
+('f16591bf-4ba8-442c-ac93-850e389f885d', 'Hành lý mang theo khi đi du lịch là gì?', 'multiple_choice', '["Luggage","Ticket","Passport","Map"]'::jsonb, 'Luggage', '''Luggage'' hoặc ''baggage'' là hành lý.', 1),
+('8dac243e-829f-4658-b5e8-139192d4f8a3', 'Buổi biểu diễn âm nhạc trực tiếp gọi là gì?', 'multiple_choice', '["Movie","Concert","Exhibition","Play"]'::jsonb, 'Concert', '''Concert'' là buổi hòa nhạc.', 1),
+('f502243d-0b81-474e-86ad-1be773d31d72', 'Bài kiểm tra cuối kỳ ở trường gọi là gì?', 'multiple_choice', '["Homework","Lesson","Exam","Subject"]'::jsonb, 'Exam', '''Exam'' (examination) là kỳ thi/bài kiểm tra.', 1),
+('bd249531-5d65-40c0-8731-854f1f64061a', 'Từ vựng chỉ sự ô nhiễm là gì?', 'multiple_choice', '["Recycle","Pollution","Nature","Forest"]'::jsonb, 'Pollution', '''Pollution'' là sự ô nhiễm.', 1),
+('0efefd79-4fbc-45da-b644-503be50944f8', 'Biên lai thanh toán khi mua hàng là gì?', 'multiple_choice', '["Receipt","Discount","Cash","Card"]'::jsonb, 'Receipt', '''Receipt'' là hóa đơn, biên lai.', 1),
+('706beb68-1201-45e8-b988-325218716e54', 'Hành động nướng bánh trong lò gọi là gì?', 'multiple_choice', '["Fry","Boil","Bake","Cut"]'::jsonb, 'Bake', '''Bake'' là nướng bánh bằng lò nướng.', 1),
+('5add7ef2-07aa-4f0d-a46c-23b71be76314', 'Người điều khiển trận đấu bóng đá (Trọng tài) gọi là gì?', 'multiple_choice', '["Player","Coach","Referee","Fan"]'::jsonb, 'Referee', '''Referee'' là trọng tài.', 1),
+('daaca8f7-d187-41ec-b2d4-b437aee48e1e', 'Động vật nào sau đây có cái cổ rất dài?', 'multiple_choice', '["Elephant","Giraffe","Tiger","Monkey"]'::jsonb, 'Giraffe', '''Giraffe'' là hươu cao cổ.', 1),
+('b4664d95-958b-4483-af5b-17f9b569c452', 'Người đồng nghiệp làm cùng công ty tiếng Anh là gì?', 'multiple_choice', '["Friend","Colleague","Relative","Neighbor"]'::jsonb, 'Colleague', '''Colleague'' (hoặc co-worker) là đồng nghiệp.', 1);

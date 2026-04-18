@@ -19,6 +19,11 @@ dist-ssr
 .env
 .env.local
 
+# Cloud / API credentials (never commit)
+api-gen-*.json
+google-credentials.json
+*-credentials.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

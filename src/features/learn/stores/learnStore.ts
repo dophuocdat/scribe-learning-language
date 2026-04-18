@@ -33,6 +33,32 @@ export interface LessonWithContent extends Lesson {
   quizzes?: (Quiz & { questions?: QuizQuestion[] })[]
 }
 
+export type SkillType = 'listening' | 'speaking' | 'reading' | 'writing'
+
+export interface LessonSkillExercise {
+  id: string
+  lesson_id: string
+  skill: SkillType
+  mode: string
+  title: string
+  title_vi: string | null
+  instruction_vi: string | null
+  content: any
+  order_index: number
+}
+
+export interface LessonSkillProgress {
+  id: string
+  user_id: string
+  exercise_id: string
+  score: number | null
+  is_completed: boolean
+  attempts: number
+  best_score: number
+  xp_earned: number
+  last_attempt_at: string | null
+}
+
 interface LearnState {
   // Data
   courses: CourseWithMeta[]
@@ -42,6 +68,11 @@ interface LearnState {
   srsCards: (UserSrsCard & { vocabulary?: Vocabulary })[]
   srsStats: { dueToday: number; mastered: number; total: number }
   userProgress: Record<string, CourseProgress>
+
+  // Skill exercises
+  skillExercises: LessonSkillExercise[]
+  skillProgress: Record<string, LessonSkillProgress>
+  loadingSkills: boolean
 
   // UI
   loadingCourses: boolean
@@ -71,6 +102,10 @@ interface LearnState {
     totalQuestions: number,
     timeSpent: number
   ) => Promise<UserQuizAttempt | null>
+
+  // Skill exercises
+  fetchLessonSkillExercises: (lessonId: string) => Promise<void>
+  saveSkillProgress: (exerciseId: string, score: number, isCompleted: boolean) => Promise<void>
 }
 
 export const useLearnStore = create<LearnState>((set, get) => ({
@@ -81,6 +116,10 @@ export const useLearnStore = create<LearnState>((set, get) => ({
   srsCards: [],
   srsStats: { dueToday: 0, mastered: 0, total: 0 },
   userProgress: {},
+
+  skillExercises: [],
+  skillProgress: {},
+  loadingSkills: false,
 
   loadingCourses: false,
   loadingCourse: false,
@@ -488,6 +527,105 @@ export const useLearnStore = create<LearnState>((set, get) => ({
       return null
     } finally {
       set({ submittingQuiz: false })
+    }
+  },
+
+  // ===== SKILL EXERCISES =====
+  fetchLessonSkillExercises: async (lessonId: string) => {
+    set({ loadingSkills: true })
+    try {
+      const { data: exercises, error } = await supabase
+        .from('lesson_skill_exercises')
+        .select('*')
+        .eq('lesson_id', lessonId)
+        .eq('is_published', true)
+        .order('order_index', { ascending: true })
+
+      if (error) throw error
+
+      // Fetch progress for current user
+      const { data: { user } } = await supabase.auth.getUser()
+      let progressMap: Record<string, LessonSkillProgress> = {}
+
+      if (user && exercises && exercises.length > 0) {
+        const { data: progress } = await supabase
+          .from('lesson_skill_progress')
+          .select('*')
+          .eq('user_id', user.id)
+          .in('exercise_id', exercises.map(e => e.id))
+
+        if (progress) {
+          for (const p of progress) {
+            progressMap[p.exercise_id] = p as LessonSkillProgress
+          }
+        }
+      }
+
+      set({
+        skillExercises: (exercises || []) as LessonSkillExercise[],
+        skillProgress: progressMap,
+      })
+    } catch (err) {
+      console.error('[learnStore] fetchLessonSkillExercises:', err)
+    } finally {
+      set({ loadingSkills: false })
+    }
+  },
+
+  saveSkillProgress: async (exerciseId: string, score: number, isCompleted: boolean) => {
+    try {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) return
+
+      const xpEarned = isCompleted ? Math.round(score / 10) * 5 : 0
+
+      const { data: existing } = await supabase
+        .from('lesson_skill_progress')
+        .select('id, attempts, best_score')
+        .eq('user_id', user.id)
+        .eq('exercise_id', exerciseId)
+        .maybeSingle()
+
+      if (existing) {
+        await supabase
+          .from('lesson_skill_progress')
+          .update({
+            score,
+            is_completed: isCompleted || existing.best_score >= 60,
+            attempts: existing.attempts + 1,
+            best_score: Math.max(existing.best_score, score),
+            xp_earned: xpEarned,
+            last_attempt_at: new Date().toISOString(),
+          })
+          .eq('id', existing.id)
+      } else {
+        await supabase
+          .from('lesson_skill_progress')
+          .insert({
+            user_id: user.id,
+            exercise_id: exerciseId,
+            score,
+            is_completed: isCompleted,
+            attempts: 1,
+            best_score: score,
+            xp_earned: xpEarned,
+            last_attempt_at: new Date().toISOString(),
+          })
+      }
+
+      // Award XP
+      if (xpEarned > 0) {
+        await useXpStore.getState().awardXp(xpEarned, 'skill_exercise', exerciseId)
+        await useXpStore.getState().updateStreak()
+      }
+
+      // Refresh progress
+      const lessonId = get().skillExercises.find(e => e.id === exerciseId)?.lesson_id
+      if (lessonId) {
+        await get().fetchLessonSkillExercises(lessonId)
+      }
+    } catch (err) {
+      console.error('[learnStore] saveSkillProgress:', err)
     }
   },
 

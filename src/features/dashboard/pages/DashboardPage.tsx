@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom'
 import { useAuthStore } from '@/features/auth/stores/authStore'
 import { useLearnStore } from '@/features/learn/stores/learnStore'
 import { useReviewTrackingStore } from '@/features/review-tracking/stores/reviewTrackingStore'
+import { PathDashboardCard } from '@/features/learning-path/components/PathDashboardCard'
 
 export function DashboardPage() {
   const { profile } = useAuthStore()
@@ -48,6 +49,9 @@ export function DashboardPage() {
         <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-white/5" />
         <div className="absolute -bottom-10 -right-20 w-60 h-60 rounded-full bg-white/5" />
       </section>
+
+      {/* Learning Path Card */}
+      <PathDashboardCard />
 
       {/* Quick Actions */}
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">

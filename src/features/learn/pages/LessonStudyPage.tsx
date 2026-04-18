@@ -10,12 +10,14 @@ import {
   ChevronDown,
   ChevronUp,
   Zap,
+  Headphones,
 } from 'lucide-react'
 import { useLearnStore } from '../stores/learnStore'
 import { VocabularyPractice } from '../components/VocabularyPractice'
 import { QuizPlayer } from '../components/QuizPlayer'
+import { SkillPracticeGrid } from '../components/SkillPracticeGrid'
 
-type Tab = 'content' | 'vocabulary' | 'quiz'
+type Tab = 'content' | 'vocabulary' | 'quiz' | 'skills'
 
 export function LessonStudyPage() {
   const { lessonId } = useParams<{ lessonId: string }>()
@@ -63,6 +65,7 @@ export function LessonStudyPage() {
     { key: 'content', label: 'Nội dung', icon: <FileText className="w-4 h-4" /> },
     { key: 'vocabulary', label: 'Từ vựng', icon: <Languages className="w-4 h-4" />, count: vocabCount },
     { key: 'quiz', label: 'Bài tập', icon: <Brain className="w-4 h-4" />, count: quizCount },
+    { key: 'skills', label: 'Luyện kỹ năng', icon: <Headphones className="w-4 h-4" /> },
   ]
 
   return (
@@ -192,6 +195,11 @@ export function LessonStudyPage() {
             </div>
           )}
         </div>
+      )}
+
+      {/* Skills Tab */}
+      {activeTab === 'skills' && currentLesson && (
+        <SkillPracticeGrid lessonId={currentLesson.id} />
       )}
     </div>
   )

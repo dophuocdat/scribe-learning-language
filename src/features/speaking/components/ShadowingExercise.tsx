@@ -23,23 +23,13 @@ export function ShadowingExercise() {
   const [phase, setPhase] = useState<'listen' | 'record' | 'done'>('listen')
   const [speed, setSpeed] = useState(1)
 
-  if (!shadowContent) return null
-
-  const handlePlayModel = (rate?: number) => {
-    const playRate = rate ?? speed
-    speak(shadowContent.sentence, playRate)
-  }
-
   const handleStartRecording = useCallback(() => {
     clearError()
     resetSTT()
     setUserText('')
     setPhase('record')
 
-    // Always use MediaRecorder for reliable audio capture
     startRecording()
-
-    // Additionally try Web Speech API for real-time transcript preview
     if (isSupported) {
       try { startListening('en-US') } catch { /* ignore */ }
     }
@@ -68,6 +58,14 @@ export function ShadowingExercise() {
       setUserText(transcript)
     }
   }, [transcript, userText])
+
+  // Early return AFTER all hooks
+  if (!shadowContent) return null
+
+  const handlePlayModel = (rate?: number) => {
+    const playRate = rate ?? speed
+    speak(shadowContent.sentence, playRate)
+  }
 
   const handleSubmit = async () => {
     const finalText = userText || transcript

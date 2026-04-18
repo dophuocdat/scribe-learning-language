@@ -2,7 +2,8 @@ import { useEffect, useState, useCallback } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import {
   Save, ArrowLeft, Plus, Trash2, BookOpen, Languages, HelpCircle,
-  Edit3, Camera, Sparkles, Loader2, Check, X, Upload, Link, CheckSquare, Square
+  Edit3, Camera, Sparkles, Loader2, Check, X, Upload, Link, CheckSquare, Square,
+  Eye, Globe, EyeOff,
 } from 'lucide-react'
 import { useAdminStore } from '@/features/admin/stores/adminStore'
 import { useScanStore } from '@/features/admin/stores/scanStore'
@@ -14,7 +15,7 @@ import { Badge } from '@/shared/components/ui/Badge'
 import { ConfirmDialog } from '@/shared/components/ui/ConfirmDialog'
 import type { Vocabulary, QuizQuestion } from '@/shared/types/database'
 
-type TabId = 'content' | 'vocabulary' | 'quiz'
+type TabId = 'content' | 'vocabulary' | 'quiz' | 'skills'
 
 const partsOfSpeech = ['noun', 'verb', 'adjective', 'adverb', 'preposition', 'conjunction', 'pronoun', 'interjection', 'phrase']
 const questionTypes = ['multiple_choice', 'true_false', 'fill_blank']
@@ -58,6 +59,21 @@ export function LessonFormPage() {
   const [deleteVocabId, setDeleteVocabId] = useState<string | null>(null)
   const [savingBatch, setSavingBatch] = useState(false)
 
+  // Skill exercises
+  const [generatingSkills, setGeneratingSkills] = useState(false)
+  const [skillExercises, setSkillExercises] = useState<any[]>([])
+  const [skillCounts, setSkillCounts] = useState({ listening: 1, speaking: 1, reading: 1, writing: 1 })
+  const [previewExercise, setPreviewExercise] = useState<any | null>(null)
+  const [showManualForm, setShowManualForm] = useState(false)
+  const [manualForm, setManualForm] = useState({
+    skill: 'listening' as 'listening' | 'speaking' | 'reading' | 'writing',
+    mode: 'dictation',
+    title: '',
+    title_vi: '',
+    contentJson: '',
+  })
+  const [savingManual, setSavingManual] = useState(false)
+
   // Scan mode
   const [scanMode, setScanMode] = useState<'upload' | 'url' | null>(null)
   const [scanUrlInput, setScanUrlInput] = useState('')
@@ -99,6 +115,18 @@ export function LessonFormPage() {
         fetchVocabulary(lessonId),
         fetchQuizzes(lessonId),
       ]).then(() => setLoading(false))
+
+      // Fetch existing skill exercises
+      import('@/shared/lib/supabase').then(({ supabase }) => {
+        supabase
+          .from('lesson_skill_exercises')
+          .select('id, skill, mode, title, title_vi, is_published, content')
+          .eq('lesson_id', lessonId)
+          .order('order_index')
+          .then(({ data }) => {
+            if (data) setSkillExercises(data)
+          })
+      })
     }
   }, [lessonId, isEdit, fetchLesson, fetchVocabulary, fetchQuizzes])
 
@@ -339,10 +367,183 @@ export function LessonFormPage() {
     await fetchQuizzes(lessonId)
   }
 
+  // --- Generate 4 skills ---
+  const handleGenerateSkills = async () => {
+    if (!lessonId) {
+      addToast('error', 'Vui lòng lưu bài học trước')
+      return
+    }
+    setGeneratingSkills(true)
+    try {
+      const { invokeWritingApi } = await import('@/shared/lib/edgeFunctions')
+      const { data, error } = await invokeWritingApi('generate-lesson-skills', {
+        lesson_id: lessonId,
+        skills_count: skillCounts,
+      })
+      if (error) {
+        addToast('error', `Lỗi: ${error}`)
+        return
+      }
+      addToast('success', `Đã tạo ${data?.total || 0} bài luyện kỹ năng!`)
+      // Refresh list
+      const { supabase } = await import('@/shared/lib/supabase')
+      const { data: refreshed } = await supabase
+        .from('lesson_skill_exercises')
+        .select('id, skill, mode, title, title_vi, is_published, content')
+        .eq('lesson_id', lessonId)
+        .order('order_index')
+      if (refreshed) setSkillExercises(refreshed)
+    } catch (err) {
+      addToast('error', `Lỗi: ${(err as Error).message}`)
+    } finally {
+      setGeneratingSkills(false)
+    }
+  }
+
+  const handleDeleteSkillExercise = async (id: string) => {
+    if (!confirm('Xóa bài luyện này?')) return
+    const { supabase } = await import('@/shared/lib/supabase')
+    await supabase.from('lesson_skill_exercises').delete().eq('id', id)
+    setSkillExercises(prev => prev.filter(e => e.id !== id))
+    addToast('success', 'Đã xóa')
+  }
+
+  const handleTogglePublish = async (id: string, current: boolean) => {
+    const { supabase } = await import('@/shared/lib/supabase')
+    await supabase.from('lesson_skill_exercises').update({ is_published: !current }).eq('id', id)
+    setSkillExercises(prev => prev.map(e => e.id === id ? { ...e, is_published: !current } : e))
+    addToast('success', !current ? 'Đã publish' : 'Đã chuyển về draft')
+  }
+
+  const handlePublishAll = async () => {
+    const { supabase } = await import('@/shared/lib/supabase')
+    const ids = skillExercises.map(e => e.id)
+    await supabase.from('lesson_skill_exercises').update({ is_published: true }).in('id', ids)
+    setSkillExercises(prev => prev.map(e => ({ ...e, is_published: true })))
+    addToast('success', `Đã publish ${ids.length} bài tập`)
+  }
+
+  const handleUnpublishAll = async () => {
+    const { supabase } = await import('@/shared/lib/supabase')
+    const ids = skillExercises.map(e => e.id)
+    await supabase.from('lesson_skill_exercises').update({ is_published: false }).in('id', ids)
+    setSkillExercises(prev => prev.map(e => ({ ...e, is_published: false })))
+    addToast('success', `Đã chuyển ${ids.length} bài về draft`)
+  }
+
+  // Skill mode options per skill type
+  const SKILL_MODES: Record<string, { value: string; label: string }[]> = {
+    listening: [{ value: 'dictation', label: 'Nghe chép (Dictation)' }],
+    speaking: [
+      { value: 'pronunciation', label: 'Phát âm (Pronunciation)' },
+      { value: 'shadowing', label: 'Bắt chước (Shadowing)' },
+    ],
+    reading: [
+      { value: 'level_reading', label: 'Đọc hiểu (Reading Comprehension)' },
+      { value: 'reading_aloud', label: 'Đọc to (Reading Aloud)' },
+    ],
+    writing: [{ value: 'sentence_building', label: 'Viết câu (Sentence Building)' }],
+  }
+
+  const CONTENT_TEMPLATES: Record<string, string> = {
+    dictation: JSON.stringify({
+      text: "English sentence for dictation",
+      translation_vi: "Vietnamese translation",
+      word_count: 12,
+      difficulty_note_vi: "Ghi chú độ khó",
+      key_vocabulary: [{ word: "example", meaning_vi: "ví dụ" }],
+    }, null, 2),
+    pronunciation: JSON.stringify({
+      sentence: "English sentence for pronunciation",
+      sentence_vi: "Vietnamese translation",
+      phonetic_guide: "/IPA/",
+      key_sounds: [{ sound: "th", tip_vi: "Đặt lưỡi giữa hai hàm răng", ipa: "/θ/" }],
+      difficulty_note_vi: "Ghi chú",
+    }, null, 2),
+    shadowing: JSON.stringify({
+      sentence: "English sentence for shadowing",
+      sentence_vi: "Vietnamese translation",
+      phonetic_guide: "/IPA/",
+      stress_pattern: "STRESS pattern description",
+      speed_wpm: 120,
+    }, null, 2),
+    level_reading: JSON.stringify({
+      title: "Article Title",
+      content: "Reading passage (100-200 words)...",
+      word_count: 150,
+      questions: [
+        { question: "Question?", type: "mcq", options: ["A", "B", "C", "D"], correct_answer: "A", explanation_vi: "Giải thích" }
+      ],
+      vocabulary: [{ word: "word", meaning_vi: "nghĩa", ipa: "/ipa/", part_of_speech: "noun", example: "Example" }],
+    }, null, 2),
+    reading_aloud: JSON.stringify({
+      title: "Passage Title",
+      content: "Reading passage text...",
+      word_count: 100,
+      estimated_wpm: 120,
+      difficulty_note_vi: "Ghi chú",
+    }, null, 2),
+    sentence_building: JSON.stringify({
+      correct_sentence: "The correct English sentence",
+      words_shuffled: ["correct", "The", "sentence", "English"],
+      distractors: ["wrong1", "wrong2"],
+      grammar_hint_vi: "Gợi ý ngữ pháp",
+      translation_vi: "Vietnamese translation",
+    }, null, 2),
+  }
+
+  const handleManualSkillCreate = async () => {
+    if (!lessonId) {
+      addToast('error', 'Vui lòng lưu bài học trước')
+      return
+    }
+    if (!manualForm.title.trim()) {
+      addToast('error', 'Vui lòng nhập tiêu đề')
+      return
+    }
+
+    let content: unknown
+    try {
+      content = JSON.parse(manualForm.contentJson)
+    } catch {
+      addToast('error', 'JSON nội dung không hợp lệ! Kiểm tra lại cú pháp.')
+      return
+    }
+
+    setSavingManual(true)
+    try {
+      const { supabase } = await import('@/shared/lib/supabase')
+      const { data, error } = await supabase
+        .from('lesson_skill_exercises')
+        .insert({
+          lesson_id: lessonId,
+          skill: manualForm.skill,
+          mode: manualForm.mode,
+          title: manualForm.title.trim(),
+          title_vi: manualForm.title_vi.trim() || manualForm.title.trim(),
+          content,
+          order_index: skillExercises.length,
+        })
+        .select('id, skill, mode, title, title_vi, is_published, content')
+        .single()
+
+      if (error) throw error
+      setSkillExercises(prev => [...prev, data])
+      addToast('success', 'Đã tạo bài luyện thủ công!')
+      setManualForm({ skill: 'listening', mode: 'dictation', title: '', title_vi: '', contentJson: '' })
+      setShowManualForm(false)
+    } catch (err) {
+      addToast('error', `Lỗi: ${(err as Error).message}`)
+    } finally {
+      setSavingManual(false)
+    }
+  }
+
   const tabs: { id: TabId; label: string; icon: typeof BookOpen; count?: number }[] = [
     { id: 'content', label: 'Nội dung', icon: BookOpen },
     { id: 'vocabulary', label: 'Từ vựng', icon: Languages, count: vocabularyItems.length },
     { id: 'quiz', label: 'Quiz', icon: HelpCircle, count: quizzes[0]?.questions?.length ?? 0 },
+    { id: 'skills', label: '4 Kỹ năng', icon: Sparkles, count: skillExercises.length },
   ]
 
   if (loading) {
@@ -1203,6 +1404,265 @@ export function LessonFormPage() {
         </div>
       )}
 
+      {/* ============ SKILLS TAB ============ */}
+      {activeTab === 'skills' && (
+        <div className="space-y-4">
+          {/* Generate controls */}
+          <div className="glass-card p-5 space-y-4">
+            <h3 className="text-sm font-bold text-surface-50 flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-primary-400" />
+              Tạo bài luyện 4 kỹ năng
+            </h3>
+            <p className="text-xs text-surface-200/40">
+              AI sẽ tạo bài tập dựa trên nội dung và từ vựng của bài học này
+            </p>
+
+            {/* Skill count controls */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {(['listening', 'speaking', 'reading', 'writing'] as const).map(skill => (
+                <div key={skill} className="flex items-center justify-between p-2 rounded-lg bg-surface-800/30">
+                  <span className="text-xs text-surface-200/60">{skill === 'listening' ? '🎧 Nghe' : skill === 'speaking' ? '🎙️ Nói' : skill === 'reading' ? '📖 Đọc' : '✍️ Viết'}</span>
+                  <input
+                    type="number"
+                    min={0}
+                    max={5}
+                    value={skillCounts[skill]}
+                    onChange={(e) => setSkillCounts(prev => ({ ...prev, [skill]: parseInt(e.target.value) || 0 }))}
+                    className="w-12 text-center px-1 py-0.5 rounded bg-surface-900/60 border border-surface-700/50 text-surface-50 text-xs"
+                  />
+                </div>
+              ))}
+            </div>
+
+            <button
+              onClick={handleGenerateSkills}
+              disabled={generatingSkills || !isEdit}
+              className="w-full py-3 rounded-xl gradient-bg text-white font-semibold flex items-center justify-center gap-2 disabled:opacity-60 hover:opacity-90 transition-all text-sm"
+            >
+              {generatingSkills ? (
+                <><Loader2 className="w-4 h-4 animate-spin" /> AI đang tạo bài tập...</>
+              ) : (
+                <><Sparkles className="w-4 h-4" /> Tạo bài 4 kỹ năng</>
+              )}
+            </button>
+          </div>
+
+          {/* Manual creation toggle & form */}
+          <div className="glass-card p-5 space-y-4">
+            <div className="flex items-center justify-between">
+              <h3 className="text-sm font-bold text-surface-50 flex items-center gap-2">
+                <Plus className="w-4 h-4 text-cyan-400" />
+                Tạo thủ công
+              </h3>
+              <button
+                onClick={() => setShowManualForm(!showManualForm)}
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                  showManualForm
+                    ? 'bg-surface-700/50 text-surface-200/60'
+                    : 'bg-cyan-500/15 text-cyan-400 hover:bg-cyan-500/25'
+                }`}
+              >
+                {showManualForm ? 'Đóng' : 'Mở form'}
+              </button>
+            </div>
+
+            {showManualForm && (
+              <div className="space-y-3 animate-fade-in">
+                {/* Skill + Mode */}
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="text-[10px] text-surface-200/40 mb-1 block">Kỹ năng</label>
+                    <select
+                      value={manualForm.skill}
+                      onChange={(e) => {
+                        const skill = e.target.value as typeof manualForm.skill
+                        const defaultMode = SKILL_MODES[skill][0].value
+                        setManualForm(f => ({
+                          ...f,
+                          skill,
+                          mode: defaultMode,
+                          contentJson: CONTENT_TEMPLATES[defaultMode] || '',
+                        }))
+                      }}
+                      className="w-full px-3 py-2 rounded-lg bg-surface-900/60 border border-surface-700/50 text-surface-50 text-xs"
+                    >
+                      <option value="listening">🎧 Nghe (Listening)</option>
+                      <option value="speaking">🎙️ Nói (Speaking)</option>
+                      <option value="reading">📖 Đọc (Reading)</option>
+                      <option value="writing">✍️ Viết (Writing)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="text-[10px] text-surface-200/40 mb-1 block">Loại bài</label>
+                    <select
+                      value={manualForm.mode}
+                      onChange={(e) => {
+                        const mode = e.target.value
+                        setManualForm(f => ({
+                          ...f,
+                          mode,
+                          contentJson: f.contentJson || CONTENT_TEMPLATES[mode] || '',
+                        }))
+                      }}
+                      className="w-full px-3 py-2 rounded-lg bg-surface-900/60 border border-surface-700/50 text-surface-50 text-xs"
+                    >
+                      {SKILL_MODES[manualForm.skill].map(m => (
+                        <option key={m.value} value={m.value}>{m.label}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                {/* Titles */}
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="text-[10px] text-surface-200/40 mb-1 block">Tiêu đề (EN)</label>
+                    <input
+                      type="text"
+                      value={manualForm.title}
+                      onChange={(e) => setManualForm(f => ({ ...f, title: e.target.value }))}
+                      placeholder="e.g. Listening: Daily Routines"
+                      className="w-full px-3 py-2 rounded-lg bg-surface-900/60 border border-surface-700/50 text-surface-50 text-xs placeholder-surface-200/20"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-[10px] text-surface-200/40 mb-1 block">Tiêu đề (VI)</label>
+                    <input
+                      type="text"
+                      value={manualForm.title_vi}
+                      onChange={(e) => setManualForm(f => ({ ...f, title_vi: e.target.value }))}
+                      placeholder="e.g. Nghe chép: Thói quen hàng ngày"
+                      className="w-full px-3 py-2 rounded-lg bg-surface-900/60 border border-surface-700/50 text-surface-50 text-xs placeholder-surface-200/20"
+                    />
+                  </div>
+                </div>
+
+                {/* Content JSON */}
+                <div>
+                  <div className="flex items-center justify-between mb-1">
+                    <label className="text-[10px] text-surface-200/40">Nội dung (JSON)</label>
+                    <button
+                      onClick={() => setManualForm(f => ({ ...f, contentJson: CONTENT_TEMPLATES[f.mode] || '' }))}
+                      className="text-[10px] text-primary-400 hover:text-primary-300 transition-colors"
+                    >
+                      📋 Tải template mẫu
+                    </button>
+                  </div>
+                  <textarea
+                    value={manualForm.contentJson}
+                    onChange={(e) => setManualForm(f => ({ ...f, contentJson: e.target.value }))}
+                    rows={12}
+                    placeholder="Nhập JSON nội dung bài tập..."
+                    className="w-full px-3 py-2 rounded-lg bg-surface-900/60 border border-surface-700/50 text-surface-50 text-xs font-mono placeholder-surface-200/20 resize-y"
+                    spellCheck={false}
+                  />
+                </div>
+
+                {/* Actions */}
+                <div className="flex gap-2">
+                  <button
+                    onClick={handleManualSkillCreate}
+                    disabled={savingManual || !isEdit}
+                    className="flex-1 py-2.5 rounded-xl bg-cyan-500/20 text-cyan-300 font-semibold flex items-center justify-center gap-2 disabled:opacity-60 hover:bg-cyan-500/30 transition-all text-sm border border-cyan-500/30"
+                  >
+                    {savingManual ? (
+                      <><Loader2 className="w-4 h-4 animate-spin" /> Đang lưu...</>
+                    ) : (
+                      <><Plus className="w-4 h-4" /> Tạo bài luyện</>
+                    )}
+                  </button>
+                  <button
+                    onClick={() => {
+                      setShowManualForm(false)
+                      setManualForm({ skill: 'listening', mode: 'dictation', title: '', title_vi: '', contentJson: '' })
+                    }}
+                    className="px-4 py-2.5 rounded-xl bg-surface-800/50 text-surface-200/60 text-sm hover:bg-surface-700/50 transition-all"
+                  >
+                    Hủy
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Existing skill exercises */}
+          {skillExercises.length > 0 && (
+            <div className="glass-card p-5 space-y-3">
+              <div className="flex items-center justify-between">
+                <h4 className="text-sm font-semibold text-surface-50">Bài luyện đã tạo ({skillExercises.length})</h4>
+                <div className="flex items-center gap-2">
+                  {skillExercises.some(e => !e.is_published) && (
+                    <button
+                      onClick={handlePublishAll}
+                      className="px-3 py-1.5 rounded-lg bg-success/20 text-success text-xs font-medium hover:bg-success/30 transition-all flex items-center gap-1"
+                    >
+                      <Globe className="w-3 h-3" /> Publish tất cả
+                    </button>
+                  )}
+                  {skillExercises.some(e => e.is_published) && (
+                    <button
+                      onClick={handleUnpublishAll}
+                      className="px-3 py-1.5 rounded-lg bg-surface-800/50 text-surface-200/60 text-xs font-medium hover:bg-surface-700/50 transition-all flex items-center gap-1"
+                    >
+                      <EyeOff className="w-3 h-3" /> Unpublish tất cả
+                    </button>
+                  )}
+                </div>
+              </div>
+              {skillExercises.map((ex) => (
+                <div key={ex.id} className={`flex items-center justify-between p-3 rounded-lg transition-all ${
+                  ex.is_published ? 'bg-success/5 border border-success/20' : 'bg-surface-800/30'
+                }`}>
+                  <div className="flex items-center gap-2 flex-1 min-w-0">
+                    <span className="text-xs shrink-0">
+                      {ex.skill === 'listening' ? '🎧' : ex.skill === 'speaking' ? '🎙️' : ex.skill === 'reading' ? '📖' : '✍️'}
+                    </span>
+                    <span className="text-xs text-surface-50 truncate">{ex.title_vi || ex.title}</span>
+                    <span className="text-[10px] text-surface-200/30 shrink-0">({ex.mode})</span>
+                    {ex.is_published && (
+                      <span className="text-[9px] px-1.5 py-0.5 rounded bg-success/20 text-success font-medium shrink-0">LIVE</span>
+                    )}
+                    {!ex.is_published && (
+                      <span className="text-[9px] px-1.5 py-0.5 rounded bg-surface-700/50 text-surface-200/40 font-medium shrink-0">DRAFT</span>
+                    )}
+                  </div>
+                  <div className="flex items-center gap-1 shrink-0">
+                    {/* Preview */}
+                    <button
+                      onClick={() => setPreviewExercise(ex)}
+                      className="p-1.5 rounded-lg hover:bg-primary-500/10 text-surface-200/40 hover:text-primary-400 transition-all"
+                      title="Xem trước / Chạy thử"
+                    >
+                      <Eye className="w-3.5 h-3.5" />
+                    </button>
+                    {/* Publish toggle */}
+                    <button
+                      onClick={() => handleTogglePublish(ex.id, ex.is_published)}
+                      className={`p-1.5 rounded-lg transition-all ${
+                        ex.is_published
+                          ? 'hover:bg-amber-500/10 text-success hover:text-amber-400'
+                          : 'hover:bg-success/10 text-surface-200/30 hover:text-success'
+                      }`}
+                      title={ex.is_published ? 'Chuyển về Draft' : 'Publish cho user'}
+                    >
+                      {ex.is_published ? <Globe className="w-3.5 h-3.5" /> : <EyeOff className="w-3.5 h-3.5" />}
+                    </button>
+                    {/* Delete */}
+                    <button
+                      onClick={() => handleDeleteSkillExercise(ex.id)}
+                      className="p-1.5 rounded-lg hover:bg-red-500/10 text-surface-200/30 hover:text-red-400 transition-all"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Confirm dialog */}
       <ConfirmDialog
         isOpen={!!deleteVocabId}
         onClose={() => setDeleteVocabId(null)}
@@ -1211,6 +1671,190 @@ export function LessonFormPage() {
         message="Xóa từ vựng này khỏi bài học?"
         confirmText="Xóa"
       />
+
+      {/* ============ SKILL PREVIEW MODAL ============ */}
+      {previewExercise && (
+        <div className="fixed inset-0 z-50 overflow-y-auto bg-black/70 backdrop-blur-sm animate-fade-in" onClick={() => setPreviewExercise(null)}>
+          <div className="flex min-h-full items-center justify-center p-4">
+          <div className="w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl bg-surface-900 border border-surface-700/50 shadow-2xl" onClick={(e) => e.stopPropagation()}>
+            {/* Modal header */}
+            <div className="sticky top-0 z-10 flex items-center justify-between p-4 border-b border-surface-800 bg-surface-900/95 backdrop-blur-sm">
+              <div className="flex items-center gap-2">
+                <Eye className="w-4 h-4 text-primary-400" />
+                <h3 className="text-sm font-bold text-surface-50">Preview: {previewExercise.title_vi || previewExercise.title}</h3>
+                {previewExercise.is_published ? (
+                  <span className="text-[9px] px-1.5 py-0.5 rounded bg-success/20 text-success font-medium">LIVE</span>
+                ) : (
+                  <span className="text-[9px] px-1.5 py-0.5 rounded bg-surface-700/50 text-surface-200/40 font-medium">DRAFT</span>
+                )}
+              </div>
+              <div className="flex items-center gap-2">
+                {!previewExercise.is_published && (
+                  <button
+                    onClick={() => {
+                      handleTogglePublish(previewExercise.id, false)
+                      setPreviewExercise((prev: any) => prev ? { ...prev, is_published: true } : null)
+                    }}
+                    className="px-3 py-1.5 rounded-lg bg-success/20 text-success text-xs font-medium hover:bg-success/30 transition-all flex items-center gap-1"
+                  >
+                    <Globe className="w-3 h-3" /> Publish
+                  </button>
+                )}
+                <button
+                  onClick={() => setPreviewExercise(null)}
+                  className="p-2 rounded-lg hover:bg-surface-800 text-surface-200/40 hover:text-surface-100 transition-all"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+
+            {/* Modal body — SkillExercisePlayer */}
+            <div className="p-5">
+              <SkillPreviewPlayer exercise={previewExercise} />
+            </div>
+          </div>
+          </div>
+        </div>
+      )}
     </div>
   )
+}
+
+/* ─── Inline Preview Player (reuses store injection) ─── */
+import { useListeningStore } from '@/features/listening/stores/listeningStore'
+import { useSpeakingStore } from '@/features/speaking/stores/speakingStore'
+import { useReadingStore } from '@/features/reading/stores/readingStore'
+import { useWritingStore } from '@/features/writing/stores/writingStore'
+
+import { DictationExercise } from '@/features/listening/components/DictationExercise'
+import { FillBlankExercise } from '@/features/listening/components/FillBlankExercise'
+import { DialogueExercise } from '@/features/listening/components/DialogueExercise'
+import { DictationResult } from '@/features/listening/components/DictationResult'
+import { FillBlankResult } from '@/features/listening/components/FillBlankResult'
+import { DialogueResult } from '@/features/listening/components/DialogueResult'
+import { PronunciationExercise } from '@/features/speaking/components/PronunciationExercise'
+import { ShadowingExercise } from '@/features/speaking/components/ShadowingExercise'
+import { PronunciationResult } from '@/features/speaking/components/PronunciationResult'
+import { ShadowingResult } from '@/features/speaking/components/ShadowingResult'
+import { LevelReading } from '@/features/reading/components/LevelReading'
+import { ReadingQuestions } from '@/features/reading/components/ReadingQuestions'
+import { ReadingAloud } from '@/features/reading/components/ReadingAloud'
+import { ReadingResult } from '@/features/reading/components/ReadingResult'
+import { ReadingAloudResult } from '@/features/reading/components/ReadingAloudResult'
+import { SentenceBuilding } from '@/features/writing/components/SentenceBuilding'
+import { ParaphraseExercise } from '@/features/writing/components/ParaphraseExercise'
+import { EssayWriting } from '@/features/writing/components/EssayWriting'
+import { SentenceBuildingResult } from '@/features/writing/components/SentenceBuildingResult'
+import { ParaphraseResult } from '@/features/writing/components/ParaphraseResult'
+import { EssayFeedback } from '@/features/writing/components/EssayFeedback'
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+function SkillPreviewPlayer({ exercise }: { exercise: any }) {
+  const [injected, setInjected] = useState(false)
+
+  useEffect(() => {
+    setInjected(false)
+
+    if (exercise.skill === 'listening') {
+      useListeningStore.setState({
+        content: exercise.content,
+        mode: exercise.mode as any,
+        phase: 'exercise',
+        result: null,
+        error: null,
+        batchItems: [{ content: exercise.content, exerciseLibraryId: null, source: 'cache' as const }],
+        currentBatchIndex: 0,
+      })
+    } else if (exercise.skill === 'speaking') {
+      useSpeakingStore.setState({
+        content: exercise.content,
+        mode: exercise.mode as any,
+        phase: 'exercise',
+        result: null,
+        error: null,
+        batchItems: [{ content: exercise.content, exerciseLibraryId: null }],
+        currentBatchIndex: 0,
+      })
+    } else if (exercise.skill === 'reading') {
+      useReadingStore.setState({
+        content: exercise.content,
+        mode: exercise.mode as any,
+        phase: 'reading',
+        evalResult: null,
+        error: null,
+        batchItems: [{ content: exercise.content, exerciseLibraryId: null }],
+        currentBatchIndex: 0,
+      })
+    } else if (exercise.skill === 'writing') {
+      useWritingStore.setState({
+        content: exercise.content,
+        mode: exercise.mode as any,
+        phase: 'exercise',
+        evalResult: null,
+        error: null,
+        batchItems: [exercise.content],
+        currentBatchIndex: 0,
+      })
+    }
+
+    setInjected(true)
+
+    return () => {
+      if (exercise.skill === 'listening') useListeningStore.setState({ phase: 'config', content: null, result: null })
+      else if (exercise.skill === 'speaking') useSpeakingStore.setState({ phase: 'config', content: null, result: null })
+      else if (exercise.skill === 'reading') useReadingStore.setState({ phase: 'config', content: null, evalResult: null })
+      else if (exercise.skill === 'writing') useWritingStore.setState({ phase: 'config', content: null, evalResult: null })
+    }
+  }, [exercise])
+
+  const listeningPhase = useListeningStore(s => s.phase)
+  const speakingPhase = useSpeakingStore(s => s.phase)
+  const readingPhase = useReadingStore(s => s.phase)
+  const writingPhase = useWritingStore(s => s.phase)
+
+  if (!injected) return null
+
+  const { skill, mode } = exercise
+
+  if (skill === 'listening') {
+    if (listeningPhase === 'result') {
+      if (mode === 'dictation') return <DictationResult />
+      if (mode === 'fill_blank') return <FillBlankResult />
+      if (mode === 'dialogue') return <DialogueResult />
+    }
+    if (mode === 'dictation') return <DictationExercise />
+    if (mode === 'fill_blank') return <FillBlankExercise />
+    if (mode === 'dialogue') return <DialogueExercise />
+  }
+  if (skill === 'speaking') {
+    if (speakingPhase === 'result') {
+      if (mode === 'pronunciation') return <PronunciationResult />
+      if (mode === 'shadowing') return <ShadowingResult />
+    }
+    if (mode === 'pronunciation') return <PronunciationExercise />
+    if (mode === 'shadowing') return <ShadowingExercise />
+  }
+  if (skill === 'reading') {
+    if (readingPhase === 'result') {
+      if (mode === 'level_reading') return <ReadingResult />
+      if (mode === 'reading_aloud') return <ReadingAloudResult />
+    }
+    if (readingPhase === 'questions') return <ReadingQuestions />
+    if (mode === 'level_reading') return <LevelReading />
+    if (mode === 'reading_aloud') return <ReadingAloud />
+  }
+  if (skill === 'writing') {
+    if (writingPhase === 'result') {
+      if (mode === 'sentence_building') return <SentenceBuildingResult />
+      if (mode === 'paraphrase') return <ParaphraseResult />
+      if (mode === 'essay') return <EssayFeedback />
+    }
+    if (mode === 'sentence_building') return <SentenceBuilding />
+    if (mode === 'paraphrase') return <ParaphraseExercise />
+    if (mode === 'essay') return <EssayWriting />
+  }
+
+  return <p className="text-sm text-surface-200/40">Không hỗ trợ loại: {skill}/{mode}</p>
 }

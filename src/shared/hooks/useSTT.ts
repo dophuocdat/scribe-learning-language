@@ -3,14 +3,18 @@ import { useState, useCallback, useRef } from 'react'
 /*
  * ─── STT STRATEGY ───────────────────────────────────────────────
  *
- * Fallback chain:
- *   1. 🗣️ Web Speech API — free, real-time, Chrome/Android
- *   2. 🤖 HF Space Whisper — accurate, all platforms, ~2-3s
+ * The Web Speech API (SpeechRecognition) is UNRELIABLE on mobile:
+ * - Android: mic exclusive access conflicts with MediaRecorder
+ * - Samsung Internet: partial/no support
+ * - iOS Safari: NOT supported at all
  *
- * Priority: Web Speech API (if supported) > HF Space Whisper
+ * SOLUTION:
+ *   Desktop → Web Speech API (real-time, free)
+ *   Mobile  → MediaRecorder only → Whisper on HF Space
  *
- * iOS Safari does NOT support Web Speech Recognition.
- * On iOS → automatically uses HF Whisper endpoint.
+ * Components should check `isMobileDevice` and choose:
+ *   Mobile:  MediaRecorder → transcribeAudio() after stop
+ *   Desktop: startListening() for real-time + MediaRecorder backup
  * ─────────────────────────────────────────────────────────────────
  */
 
@@ -35,6 +39,12 @@ function getSpeechRecognition(): any {
   )
 }
 
+/** Detect mobile device */
+export function isMobileDevice(): boolean {
+  if (typeof navigator === 'undefined') return false
+  return /Android|iPhone|iPad|iPod|webOS|BlackBerry/i.test(navigator.userAgent)
+}
+
 export function useSTT() {
   const [transcript, setTranscript] = useState('')
   const [interimTranscript, setInterimTranscript] = useState('')
@@ -43,21 +53,24 @@ export function useSTT() {
   const [error, setError] = useState<string | null>(null)
 
   const recognitionRef = useRef<any>(null)
-  const isSupported = isSpeechRecognitionSupported()
+  const shouldRestartRef = useRef(false)
+  const isSupported = isSpeechRecognitionSupported() && !isMobileDevice()
+  // ^ On mobile, we report Web Speech as NOT supported to force Whisper fallback
 
-  /* ─── Web Speech API: Real-time STT ─────────────────────────── */
+  /* ─── Web Speech API: Real-time STT (DESKTOP ONLY) ──────────── */
 
   const startListening = useCallback(
     (lang: string = 'en-US', onInterim?: (text: string) => void) => {
       const SpeechRecognitionClass = getSpeechRecognition()
       if (!SpeechRecognitionClass) {
-        setError('Speech Recognition not supported in this browser')
+        setError('Speech Recognition không được hỗ trợ trên trình duyệt này')
         return
       }
 
       // Stop any existing
       if (recognitionRef.current) {
-        try { recognitionRef.current.stop() } catch { /* ignore */ }
+        try { recognitionRef.current.abort() } catch { /* ignore */ }
+        recognitionRef.current = null
       }
 
       const recognition = new SpeechRecognitionClass()
@@ -66,7 +79,10 @@ export function useSTT() {
       recognition.interimResults = true
       recognition.maxAlternatives = 1
 
+      shouldRestartRef.current = true
+
       recognition.onstart = () => {
+        console.log('[STT] Recognition started')
         setIsListening(true)
         setError(null)
         setTranscript('')
@@ -93,40 +109,58 @@ export function useSTT() {
 
       recognition.onerror = (event: any) => {
         console.warn('[STT] Recognition error:', event.error)
-        // Silently ignore common non-critical errors:
-        // - no-speech: user didn't speak
-        // - aborted: recognition was stopped programmatically
-        // - not-allowed: mic permission issue (we have MediaRecorder fallback)
-        const silentErrors = ['no-speech', 'aborted', 'not-allowed']
-        if (!silentErrors.includes(event.error)) {
-          setError(`Speech recognition error: ${event.error}`)
+
+        if (event.error === 'not-allowed') {
+          setError('Microphone bị chặn. Vào Cài đặt → Quyền trang web → Microphone.')
+          shouldRestartRef.current = false
+          setIsListening(false)
+          return
         }
+
+        // no-speech: just silence, will auto-restart via onend
+        if (event.error === 'no-speech' || event.error === 'aborted') return
+
+        setError(`Lỗi nhận dạng giọng nói: ${event.error}`)
         setIsListening(false)
+        shouldRestartRef.current = false
       }
 
       recognition.onend = () => {
+        // Auto-restart if user hasn't explicitly stopped
+        if (shouldRestartRef.current) {
+          try {
+            recognition.start()
+            return
+          } catch { /* fall through */ }
+        }
         setIsListening(false)
         setInterimTranscript('')
       }
 
       recognitionRef.current = recognition
-      recognition.start()
+
+      try {
+        recognition.start()
+      } catch (err) {
+        console.error('[STT] Failed to start:', err)
+        setError('Không thể khởi động nhận dạng giọng nói')
+        shouldRestartRef.current = false
+      }
     },
     []
   )
 
   const stopListening = useCallback(() => {
+    shouldRestartRef.current = false
     if (recognitionRef.current) {
-      try {
-        recognitionRef.current.stop()
-      } catch { /* ignore */ }
+      try { recognitionRef.current.abort() } catch { /* ignore */ }
       recognitionRef.current = null
     }
     setIsListening(false)
     setInterimTranscript('')
   }, [])
 
-  /* ─── HF Space Whisper: File-based STT ──────────────────────── */
+  /* ─── HF Space Whisper: File-based STT (ALL PLATFORMS) ──────── */
 
   const transcribeAudio = useCallback(
     async (audioBlob: Blob, lang: string = 'en'): Promise<string> => {
@@ -156,7 +190,7 @@ export function useSTT() {
       } catch (err) {
         const msg = (err as Error).message
         console.error('[STT] Whisper transcription failed:', msg)
-        setError(msg)
+        setError(`Lỗi chuyển giọng nói: ${msg}`)
         setIsTranscribing(false)
         return ''
       }
@@ -180,13 +214,13 @@ export function useSTT() {
     interimTranscript,
     isListening,
     isTranscribing,
-    isSupported,
+    isSupported, // false on mobile → forces MediaRecorder + Whisper path
     error,
 
     // Actions
-    startListening,
+    startListening,  // Desktop only
     stopListening,
-    transcribeAudio,
+    transcribeAudio, // Works everywhere (sends to Whisper)
     reset,
   }
 }

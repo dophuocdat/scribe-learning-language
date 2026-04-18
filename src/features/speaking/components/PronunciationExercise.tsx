@@ -15,23 +15,17 @@ export function PronunciationExercise() {
   const [userText, setUserText] = useState('')
   const [recordingMode, setRecordingMode] = useState<'idle' | 'recording' | 'done'>('idle')
 
-  if (!pronContent) return null
-
-  const handlePlayModel = () => {
-    speak(pronContent.sentence)
-  }
-
   const handleStartRecording = useCallback(() => {
     clearError()
     resetSTT()
     setUserText('')
     setRecordingMode('recording')
 
-    // Always use MediaRecorder for reliable audio capture
+    // Always start MediaRecorder for audio capture
     startRecording()
 
-    // Additionally try Web Speech API for real-time transcript preview
-    // If it fails (Edge, some browsers), it's fine — we still have the recording
+    // On desktop, additionally try Web Speech API for real-time preview
+    // On mobile, isSupported=false so this is skipped → Whisper used after stop
     if (isSupported) {
       try { startListening('en-US') } catch { /* ignore */ }
     }
@@ -61,6 +55,13 @@ export function PronunciationExercise() {
       setUserText(transcript)
     }
   }, [transcript, userText])
+
+  // Early return AFTER all hooks
+  if (!pronContent) return null
+
+  const handlePlayModel = () => {
+    speak(pronContent.sentence)
+  }
 
   const handleSubmit = async () => {
     const finalText = userText || transcript

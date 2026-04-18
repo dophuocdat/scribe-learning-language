@@ -3,10 +3,33 @@ import { invokeAdminApi } from '@/shared/lib/edgeFunctions'
 import type { Category, Course, DifficultyLevel, Lesson, Vocabulary, Quiz, QuizQuestion } from '@/shared/types/database'
 
 interface AdminStats {
+  // Overview
   totalCourses: number
   totalLessons: number
   totalVocabulary: number
+  totalQuizQuestions: number
+  totalSkillExercises: number
   totalUsers: number
+
+  // Content quality
+  coursesByCategory: { name: string; count: number }[]
+  coursesByDifficulty: { code: string; label: string; color: string; count: number }[]
+  publishedCourses: number
+  draftCourses: number
+  lessonsWithQuiz: number
+  lessonsWithSkillExercises: number
+  avgVocabPerLesson: number
+
+  // User activity
+  activeUsersToday: number
+  activeUsersWeek: number
+  activeUsersMonth: number
+  totalXpEarned: number
+  totalQuizAttempts: number
+  avgQuizScore: number
+  masteredCards: number
+  scansToday: number
+  topUsers: { display_name: string | null; total_xp: number; current_streak: number; current_level: number }[]
 }
 
 /* eslint-disable @typescript-eslint/no-explicit-any */

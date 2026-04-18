@@ -166,20 +166,162 @@ async function handleDifficultyLevels(req: Request, params: URLSearchParams) {
 
 async function handleStats(_req: Request, _params: URLSearchParams) {
   const db = createAdminClient()
-  console.log('[admin-api] GET /stats')
+  console.log('[admin-api] GET /stats (detailed)')
 
-  const [courses, lessons, vocabulary, users] = await Promise.all([
-    db.from('courses').select('*', { count: 'exact', head: true }),
+  // Date boundaries
+  const now = new Date()
+  const todayStart = new Date(now); todayStart.setHours(0, 0, 0, 0)
+  const weekAgo = new Date(now); weekAgo.setDate(weekAgo.getDate() - 7)
+  const monthAgo = new Date(now); monthAgo.setMonth(monthAgo.getMonth() - 1)
+
+  const [
+    courses, lessons, vocabulary, users,
+    quizQuestions, skillExercises,
+    coursesData, difficultyLevelsData, categoriesData,
+    quizzesLessons, skillExLessons,
+    activeToday, activeWeek, activeMonth,
+    xpHistory, quizAttempts, masteredCards,
+    scansToday, topUsersData,
+  ] = await Promise.all([
+    // Basic counts
+    db.from('courses').select('*', { count: 'exact', head: true }).eq('is_personal', false),
     db.from('lessons').select('*', { count: 'exact', head: true }),
     db.from('vocabulary').select('*', { count: 'exact', head: true }),
     db.from('user_profiles').select('*', { count: 'exact', head: true }),
+    db.from('quiz_questions').select('*', { count: 'exact', head: true }),
+    db.from('lesson_skill_exercises').select('*', { count: 'exact', head: true }),
+
+    // Course details for category/difficulty breakdown
+    db.from('courses').select('category_id, difficulty_level, is_published').eq('is_personal', false),
+    db.from('difficulty_levels').select('code, label, color').order('order_index'),
+    db.from('categories').select('id, name').order('order_index'),
+
+    // Coverage: distinct lessons with quizzes / skill exercises
+    db.from('quizzes').select('lesson_id'),
+    db.from('lesson_skill_exercises').select('lesson_id'),
+
+    // Active users
+    db.from('user_profiles').select('*', { count: 'exact', head: true })
+      .gte('last_active_date', todayStart.toISOString().split('T')[0]),
+    db.from('user_profiles').select('*', { count: 'exact', head: true })
+      .gte('last_active_date', weekAgo.toISOString().split('T')[0]),
+    db.from('user_profiles').select('*', { count: 'exact', head: true })
+      .gte('last_active_date', monthAgo.toISOString().split('T')[0]),
+
+    // XP & quiz stats
+    db.from('user_xp_history').select('xp_amount'),
+    db.from('user_quiz_attempts').select('score, total_questions'),
+    db.from('user_srs_cards').select('*', { count: 'exact', head: true }).eq('is_mastered', true),
+
+    // Scans today
+    db.from('user_scan_logs').select('*', { count: 'exact', head: true })
+      .gte('created_at', todayStart.toISOString()),
+
+    // Top 5 users
+    db.from('user_profiles').select('display_name, total_xp, current_streak, current_level')
+      .order('total_xp', { ascending: false }).limit(5),
   ])
 
+  // --- Compute derived stats ---
+  const totalLessons = lessons.count ?? 0
+  const totalVocab = vocabulary.count ?? 0
+
+  // Courses by category
+  const catMap: Record<string, number> = {}
+  for (const c of (coursesData.data || []) as { category_id: string | null }[]) {
+    const key = c.category_id || '_uncategorized'
+    catMap[key] = (catMap[key] || 0) + 1
+  }
+  const catNames: Record<string, string> = { _uncategorized: 'Chưa phân loại' }
+  for (const cat of (categoriesData.data || []) as { id: string; name: string }[]) {
+    catNames[cat.id] = cat.name
+  }
+  const coursesByCategory = Object.entries(catMap)
+    .map(([id, count]) => ({ name: catNames[id] || id, count }))
+    .sort((a, b) => b.count - a.count)
+
+  // Courses by difficulty
+  const diffMap: Record<string, number> = {}
+  for (const c of (coursesData.data || []) as { difficulty_level: string | null }[]) {
+    const key = c.difficulty_level || '_none'
+    diffMap[key] = (diffMap[key] || 0) + 1
+  }
+  const diffLevels = (difficultyLevelsData.data || []) as { code: string; label: string; color: string }[]
+  const coursesByDifficulty = diffLevels
+    .map((d: { code: string; label: string; color: string }) => ({
+      code: d.code, label: d.label, color: d.color, count: diffMap[d.code] || 0,
+    }))
+    .filter((d: { count: number }) => d.count > 0)
+  if (diffMap['_none']) {
+    coursesByDifficulty.push({ code: '_none', label: 'Chưa gán', color: '#64748b', count: diffMap['_none'] })
+  }
+
+  // Published vs Draft
+  const publishedCourses = ((coursesData.data || []) as { is_published: boolean }[])
+    .filter((c: { is_published: boolean }) => c.is_published).length
+  const totalCoursesCount = courses.count ?? 0
+  const draftCourses = totalCoursesCount - publishedCourses
+
+  // Quiz coverage
+  const quizLessonIds = new Set(
+    ((quizzesLessons.data || []) as { lesson_id: string }[]).map((q: { lesson_id: string }) => q.lesson_id)
+  )
+  const lessonsWithQuiz = quizLessonIds.size
+
+  // Skill exercise coverage
+  const skillExLessonIds = new Set(
+    ((skillExLessons.data || []) as { lesson_id: string }[]).map((s: { lesson_id: string }) => s.lesson_id)
+  )
+  const lessonsWithSkillExercises = skillExLessonIds.size
+
+  // Avg vocab per lesson
+  const avgVocabPerLesson = totalLessons > 0
+    ? Math.round((totalVocab / totalLessons) * 10) / 10
+    : 0
+
+  // Total XP
+  const totalXpEarned = ((xpHistory.data || []) as { xp_amount: number }[])
+    .reduce((sum: number, x: { xp_amount: number }) => sum + (x.xp_amount || 0), 0)
+
+  // Quiz attempt stats
+  const attempts = (quizAttempts.data || []) as { score: number; total_questions: number }[]
+  const totalQuizAttempts = attempts.length
+  const avgQuizScore = totalQuizAttempts > 0
+    ? Math.round(
+        attempts.reduce(
+          (sum: number, a: { score: number; total_questions: number }) =>
+            sum + (a.total_questions > 0 ? (a.score / a.total_questions) * 100 : 0),
+          0
+        ) / totalQuizAttempts
+      )
+    : 0
+
   return jsonResponse({
-    totalCourses: courses.count ?? 0,
-    totalLessons: lessons.count ?? 0,
-    totalVocabulary: vocabulary.count ?? 0,
+    // Overview
+    totalCourses: totalCoursesCount,
+    totalLessons,
+    totalVocabulary: totalVocab,
+    totalQuizQuestions: quizQuestions.count ?? 0,
+    totalSkillExercises: skillExercises.count ?? 0,
     totalUsers: users.count ?? 0,
+    // Content quality
+    coursesByCategory,
+    coursesByDifficulty,
+    publishedCourses,
+    draftCourses,
+    lessonsWithQuiz,
+    lessonsWithSkillExercises,
+    avgVocabPerLesson,
+    // User activity
+    activeUsersToday: activeToday.count ?? 0,
+    activeUsersWeek: activeWeek.count ?? 0,
+    activeUsersMonth: activeMonth.count ?? 0,
+    totalXpEarned,
+    totalQuizAttempts,
+    avgQuizScore,
+    masteredCards: masteredCards.count ?? 0,
+    scansToday: scansToday.count ?? 0,
+    topUsers: topUsersData.data || [],
   })
 }
 

@@ -1,0 +1,2090 @@
+[
+    {
+        "quiz_id": "3e92af45",
+        "question_text": "Trong dạng bài True/False/Not Given của IELTS Reading, khi nào bạn nên chọn đáp án 'False'?",
+        "options": [
+            "Khi thông tin trong bài không đề cập đến từ khóa trong câu hỏi.",
+            "Khi thông tin trong bài viết hoàn toàn trái ngược hoặc phủ định lại nội dung của câu hỏi.",
+            "Khi bạn nghĩ rằng thông tin đó sai dựa trên kiến thức cá nhân của bạn.",
+            "Khi câu hỏi sử dụng các từ như 'always' hoặc 'never'."
+        ],
+        "correct_answer": "Khi thông tin trong bài viết hoàn toàn trái ngược hoặc phủ định lại nội dung của câu hỏi.",
+        "explanation": "'False' chỉ được chọn khi văn bản gốc có thông tin nói rõ điều ngược lại với nhận định trong câu hỏi. Nếu không tìm thấy thông tin để xác nhận đúng/sai, đáp án phải là 'Not Given'."
+    },
+    {
+        "quiz_id": "3e92af45",
+        "question_text": "Lỗi tư duy phổ biến nhất khiến thí sinh nhầm lẫn giữa 'False' và 'Not Given' là gì?",
+        "options": [
+            "Không biết dịch từ vựng.",
+            "Đọc quá chậm.",
+            "Tự suy diễn logic (Overthinking): tự mặc định rằng thông tin không được nhắc đến có nghĩa là nó sai.",
+            "Không gạch chân từ khóa."
+        ],
+        "correct_answer": "Tự suy diễn logic (Overthinking): tự mặc định rằng thông tin không được nhắc đến có nghĩa là nó sai.",
+        "explanation": "Trong IELTS, bạn chỉ được dựa vào những gì tác giả viết. Nếu bài viết không cung cấp đủ dữ kiện để khẳng định câu đó sai, thì đáp án bắt buộc phải là 'Not Given'."
+    },
+    {
+        "quiz_id": "3e92af45",
+        "question_text": "Đối với dạng bài True/False/Not Given, trình tự xuất hiện của các câu hỏi thường như thế nào so với văn bản?",
+        "options": [
+            "Hoàn toàn lộn xộn, không có quy luật.",
+            "Theo thứ tự thời gian của các sự kiện lịch sử.",
+            "Các câu hỏi luôn xuất hiện theo đúng trình tự thông tin của văn bản từ trên xuống dưới.",
+            "Tất cả câu trả lời đều nằm ở đoạn cuối cùng."
+        ],
+        "correct_answer": "Các câu hỏi luôn xuất hiện theo đúng trình tự thông tin của văn bản từ trên xuống dưới.",
+        "explanation": "Đây là đặc điểm quan trọng (In order) của dạng bài TFNG, giúp bạn định vị vùng chứa thông tin. Nếu bạn tìm thấy đáp án câu 1 và câu 3, thì câu 2 chắc chắn nằm ở đoạn giữa."
+    },
+    {
+        "quiz_id": "ad8d7fe1",
+        "question_text": "Sự khác biệt cốt lõi giữa dạng bài 'True/False/Not Given' (TFNG) và 'Yes/No/Not Given' (YNNG) là gì?",
+        "options": [
+            "TFNG dành cho phần thi Listening, YNNG dành cho Reading.",
+            "TFNG kiểm tra Sự thật khách quan (Factual information), trong khi YNNG kiểm tra Quan điểm và Tuyên bố của tác giả (Writer's views/claims).",
+            "YNNG có nhiều từ vựng khó hơn TFNG.",
+            "Không có bất kỳ sự khác biệt nào."
+        ],
+        "correct_answer": "TFNG kiểm tra Sự thật khách quan (Factual information), trong khi YNNG kiểm tra Quan điểm và Tuyên bố của tác giả (Writer's views/claims).",
+        "explanation": "TFNG thường xuất hiện ở Passage 1 (văn bản cung cấp thông tin), trong khi YNNG xuất hiện ở Passage 2 hoặc 3 (văn bản nghị luận) đòi hỏi khả năng phân tích ý kiến của tác giả."
+    },
+    {
+        "quiz_id": "ad8d7fe1",
+        "question_text": "Trong dạng Yes/No/Not Given, nếu bài viết nói 'Nhiều chuyên gia cho rằng...', nhưng câu hỏi nói 'Tác giả cho rằng...', bạn nên chọn đáp án nào?",
+        "options": [
+            "Yes",
+            "No",
+            "Not Given",
+            "Tùy thuộc vào ngữ cảnh"
+        ],
+        "correct_answer": "Not Given",
+        "explanation": "Ý kiến của 'nhiều chuyên gia' không đại diện cho quan điểm của 'tác giả'. Nếu tác giả không trực tiếp đưa ra quan điểm cá nhân về vấn đề đó, đáp án là Not Given."
+    },
+    {
+        "quiz_id": "ad8d7fe1",
+        "question_text": "Khi đối mặt với các từ mang tính tuyệt đối (Absolute words) như 'all', 'only', 'always', 'impossible' trong câu hỏi YNNG, bạn nên làm gì?",
+        "options": [
+            "Luôn chọn đáp án 'No'.",
+            "Luôn chọn đáp án 'Not Given'.",
+            "Hết sức cẩn thận đối chiếu với văn bản, vì tác giả thường dùng các từ giảm nhẹ (Hedging) như 'some', 'often', 'difficult', khiến câu nhận định trở thành 'No'.",
+            "Bỏ qua các từ đó vì chúng không quan trọng."
+        ],
+        "correct_answer": "Hết sức cẩn thận đối chiếu với văn bản, vì tác giả thường dùng các từ giảm nhẹ (Hedging) như 'some', 'often', 'difficult', khiến câu nhận định trở thành 'No'.",
+        "explanation": "Câu hỏi chứa từ tuyệt đối rất dễ bị sai (No) vì trong văn học thuật, các tác giả hiếm khi đưa ra các tuyên bố cực đoan 100%."
+    },
+    {
+        "quiz_id": "c8d37c14",
+        "question_text": "Trong dạng bài Matching Headings, 'Heading' (Tiêu đề) thường đóng vai trò gì đối với một đoạn văn?",
+        "options": [
+            "Một ví dụ minh họa chi tiết nhất.",
+            "Một số liệu thống kê quan trọng nhất.",
+            "Một cụm từ tóm tắt ý chính (Main idea) bao quát toàn bộ nội dung của đoạn văn đó.",
+            "Lời dẫn dắt sang đoạn văn tiếp theo."
+        ],
+        "correct_answer": "Một cụm từ tóm tắt ý chính (Main idea) bao quát toàn bộ nội dung của đoạn văn đó.",
+        "explanation": "Heading không phải là một chi tiết (detail). Một heading đúng phải đủ rộng để bao trùm nội dung cả đoạn, nhưng đủ hẹp để không bị nhầm lẫn với đoạn khác."
+    },
+    {
+        "quiz_id": "c8d37c14",
+        "question_text": "Chiến thuật nào sau đây là SAI lầm phổ biến nhất khi làm bài Matching Headings?",
+        "options": [
+            "Đọc lướt (Skim) để nắm cấu trúc tổng thể.",
+            "Tập trung đọc kỹ câu đầu và câu cuối của mỗi đoạn.",
+            "Chỉ tìm kiếm 'từ khóa' (keywords) giống nhau giữa Heading và Đoạn văn rồi chọn ngay mà không đọc hiểu ý chính.",
+            "Gạch bỏ các Headings đã được chọn để làm hẹp danh sách."
+        ],
+        "correct_answer": "Chỉ tìm kiếm 'từ khóa' (keywords) giống nhau giữa Heading và Đoạn văn rồi chọn ngay mà không đọc hiểu ý chính.",
+        "explanation": "IELTS luôn sử dụng 'bẫy từ vựng' (distractors). Một đoạn văn chứa chính xác từ khóa trong Heading thường KHÔNG phải là đáp án đúng, vì ý chính đã bị paraphrase bằng các từ đồng nghĩa."
+    },
+    {
+        "quiz_id": "c8d37c14",
+        "question_text": "Nếu một đoạn văn bắt đầu bằng việc kể một câu chuyện dài hoặc nêu một ví dụ cụ thể, bạn nên làm gì để tìm Heading?",
+        "options": [
+            "Chọn Heading có chứa tên nhân vật trong câu chuyện.",
+            "Đọc lướt qua câu chuyện để tìm câu chốt ý (thường nằm ở cuối đoạn hoặc sau các từ nối như 'Therefore', 'This illustrates').",
+            "Đọc lại đoạn văn trước đó.",
+            "Bỏ qua đoạn văn đó không làm nữa."
+        ],
+        "correct_answer": "Đọc lướt qua câu chuyện để tìm câu chốt ý (thường nằm ở cuối đoạn hoặc sau các từ nối như 'Therefore', 'This illustrates').",
+        "explanation": "Không phải đoạn văn nào cũng có Topic Sentence nằm ở đầu. Khi tác giả dùng ví dụ để mở đầu (Inductive reasoning), ý chính sẽ được đúc kết ở phần sau."
+    },
+    {
+        "quiz_id": "f3fbefe7",
+        "question_text": "Trong dạng bài 'Matching Features' (ví dụ: Ghép tên nhà khoa học với phát minh của họ), kỹ năng đọc nào là quan trọng nhất?",
+        "options": [
+            "Đọc hiểu chi tiết từng chữ (Close reading).",
+            "Đọc lướt lấy ý chính (Skimming).",
+            "Quét thông tin (Scanning) để tìm kiếm chính xác các Tên riêng, Ngày tháng, hoặc Chữ in hoa trong bài.",
+            "Đọc ngược từ dưới lên trên."
+        ],
+        "correct_answer": "Quét thông tin (Scanning) để tìm kiếm chính xác các Tên riêng, Ngày tháng, hoặc Chữ in hoa trong bài.",
+        "explanation": "Tên người hoặc địa danh không thể bị paraphrase (viết lại), do đó Scanning là công cụ sắc bén nhất để định vị nhanh chóng đoạn văn chứa thông tin cần tìm."
+    },
+    {
+        "quiz_id": "f3fbefe7",
+        "question_text": "Dòng hướng dẫn 'NB: You may use any letter more than once' trong bài Matching Information có ý nghĩa gì?",
+        "options": [
+            "Bạn không được phép dùng một chữ cái hai lần.",
+            "Bạn có thể sử dụng một đáp án (chữ cái) cho nhiều hơn một câu hỏi.",
+            "Có một số chữ cái bạn không được dùng đến.",
+            "Bạn phải viết toàn bộ từ thay vì viết chữ cái."
+        ],
+        "correct_answer": "Bạn có thể sử dụng một đáp án (chữ cái) cho nhiều hơn một câu hỏi.",
+        "explanation": "'Nota Bene' (NB) là lưu ý cực kỳ quan trọng. Khi dòng này xuất hiện, chắc chắn sẽ có ít nhất một đoạn văn (hoặc một tên người) chứa đáp án cho 2 câu hỏi khác nhau."
+    },
+    {
+        "quiz_id": "f3fbefe7",
+        "question_text": "Dạng bài 'Matching Information to Paragraphs' khác với 'Matching Headings' ở điểm nào?",
+        "options": [
+            "Không có sự khác biệt.",
+            "Matching Information đi tìm 'Ý chính của đoạn', còn Headings đi tìm 'Chi tiết'.",
+            "Matching Information yêu cầu tìm vị trí của một 'Thông tin chi tiết' cụ thể nằm ở đâu, trong khi Headings yêu cầu tìm 'Ý chính bao quát' của cả đoạn.",
+            "Matching Information luôn theo thứ tự văn bản."
+        ],
+        "correct_answer": "Matching Information yêu cầu tìm vị trí của một 'Thông tin chi tiết' cụ thể nằm ở đâu, trong khi Headings yêu cầu tìm 'Ý chính bao quát' của cả đoạn.",
+        "explanation": "Tìm Information khó hơn tìm Headings vì thông tin cần tìm có thể chỉ là một câu ví dụ nhỏ nằm lọt thỏm ở giữa một đoạn văn dài."
+    },
+    {
+        "quiz_id": "ee10d180",
+        "question_text": "Trong bài Multiple Choice (Trắc nghiệm), các lựa chọn (options) thường được thiết kế như thế nào để gài bẫy thí sinh?",
+        "options": [
+            "Các lựa chọn sai thường không có từ vựng nào giống trong bài.",
+            "Các lựa chọn sai thường chứa chính xác các từ vựng xuất hiện trong bài đọc, nhưng ghép chúng lại thành một câu có ý nghĩa sai hoặc không liên quan.",
+            "Các lựa chọn đúng luôn là câu dài nhất.",
+            "Các lựa chọn sai thường sai chính tả."
+        ],
+        "correct_answer": "Các lựa chọn sai thường chứa chính xác các từ vựng xuất hiện trong bài đọc, nhưng ghép chúng lại thành một câu có ý nghĩa sai hoặc không liên quan.",
+        "explanation": "Đây là bẫy 'Word Matching' (Nối từ). IELTS kiểm tra khả năng đọc hiểu ý nghĩa thực sự, chứ không phải bài thi tìm từ giống nhau."
+    },
+    {
+        "quiz_id": "ee10d180",
+        "question_text": "Đối với dạng bài Short Answer Questions, nếu giới hạn là 'NO MORE THAN TWO WORDS', bạn sẽ viết đáp án thế nào nếu đoạn văn ghi là 'the large modern library'?",
+        "options": [
+            "large modern library",
+            "modern library",
+            "the library",
+            "the large modern library"
+        ],
+        "correct_answer": "modern library",
+        "explanation": "Bạn phải tuân thủ nghiêm ngặt giới hạn số từ. Việc bỏ đi mạo từ 'the' hoặc tính từ ít quan trọng hơn ('large') là cần thiết để giữ lại danh từ chính và tính từ bổ nghĩa sát nhất."
+    },
+    {
+        "quiz_id": "ee10d180",
+        "question_text": "Thứ tự xuất hiện của các câu hỏi Multiple Choice trong IELTS Reading thường như thế nào?",
+        "options": [
+            "Ngẫu nhiên",
+            "Theo trật tự thông tin trong văn bản từ trên xuống dưới.",
+            "Từ khó đến dễ.",
+            "Chỉ tập trung vào đoạn kết luận."
+        ],
+        "correct_answer": "Theo trật tự thông tin trong văn bản từ trên xuống dưới.",
+        "explanation": "Câu hỏi trắc nghiệm (MCQs) luôn đi theo dòng chảy của văn bản (In order), giúp bạn dễ dàng khoanh vùng thông tin để đọc kỹ."
+    },
+    {
+        "quiz_id": "4bc7ed22",
+        "question_text": "Khi làm dạng bài Summary Completion (Điền từ vào đoạn tóm tắt), kỹ năng nào sau đây đóng vai trò như một 'chiếc la bàn' định hướng?",
+        "options": [
+            "Kỹ năng đoán nghĩa từ lóng.",
+            "Kiến thức Ngữ pháp (Grammar): Phân tích xem chỗ trống cần điền là Danh từ, Động từ, hay Tính từ để dự đoán và loại trừ từ sai.",
+            "Kỹ năng tính toán.",
+            "Kỹ năng đếm số chữ cái."
+        ],
+        "correct_answer": "Kiến thức Ngữ pháp (Grammar): Phân tích xem chỗ trống cần điền là Danh từ, Động từ, hay Tính từ để dự đoán và loại trừ từ sai.",
+        "explanation": "Việc xác định loại từ (Parts of speech) kết hợp với ngữ cảnh giúp bạn loại bỏ 50% các đáp án không phù hợp dù chưa cần đọc kỹ văn bản."
+    },
+    {
+        "quiz_id": "4bc7ed22",
+        "question_text": "Trong dạng Summary Completion có cung cấp sẵn một hộp từ vựng (Box of words), đáp án sẽ như thế nào?",
+        "options": [
+            "Chắc chắn là những từ được trích xuất y nguyên (copy-paste) từ văn bản gốc.",
+            "Thường là các từ đồng nghĩa (Synonyms) hoặc từ cùng gốc (Word families) đã được paraphrase so với văn bản gốc.",
+            "Là các từ viết tắt.",
+            "Là những từ không liên quan đến bài."
+        ],
+        "correct_answer": "Thường là các từ đồng nghĩa (Synonyms) hoặc từ cùng gốc (Word families) đã được paraphrase so với văn bản gốc.",
+        "explanation": "Khi có Box, IELTS đánh giá khả năng nhận diện Paraphrase của bạn. Bạn không thể tìm thấy chính xác từ đó trong bài đọc mà phải tìm ý nghĩa tương đương."
+    },
+    {
+        "quiz_id": "4bc7ed22",
+        "question_text": "Lỗi phổ biến nhất khi điền từ vào chỗ trống (Sentence Completion) lấy từ văn bản gốc là gì?",
+        "options": [
+            "Viết hoa sai.",
+            "Không thay đổi hình thái từ (ví dụ danh từ số ít/số nhiều) để phù hợp với ngữ pháp của câu hỏi.",
+            "Viết từ đồng nghĩa thay vì chép chính xác từ trong văn bản.",
+            "Chỉ viết một từ."
+        ],
+        "correct_answer": "Viết từ đồng nghĩa thay vì chép chính xác từ trong văn bản.",
+        "explanation": "Nếu đề bài yêu cầu 'Choose words FROM THE TEXT', bạn BẮT BUỘC phải chép y nguyên hình thái từ đó trong bài đọc, tuyệt đối không được tự ý paraphrase hay chia lại thì động từ."
+    },
+    {
+        "quiz_id": "8e5598cb",
+        "question_text": "Đối với dạng bài Diagram/Flow Chart Labeling (Điền nhãn biểu đồ), mũi tên (arrows) trong biểu đồ đóng vai trò gì?",
+        "options": [
+            "Chỉ dùng để trang trí.",
+            "Chỉ ra thứ tự thời gian, quy trình hoặc dòng chảy thông tin của các sự kiện trong đoạn văn.",
+            "Thể hiện sự đối lập.",
+            "Chỉ ra vị trí của từ vựng khó."
+        ],
+        "correct_answer": "Chỉ ra thứ tự thời gian, quy trình hoặc dòng chảy thông tin của các sự kiện trong đoạn văn.",
+        "explanation": "Biểu đồ quy trình (Flow chart) tóm tắt một quá trình diễn ra theo trình tự. Các mũi tên sẽ tương ứng với các từ chỉ thời gian trong bài như 'First', 'Subsequently', 'Finally'."
+    },
+    {
+        "quiz_id": "8e5598cb",
+        "question_text": "Bước đầu tiên quan trọng nhất trước khi quét thông tin (Scanning) cho bài Diagram Labeling là gì?",
+        "options": [
+            "Dịch toàn bộ bài đọc.",
+            "Nghiên cứu kỹ hình vẽ, đọc phần Tiêu đề của biểu đồ và dự đoán loại từ (Noun, Verb) cần điền vào các ô trống.",
+            "Khoanh lụi đáp án.",
+            "Đọc phần kết luận."
+        ],
+        "correct_answer": "Nghiên cứu kỹ hình vẽ, đọc phần Tiêu đề của biểu đồ và dự đoán loại từ (Noun, Verb) cần điền vào các ô trống.",
+        "explanation": "Tiêu đề của biểu đồ là kim chỉ nam giúp bạn xác định ngay lập tức đoạn văn chứa nội dung miêu tả quy trình/cấu tạo của vật thể đó trong toàn bộ bài đọc."
+    },
+    {
+        "quiz_id": "8e5598cb",
+        "question_text": "Các từ vựng chỉ phương hướng và vị trí (Spatial vocabulary) nào thường xuyên xuất hiện nhất trong đoạn văn mô tả Diagram (ví dụ: sơ đồ máy móc)?",
+        "options": [
+            "Quickly, slowly, instantly.",
+            "Top, bottom, beneath, adjacent to, attached to.",
+            "Beautiful, ugly, large.",
+            "Yesterday, tomorrow, nowadays."
+        ],
+        "correct_answer": "Top, bottom, beneath, adjacent to, attached to.",
+        "explanation": "Để chỉ ra các bộ phận của một cỗ máy hay cấu trúc sinh học, tác giả bắt buộc phải dùng các giới từ và cụm từ chỉ vị trí không gian để mô tả."
+    },
+    {
+        "quiz_id": "e91d15db",
+        "question_text": "Chiến lược quản lý thời gian kinh điển nhất cho 3 bài đọc trong 60 phút của IELTS Academic Reading là gì?",
+        "options": [
+            "Dành 30 phút cho Passage 1 vì nó dễ nhất.",
+            "Chia đều thời gian: Passage 1 (15 phút) - Passage 2 (20 phút) - Passage 3 (25 phút) do độ khó tăng dần.",
+            "Đọc từ cuối lên đầu.",
+            "Vừa đọc vừa chép đáp án ra giấy nháp."
+        ],
+        "correct_answer": "Chia đều thời gian: Passage 1 (15 phút) - Passage 2 (20 phút) - Passage 3 (25 phút) do độ khó tăng dần.",
+        "explanation": "Độ khó, độ dài và tính trừu tượng của văn bản tăng mạnh từ Passage 1 đến 3. Bạn phải tiết kiệm thời gian ở đoạn đầu để xử lý các câu hỏi suy luận khó ở đoạn cuối."
+    },
+    {
+        "quiz_id": "e91d15db",
+        "question_text": "Nếu bạn gặp một câu hỏi quá khó và không tìm thấy thông tin sau 2 phút tìm kiếm, bạn nên làm gì?",
+        "options": [
+            "Đọc lại bài văn từ đầu đến cuối.",
+            "Dừng lại và suy nghĩ cho đến khi tìm ra.",
+            "Bỏ qua (Skip), đánh dấu lại và tiếp tục làm các câu khác, sau đó quay lại đoán (Guess) nếu còn thời gian.",
+            "Bỏ trống hoàn toàn không điền vào Answer Sheet."
+        ],
+        "correct_answer": "Bỏ qua (Skip), đánh dấu lại và tiếp tục làm các câu khác, sau đó quay lại đoán (Guess) nếu còn thời gian.",
+        "explanation": "Tất cả các câu hỏi đều có điểm số bằng nhau (1 điểm). Việc tốn 5 phút cho một câu hỏi khó là một sự lãng phí chiến lược nghiêm trọng."
+    },
+    {
+        "quiz_id": "e91d15db",
+        "question_text": "Khi nhận được đề thi Reading, điều ĐẦU TIÊN bạn nên làm trước khi đọc từng chữ trong Passage là gì?",
+        "options": [
+            "Đọc lướt (Skim) Tiêu đề (Title), Tiêu đề phụ (Subtitle), Hình ảnh minh họa và quét qua các Dạng câu hỏi được yêu cầu.",
+            "Đọc kỹ câu đầu tiên của đoạn 1.",
+            "Dịch các từ khó.",
+            "Bắt tay vào làm dạng True/False ngay lập tức."
+        ],
+        "correct_answer": "Đọc lướt (Skim) Tiêu đề (Title), Tiêu đề phụ (Subtitle), Hình ảnh minh họa và quét qua các Dạng câu hỏi được yêu cầu.",
+        "explanation": "Việc này giúp não bộ 'khởi động' (warm-up), hình dung bối cảnh chủ đề (Context) và lên chiến thuật nên xử lý nhóm câu hỏi nào trước (ví dụ: làm Name Matching trước TFNG)."
+    },
+    {
+        "quiz_id": "c094ea19",
+        "question_text": "Nội dung của Section 1 trong bài thi IELTS General Training Reading thường tập trung vào chủ đề gì?",
+        "options": [
+            "Các bài nghiên cứu khoa học chuyên sâu.",
+            "Những thông tin thực tế phục vụ cho sự sinh tồn và giao tiếp hàng ngày ở môi trường nói tiếng Anh (ví dụ: quảng cáo, thời khóa biểu, tờ rơi).",
+            "Các bài tiểu luận triết học.",
+            "Tiểu sử của các nhà văn nổi tiếng."
+        ],
+        "correct_answer": "Những thông tin thực tế phục vụ cho sự sinh tồn và giao tiếp hàng ngày ở môi trường nói tiếng Anh (ví dụ: quảng cáo, thời khóa biểu, tờ rơi).",
+        "explanation": "Section 1 của bài thi GT (General Training) thiết kế các văn bản ngắn (Short factual texts) mô phỏng chính xác những gì một người nhập cư sẽ đọc hàng ngày."
+    },
+    {
+        "quiz_id": "c094ea19",
+        "question_text": "Dạng bài điền từ vào chỗ trống (Fill in the blanks) trong Section 1 GT thường yêu cầu kỹ năng nào nhất?",
+        "options": [
+            "Suy luận ý nghĩa sâu xa.",
+            "Scanning (Quét nhanh) để tìm ra các con số, ngày tháng, địa điểm hoặc giá tiền chính xác.",
+            "Tóm tắt đại ý.",
+            "Đọc hiểu cấu trúc ngữ pháp phức tạp."
+        ],
+        "correct_answer": "Scanning (Quét nhanh) để tìm ra các con số, ngày tháng, địa điểm hoặc giá tiền chính xác.",
+        "explanation": "Vì các văn bản mang tính thông tin thực tế (như bảng giá, lịch trình tàu), kỹ năng dò tìm dữ kiện cụ thể (Scanning) là chìa khóa ăn điểm tuyệt đối."
+    },
+    {
+        "quiz_id": "c094ea19",
+        "question_text": "Văn bản trong Section 1 GT thường có bố cục như thế nào để dễ đọc?",
+        "options": [
+            "Một đoạn văn bản đặc chữ dài 3 trang.",
+            "Sử dụng rất nhiều Bullet points (gạch đầu dòng), in đậm, in nghiêng và các đoạn văn cực ngắn.",
+            "Không có dấu chấm phẩy.",
+            "Viết dưới dạng thơ ca."
+        ],
+        "correct_answer": "Sử dụng rất nhiều Bullet points (gạch đầu dòng), in đậm, in nghiêng và các đoạn văn cực ngắn.",
+        "explanation": "Bố cục chia nhỏ (chunking) của tờ rơi hoặc quảng cáo giúp thí sinh dễ dàng khoanh vùng vị trí đáp án bằng cách nhìn vào các tiêu đề phụ."
+    },
+    {
+        "quiz_id": "4ef03de9",
+        "question_text": "Các văn bản 'Hướng dẫn & Quy định' (Guidelines & Regulations) trong Section 1 GT thường sử dụng cấu trúc ngữ pháp nào nhiều nhất?",
+        "options": [
+            "Câu điều kiện loại 3.",
+            "Câu mệnh lệnh (Imperatives) và Động từ khuyết thiếu mang tính bắt buộc (must, have to, should).",
+            "Thì tương lai hoàn thành.",
+            "Câu bị động phức tạp."
+        ],
+        "correct_answer": "Câu mệnh lệnh (Imperatives) và Động từ khuyết thiếu mang tính bắt buộc (must, have to, should).",
+        "explanation": "Ví dụ: 'Passengers must present their tickets' hoặc 'Do not leave luggage unattended'. Việc hiểu mức độ bắt buộc của Modal verbs giúp trả lời dạng TFNG."
+    },
+    {
+        "quiz_id": "4ef03de9",
+        "question_text": "Trong một bài đọc về Thể lệ trả hàng (Return Policy), nếu có câu hỏi True/False/Not Given, từ khóa 'Only' (Chỉ) trong văn bản cần được chú ý như thế nào?",
+        "options": [
+            "Nó không quan trọng.",
+            "Nó thường là 'bẫy' giới hạn điều kiện. Ví dụ: 'Refunds are ONLY given within 14 days'.",
+            "Nó luôn luôn có nghĩa là False.",
+            "Nó có nghĩa là bạn được làm mọi thứ."
+        ],
+        "correct_answer": "Nó thường là 'bẫy' giới hạn điều kiện. Ví dụ: 'Refunds are ONLY given within 14 days'.",
+        "explanation": "Các từ mang tính loại trừ (exclusive words) như 'only', 'solely', 'strictly' định hình chính xác phạm vi áp dụng của quy định."
+    },
+    {
+        "quiz_id": "4ef03de9",
+        "question_text": "Dạng bài 'Matching paragraphs with information' trong bối cảnh các quy định thường hỏi về điều gì?",
+        "options": [
+            "Tìm xem quy định nào nói về hình phạt, quy định nào nói về lợi ích, v.v.",
+            "Tìm tên tác giả.",
+            "Phân tích cảm xúc người viết.",
+            "Tìm lỗi chính tả."
+        ],
+        "correct_answer": "Tìm xem quy định nào nói về hình phạt, quy định nào nói về lợi ích, v.v.",
+        "explanation": "Thí sinh phải nối các tình huống của khách hàng (ví dụ: 'You lost your receipt') với đoạn văn chứa quy định giải quyết tình huống đó."
+    },
+    {
+        "quiz_id": "c4e17321",
+        "question_text": "Nội dung của Section 2 trong bài thi General Training Reading tập trung vào chủ đề cốt lõi nào?",
+        "options": [
+            "Môi trường sinh thái.",
+            "Cuộc sống học đường.",
+            "Môi trường làm việc và các vấn đề công sở (Workplace survival).",
+            "Du lịch quốc tế."
+        ],
+        "correct_answer": "Môi trường làm việc và các vấn đề công sở (Workplace survival).",
+        "explanation": "Section 2 GT được thiết kế để kiểm tra khả năng đọc hiểu các văn bản nội bộ công ty như: Hợp đồng lao động, Sổ tay nhân viên (Staff manual), hay Quy trình khiếu nại."
+    },
+    {
+        "quiz_id": "c4e17321",
+        "question_text": "Một 'Job Description' (Bản mô tả công việc) trong bài thi thường chứa các thông tin nào để thí sinh phân tích?",
+        "options": [
+            "Giá cả hàng hóa.",
+            "Nhiệm vụ hàng ngày, Yêu cầu trình độ/kỹ năng (Qualifications), và Phúc lợi (Benefits/Perks).",
+            "Lịch sử hình thành công ty.",
+            "Danh sách khách hàng."
+        ],
+        "correct_answer": "Nhiệm vụ hàng ngày, Yêu cầu trình độ/kỹ năng (Qualifications), và Phúc lợi (Benefits/Perks).",
+        "explanation": "Câu hỏi thường đưa ra một danh sách các ứng viên và yêu cầu bạn 'Match' ứng viên đó với vị trí công việc phù hợp dựa trên kinh nghiệm của họ."
+    },
+    {
+        "quiz_id": "c4e17321",
+        "question_text": "Thuật ngữ 'Remuneration' xuất hiện trong văn bản công việc của IELTS mang ý nghĩa gì?",
+        "options": [
+            "Sự sa thải.",
+            "Sự trả thù.",
+            "Sự đền bù tài chính, tiền lương và các phúc lợi cho người lao động (Compensation/Pay).",
+            "Khóa đào tạo nhân viên."
+        ],
+        "correct_answer": "Sự đền bù tài chính, tiền lương và các phúc lợi cho người lao động (Compensation/Pay).",
+        "explanation": "Đây là từ vựng formal cực kỳ phổ biến trong các văn bản nhân sự (HR). Nếu câu hỏi nhắc đến 'Salary/Wages', bạn phải quét tìm từ 'Remuneration' trong bài."
+    },
+    {
+        "quiz_id": "bd6b7329",
+        "question_text": "Khi đọc một văn bản về 'Cơ sở vật chất đào tạo' (Training facilities) trong Section 2, yếu tố Paraphrase nào thường được áp dụng nhất?",
+        "options": [
+            "Giữ nguyên 100% từ vựng.",
+            "Biến đổi từ ngữ chỉ Tần suất (ví dụ: 'Annually' trong bài đổi thành 'Once a year' trong câu hỏi).",
+            "Sử dụng ngôn ngữ ký hiệu.",
+            "Chỉ dùng hình ảnh không có chữ."
+        ],
+        "correct_answer": "Biến đổi từ ngữ chỉ Tần suất (ví dụ: 'Annually' trong bài đổi thành 'Once a year' trong câu hỏi).",
+        "explanation": "Các bài về dịch vụ và đào tạo thường xuyên paraphrase các con số, thời gian biểu và điều kiện đăng ký tham gia khóa học."
+    },
+    {
+        "quiz_id": "bd6b7329",
+        "question_text": "Đoạn văn 'Grievance Procedure' (Quy trình khiếu nại) trong sổ tay nhân viên thường được tổ chức theo cấu trúc nào?",
+        "options": [
+            "Miêu tả ngoại hình.",
+            "Liệt kê các bước thực hiện theo trình tự thời gian (Step-by-step sequential order).",
+            "So sánh và đối chiếu.",
+            "Sử dụng phép ẩn dụ văn học."
+        ],
+        "correct_answer": "Liệt kê các bước thực hiện theo trình tự thời gian (Step-by-step sequential order).",
+        "explanation": "Vì là quy trình (Procedure), văn bản thường có các mốc như Step 1 (Verbal warning), Step 2 (Written warning). Các dạng bài Flow-chart completion rất hay xuất hiện ở đây."
+    },
+    {
+        "quiz_id": "bd6b7329",
+        "question_text": "Từ 'Mandatory' trong thông báo tham gia khóa huấn luyện an toàn lao động có ý nghĩa gì đối với nhân viên?",
+        "options": [
+            "Tùy chọn, ai thích thì tham gia.",
+            "Có thể đăng ký học vào năm sau.",
+            "Bắt buộc, không có ngoại lệ (Compulsory/Required).",
+            "Khóa học có tính phí."
+        ],
+        "correct_answer": "Bắt buộc, không có ngoại lệ (Compulsory/Required).",
+        "explanation": "Đây là từ vựng chìa khóa. Nếu câu hỏi nói 'Staff have the option to attend...', mà văn bản dùng 'Mandatory', thì đáp án chắc chắn là False."
+    },
+    {
+        "quiz_id": "1700c05d",
+        "question_text": "Đặc điểm của Section 3 trong bài thi General Training Reading là gì?",
+        "options": [
+            "Nó dễ hơn Section 1.",
+            "Nó chứa nhiều bài quảng cáo nhỏ.",
+            "Nó là một văn bản dài, phức tạp, có tính chất miêu tả, tường thuật (narrative) hoặc nghị luận, độ khó tương đương với một bài Academic Reading.",
+            "Nó chỉ chứa hình ảnh."
+        ],
+        "correct_answer": "Nó là một văn bản dài, phức tạp, có tính chất miêu tả, tường thuật (narrative) hoặc nghị luận, độ khó tương đương với một bài Academic Reading.",
+        "explanation": "Section 3 là 'trùm cuối' để phân loại điểm số cao (Band 7.0+). Nó thường trích từ tạp chí, sách lịch sử hoặc tiểu sử."
+    },
+    {
+        "quiz_id": "1700c05d",
+        "question_text": "Dạng câu hỏi nào đánh giá tư duy sâu sắc nhất thường chỉ xuất hiện ở Section 3 của bài thi GT?",
+        "options": [
+            "Fill in the blanks (số lượng).",
+            "Multiple Choice Questions hỏi về 'Mục đích chính của tác giả' (Writer's purpose) hoặc 'Thái độ của tác giả' (Writer's tone).",
+            "Matching ngày tháng.",
+            "Nối hình ảnh."
+        ],
+        "correct_answer": "Multiple Choice Questions hỏi về 'Mục đích chính của tác giả' (Writer's purpose) hoặc 'Thái độ của tác giả' (Writer's tone).",
+        "explanation": "Bởi vì Section 1 và 2 chỉ là thông tin thực tế vô cảm (factual), chỉ có văn bản dài ở Section 3 mới có các khía cạnh về thái độ và lập luận để khai thác."
+    },
+    {
+        "quiz_id": "1700c05d",
+        "question_text": "Khi đọc một văn bản tự sự (Narrative) về lịch sử một phát minh trong Section 3, bạn nên đặc biệt chú ý đến các từ vựng chỉ điều gì?",
+        "options": [
+            "Màu sắc.",
+            "Thứ tự thời gian (Chronological markers) và Sự thay đổi, chuyển biến (Turning points).",
+            "Tên món ăn.",
+            "Tính cách của động vật."
+        ],
+        "correct_answer": "Thứ tự thời gian (Chronological markers) và Sự thay đổi, chuyển biến (Turning points).",
+        "explanation": "Văn bản tường thuật thường theo dòng thời gian. Việc bắt được các từ như 'Initially', 'Decades later', 'However' giúp bạn dễ dàng theo dõi mạch phát triển của câu chuyện."
+    },
+    {
+        "quiz_id": "d4d25075",
+        "question_text": "Chiến thuật quản lý thời gian khôn ngoan nhất cho bài thi General Training Reading là gì?",
+        "options": [
+            "Dành 20 phút cho mỗi phần.",
+            "Dành 30 phút cho Section 1, vì nó dễ ăn điểm nhất.",
+            "Làm Section 1 & 2 thật nhanh (tối đa 25-30 phút) để dự trữ thời gian tối đa (30-35 phút) cho Section 3 dài và phức tạp nhất.",
+            "Bỏ qua Section 3."
+        ],
+        "correct_answer": "Làm Section 1 & 2 thật nhanh (tối đa 25-30 phút) để dự trữ thời gian tối đa (30-35 phút) cho Section 3 dài và phức tạp nhất.",
+        "explanation": "Do sự chênh lệch lớn về độ dài và độ phức tạp, việc chia đều 20 phút là sai lầm chết người trong GT Reading."
+    },
+    {
+        "quiz_id": "d4d25075",
+        "question_text": "Tại sao việc 'Đọc kỹ từng chữ' (Reading for detail) ở Section 1 & 2 lại là một sự lãng phí thời gian?",
+        "options": [
+            "Vì bạn sẽ bị phạt điểm nếu đọc chậm.",
+            "Vì giám khảo không cho phép.",
+            "Vì câu hỏi ở 2 phần này chủ yếu yêu cầu tìm kiếm thông tin cụ thể (Scanning); bạn chỉ cần lướt mắt tìm từ khóa thay vì phải hiểu toàn bộ ngữ cảnh.",
+            "Vì tiếng Anh ở đây quá khó hiểu."
+        ],
+        "correct_answer": "Vì câu hỏi ở 2 phần này chủ yếu yêu cầu tìm kiếm thông tin cụ thể (Scanning); bạn chỉ cần lướt mắt tìm từ khóa thay vì phải hiểu toàn bộ ngữ cảnh.",
+        "explanation": "Bạn không cần đọc hết 5 nội quy của công ty nếu câu hỏi chỉ hỏi về 'Quy định trang phục' (Dress code)."
+    },
+    {
+        "quiz_id": "d4d25075",
+        "question_text": "Cách xử lý nhanh nhất dạng bài 'Matching Information' trong môi trường văn bản nhiều gạch đầu dòng (Bullet points) là gì?",
+        "options": [
+            "Đọc lần lượt từng gạch đầu dòng.",
+            "Đọc câu hỏi trước, xác định keywords đặc trưng, sau đó rà mắt thật nhanh xuống các đề mục phụ (Sub-headings) và các từ in đậm trong bài để khoanh vùng.",
+            "Đoán mò.",
+            "Viết lại toàn bộ bài."
+        ],
+        "correct_answer": "Đọc câu hỏi trước, xác định keywords đặc trưng, sau đó rà mắt thật nhanh xuống các đề mục phụ (Sub-headings) và các từ in đậm trong bài để khoanh vùng.",
+        "explanation": "Trong GT Reading, Layout (bố cục hình thức) là gợi ý quan trọng nhất. Tiêu đề in đậm chính là biển báo chỉ đường đến đáp án."
+    },
+    {
+        "quiz_id": "f3debf7a",
+        "question_text": "Sự khác biệt lớn nhất về cấu trúc bài thi giữa IELTS Academic Reading và General Training Reading là gì?",
+        "options": [
+            "Cả hai hoàn toàn giống nhau.",
+            "Academic có 3 văn bản dài; GT có thể có tới 5-6 văn bản ngắn chia làm 3 Sections (Sec 1 và Sec 2 chứa nhiều văn bản nhỏ).",
+            "Academic dùng tiếng Anh, GT dùng ngôn ngữ khác.",
+            "Academic có 60 câu hỏi, GT có 40 câu hỏi."
+        ],
+        "correct_answer": "Academic có 3 văn bản dài; GT có thể có tới 5-6 văn bản ngắn chia làm 3 Sections (Sec 1 và Sec 2 chứa nhiều văn bản nhỏ).",
+        "explanation": "Mặc dù cả hai đều kéo dài 60 phút và có 40 câu hỏi, cấu trúc văn bản của GT bị xé lẻ ở phần đầu để phù hợp với ngữ cảnh đọc thông tin thường nhật."
+    },
+    {
+        "quiz_id": "f3debf7a",
+        "question_text": "Về mặt đánh giá điểm số (Band Score), sự khác biệt giữa Academic và General Training Reading là gì?",
+        "options": [
+            "Band score được tính bằng nhau cho cùng một số câu đúng.",
+            "GT yêu cầu số câu trả lời đúng KHẮT KHE hơn để đạt cùng một Band điểm (Ví dụ: để đạt Band 7.0, Academic cần khoảng 30 câu, trong khi GT cần tới 34 câu).",
+            "Academic dễ đạt điểm cao hơn vì ít từ vựng.",
+            "GT không có Band 9.0."
+        ],
+        "correct_answer": "GT yêu cầu số câu trả lời đúng KHẮT KHE hơn để đạt cùng một Band điểm (Ví dụ: để đạt Band 7.0, Academic cần khoảng 30 câu, trong khi GT cần tới 34 câu).",
+        "explanation": "Bởi vì độ khó của các văn bản trong GT được đánh giá là thấp hơn, thí sinh phải làm đúng nhiều câu hơn để chứng minh được năng lực của mình."
+    },
+    {
+        "quiz_id": "f3debf7a",
+        "question_text": "Nguồn tài liệu trích dẫn của IELTS Academic Reading thường lấy từ đâu, trái ngược với General Training?",
+        "options": [
+            "Truyện cổ tích thiếu nhi.",
+            "Các tạp chí khoa học, sách giáo khoa đại học, và các ấn phẩm hàn lâm chuyên sâu.",
+            "Menu nhà hàng.",
+            "Bản tin thời tiết."
+        ],
+        "correct_answer": "Các tạp chí khoa học, sách giáo khoa đại học, và các ấn phẩm hàn lâm chuyên sâu.",
+        "explanation": "Academic nhằm đánh giá khả năng theo học Đại học/Sau Đại học, do đó văn bản mang tính chất nghị luận, phân tích lý thuyết (Discursive and Analytical texts)."
+    },
+    {
+        "quiz_id": "a80b64ab",
+        "question_text": "Trong khi làm bài thi GT Reading thực tế, nếu câu trả lời yêu cầu 'TRUE/FALSE/NOT GIVEN' nhưng bạn ghi vào giấy thi là 'YES/NO/NOT GIVEN', hậu quả sẽ là gì?",
+        "options": [
+            "Giám khảo sẽ châm chước và vẫn chấm đúng.",
+            "Đáp án của bạn sẽ bị tính là SAI hoàn toàn.",
+            "Bạn sẽ bị trừ một nửa số điểm.",
+            "Giám khảo sẽ yêu cầu bạn làm lại."
+        ],
+        "correct_answer": "Đáp án của bạn sẽ bị tính là SAI hoàn toàn.",
+        "explanation": "IELTS yêu cầu sự chính xác tuyệt đối trong việc tuân thủ chỉ dẫn đề bài. Trả lời Yes/No cho câu hỏi True/False là một lỗi sơ đẳng nhưng cực kỳ phổ biến gây mất điểm oan."
+    },
+    {
+        "quiz_id": "a80b64ab",
+        "question_text": "Khi điền đáp án dạng 'Hoàn thành câu' (Completion) vào Answer Sheet, việc chép kèm các dấu câu (như dấu phẩy, dấu chấm) từ bài gốc có được chấp nhận không?",
+        "options": [
+            "Bắt buộc phải chép đầy đủ dấu câu.",
+            "Tuyệt đối không điền dấu câu, chỉ điền từ vựng, vì các dấu chấm câu có sẵn trong đề bài sẽ làm câu trả lời của bạn bị sai định dạng.",
+            "Dấu phẩy được chấp nhận, dấu chấm thì không.",
+            "Tùy thuộc vào giám khảo."
+        ],
+        "correct_answer": "Tuyệt đối không điền dấu câu, chỉ điền từ vựng, vì các dấu chấm câu có sẵn trong đề bài sẽ làm câu trả lời của bạn bị sai định dạng.",
+        "explanation": "Nếu đáp án là từ 'museum', bạn chỉ viết chữ 'museum', tuyệt đối không được viết 'museum.' (có dấu chấm) vào tờ phiếu trả lời."
+    },
+    {
+        "quiz_id": "a80b64ab",
+        "question_text": "Lỗi chính tả (Spelling) trong phần thi Reading sẽ bị trừ điểm như thế nào?",
+        "options": [
+            "Sai một chữ cái vẫn được tính điểm nếu giám khảo đọc hiểu.",
+            "Sai chính tả (kể cả thiếu 's' số nhiều) sẽ bị tính là câu trả lời sai hoàn toàn (0 điểm).",
+            "Bị trừ điểm toàn bài thi.",
+            "Không bị trừ điểm ở phần GT."
+        ],
+        "correct_answer": "Sai chính tả (kể cả thiếu 's' số nhiều) sẽ bị tính là câu trả lời sai hoàn toàn (0 điểm).",
+        "explanation": "Reading là phần thi có sẵn từ vựng trên giấy để bạn copy (ngoại trừ dạng T/F/NG). Do đó, sai chính tả do chép sai là không thể tha thứ."
+    },
+    {
+        "quiz_id": "08581156",
+        "question_text": "Chủ đề bối cảnh phổ biến nhất trong Section 1 của bài thi IELTS Listening là gì?",
+        "options": [
+            "Một bài giảng sinh học về tế bào.",
+            "Một cuộc hội thoại qua điện thoại về các giao dịch hàng ngày (ví dụ: đặt phòng khách sạn, mở tài khoản ngân hàng, đăng ký khóa học).",
+            "Một cuộc tranh luận chính trị.",
+            "Một bản tin dự báo thời tiết độc thoại."
+        ],
+        "correct_answer": "Một cuộc hội thoại qua điện thoại về các giao dịch hàng ngày (ví dụ: đặt phòng khách sạn, mở tài khoản ngân hàng, đăng ký khóa học).",
+        "explanation": "Section 1 luôn là cuộc trò chuyện giao tiếp xã hội cơ bản (Social Survival) giữa 2 người."
+    },
+    {
+        "quiz_id": "08581156",
+        "question_text": "Dạng câu hỏi đặc trưng và thường xuyên xuất hiện nhất trong Section 1 Listening là gì?",
+        "options": [
+            "Matching Headings.",
+            "Form / Table / Notes Completion (Điền thông tin vào biểu mẫu, bảng biểu).",
+            "Viết một bài luận ngắn.",
+            "Nối hình ảnh."
+        ],
+        "correct_answer": "Form / Table / Notes Completion (Điền thông tin vào biểu mẫu, bảng biểu).",
+        "explanation": "Thí sinh thường phải điền các thông tin cá nhân cụ thể của người gọi điện như: Tên, Số điện thoại, Địa chỉ, Ngày tháng, Giá tiền."
+    },
+    {
+        "quiz_id": "08581156",
+        "question_text": "Trong Section 1, bẫy 'Self-correction' (Tự sửa lỗi) của người nói diễn ra như thế nào?",
+        "options": [
+            "Người nói từ chối trả lời câu hỏi.",
+            "Người nói đưa ra một thông tin, sau đó nhận ra mình nhầm lẫn và đính chính lại bằng một thông tin khác ngay sau đó.",
+            "Người nói lặp lại câu trả lời 3 lần.",
+            "Người nói nhờ người khác trả lời hộ."
+        ],
+        "correct_answer": "Người nói đưa ra một thông tin, sau đó nhận ra mình nhầm lẫn và đính chính lại bằng một thông tin khác ngay sau đó.",
+        "explanation": "Ví dụ: 'My number is 091... Oh wait, sorry, it's 092...'. Thí sinh vội vàng ghi đáp án đầu tiên sẽ rơi vào bẫy kinh điển này."
+    },
+    {
+        "quiz_id": "0fceb390",
+        "question_text": "Đặc trưng về cấu trúc nhân vật của Section 2 IELTS Listening là gì?",
+        "options": [
+            "Một cuộc thảo luận giữa 3 người.",
+            "Một cuộc hội thoại qua điện thoại.",
+            "Một bài độc thoại (Monologue) trong bối cảnh xã hội hàng ngày (ví dụ: hướng dẫn viên du lịch giới thiệu về khu bảo tồn, quản lý chào mừng nhân viên mới).",
+            "Một cuộc phỏng vấn xin việc."
+        ],
+        "correct_answer": "Một bài độc thoại (Monologue) trong bối cảnh xã hội hàng ngày (ví dụ: hướng dẫn viên du lịch giới thiệu về khu bảo tồn, quản lý chào mừng nhân viên mới).",
+        "explanation": "Section 2 kiểm tra khả năng nghe và theo kịp luồng thông tin liên tục từ một người nói duy nhất trong bối cảnh phi học thuật."
+    },
+    {
+        "quiz_id": "0fceb390",
+        "question_text": "Dạng bài cực kỳ phổ biến và là 'nỗi ám ảnh' của nhiều thí sinh trong Section 2 Listening là gì?",
+        "options": [
+            "Điền số điện thoại.",
+            "Map / Plan Labeling (Điền nhãn bản đồ / Sơ đồ vị trí).",
+            "Viết lại câu.",
+            "Đếm số lượng từ."
+        ],
+        "correct_answer": "Map / Plan Labeling (Điền nhãn bản đồ / Sơ đồ vị trí).",
+        "explanation": "Thí sinh phải có khả năng bám sát ngôn ngữ chỉ phương hướng (Spatial language) như 'North of', 'Adjacent to', 'Past the bridge' để không bị lạc đường trên bản đồ."
+    },
+    {
+        "quiz_id": "0fceb390",
+        "question_text": "Khi làm bài Map Labeling, điểm bắt đầu (Starting point) của bạn trên bản đồ thường được xác định như thế nào?",
+        "options": [
+            "Tự chọn một điểm bất kỳ.",
+            "Luôn bắt đầu từ góc trên bên phải.",
+            "Người nói sẽ chỉ rõ vị trí hiện tại (ví dụ: 'You are here at the main entrance') hoặc có sẵn dấu 'X' / mũi tên in trên bản đồ.",
+            "Bắt đầu từ tòa nhà lớn nhất."
+        ],
+        "correct_answer": "Người nói sẽ chỉ rõ vị trí hiện tại (ví dụ: 'You are here at the main entrance') hoặc có sẵn dấu 'X' / mũi tên in trên bản đồ.",
+        "explanation": "Xác định đúng vị trí xuất phát là yếu tố sống còn. Mọi phương hướng (trái/phải) đều được tính dựa trên góc nhìn từ điểm xuất phát đó."
+    },
+    {
+        "quiz_id": "bd8db023",
+        "question_text": "Bối cảnh phổ biến nhất của Section 3 IELTS Listening là gì?",
+        "options": [
+            "Một người hướng dẫn viên đang thuyết minh trên xe buýt.",
+            "Một cuộc hội thoại từ 2 đến tối đa 4 người trong bối cảnh giáo dục, học thuật (ví dụ: sinh viên thảo luận nhóm về dự án, sinh viên gặp giáo sư hướng dẫn).",
+            "Một đoạn quảng cáo trên radio.",
+            "Người gọi điện mua vé máy bay."
+        ],
+        "correct_answer": "Một cuộc hội thoại từ 2 đến tối đa 4 người trong bối cảnh giáo dục, học thuật (ví dụ: sinh viên thảo luận nhóm về dự án, sinh viên gặp giáo sư hướng dẫn).",
+        "explanation": "Section 3 là bước chuyển giao sang ngôn ngữ học thuật (Academic context). Khó khăn lớn nhất là phải phân biệt được giọng nói và quan điểm của nhiều người khác nhau."
+    },
+    {
+        "quiz_id": "bd8db023",
+        "question_text": "Dạng câu hỏi Trắc nghiệm nhiều lựa chọn (Multiple Choice) ở Section 3 thường chứa bẫy gì phổ biến nhất?",
+        "options": [
+            "Các đáp án sai được đọc bằng ngôn ngữ khác.",
+            "Tất cả các phương án A, B, C đều được người nói nhắc đến trong đoạn băng, nhưng chỉ có một phương án thực sự trả lời đúng trọng tâm câu hỏi hoặc được các bên 'chốt' lại cuối cùng.",
+            "Chỉ có đáp án đúng mới được nhắc đến.",
+            "Không có từ vựng nào trong đáp án giống với đoạn băng."
+        ],
+        "correct_answer": "Tất cả các phương án A, B, C đều được người nói nhắc đến trong đoạn băng, nhưng chỉ có một phương án thực sự trả lời đúng trọng tâm câu hỏi hoặc được các bên 'chốt' lại cuối cùng.",
+        "explanation": "Bẫy Mention (Nhắc đến) rất nguy hiểm. A có thể đề xuất phương án X, nhưng B bác bỏ, và cuối cùng họ chọn Y. Việc nghe bắt chữ khóa (word matching) sẽ khiến bạn mất điểm lập tức."
+    },
+    {
+        "quiz_id": "bd8db023",
+        "question_text": "Kỹ năng cực kỳ quan trọng để xử lý Section 3 là nhận diện 'Sự đồng thuận' (Agreement). Cụm từ nào sau đây mang ý nghĩa bác bỏ ý kiến?",
+        "options": [
+            "I couldn't agree more.",
+            "That's exactly how I feel.",
+            "I see your point, but...",
+            "That makes sense."
+        ],
+        "correct_answer": "I see your point, but...",
+        "explanation": "Trong thảo luận nhóm, một người thường đưa ra ý kiến, và người kia sẽ đồng tình hoặc phản bác (phản bác lịch sự bằng 'but'). Đáp án cuối cùng phụ thuộc vào việc họ có đạt được sự đồng thuận hay không."
+    },
+    {
+        "quiz_id": "f47f3aa3",
+        "question_text": "Đặc trưng lớn nhất làm nên độ khó của Section 4 IELTS Listening là gì?",
+        "options": [
+            "Giọng đọc luôn là tiếng Anh Úc.",
+            "Đây là một bài giảng học thuật (Academic Lecture) độc thoại và KHÔNG có khoảng thời gian nghỉ (No break) ở giữa để thí sinh đọc trước câu hỏi.",
+            "Thí sinh phải tự viết ra câu trả lời dài 10 từ.",
+            "Băng sẽ chạy nhanh gấp đôi."
+        ],
+        "correct_answer": "Đây là một bài giảng học thuật (Academic Lecture) độc thoại và KHÔNG có khoảng thời gian nghỉ (No break) ở giữa để thí sinh đọc trước câu hỏi.",
+        "explanation": "Ở các section trước, băng sẽ dừng ở giữa (ví dụ: 'You have some time to look at questions 1 to 5'). Ở Section 4, bạn phải tập trung liên tục cho trọn vẹn 10 câu hỏi từ 31 đến 40."
+    },
+    {
+        "quiz_id": "f47f3aa3",
+        "question_text": "Dạng bài gần như độc tôn xuất hiện trong Section 4 Listening là gì?",
+        "options": [
+            "Nối hình ảnh con vật.",
+            "Note Completion (Hoàn thành bản tóm tắt bài giảng bằng cách điền 1-2 từ).",
+            "Multiple choice 5 lựa chọn.",
+            "Map Labeling."
+        ],
+        "correct_answer": "Note Completion (Hoàn thành bản tóm tắt bài giảng bằng cách điền 1-2 từ).",
+        "explanation": "Bài thi đánh giá khả năng nghe hiểu và ghi chú (note-taking) của sinh viên trong một giảng đường đại học."
+    },
+    {
+        "quiz_id": "f47f3aa3",
+        "question_text": "Để không bị 'lạc trôi' trong suốt 5 phút của Section 4, bạn bắt buộc phải bám sát vào thứ gì?",
+        "options": [
+            "Các số liệu toán học.",
+            "Ngữ pháp của các câu.",
+            "Các 'Signposting words' (Từ dẫn đường) như: Firstly, Turning to the next point, Lastly... và các đề mục (Headings) in đậm trong tờ đề thi.",
+            "Tiếng ho của giáo sư."
+        ],
+        "correct_answer": "Các 'Signposting words' (Từ dẫn đường) như: Firstly, Turning to the next point, Lastly... và các đề mục (Headings) in đậm trong tờ đề thi.",
+        "explanation": "Bài giảng được chia thành các phần rõ ràng. Việc theo dõi các cụm từ chuyển ý giúp mắt bạn di chuyển xuống đúng câu hỏi tiếp theo cùng lúc với diễn giả."
+    },
+    {
+        "quiz_id": "11de56b9",
+        "question_text": "Trong khoảng thời gian 30 giây được cho trước khi đoạn băng chạy, chiến lược 'Đoán trước' (Predicting) yêu cầu bạn làm gì?",
+        "options": [
+            "Đoán xem giọng đọc là Anh hay Mỹ.",
+            "Đọc lướt câu hỏi, phân tích ngữ pháp để dự đoán xem chỗ trống cần điền là Danh từ, Động từ, Tính từ hay Con số, Tên riêng.",
+            "Nhắm mắt lại và nhẩm lại từ vựng.",
+            "Viết sẵn đáp án lụi vào giấy."
+        ],
+        "correct_answer": "Đọc lướt câu hỏi, phân tích ngữ pháp để dự đoán xem chỗ trống cần điền là Danh từ, Động từ, Tính từ hay Con số, Tên riêng.",
+        "explanation": "Ví dụ: 'cost: £____' (Chắc chắn là số). 'needs to buy a ____' (Chắc chắn là danh từ số ít). Việc dự đoán giúp não bộ lập trình sẵn để 'đón' đúng loại thông tin."
+    },
+    {
+        "quiz_id": "11de56b9",
+        "question_text": "Việc đọc phần Tiêu đề (Title) của bài Listening trước khi nghe mang lại lợi ích lớn nhất nào?",
+        "options": [
+            "Giúp tính toán số lượng chữ cần viết.",
+            "Kích hoạt 'Schema' (Kiến thức nền) trong não bộ, giúp bạn lôi ra các từ vựng liên quan đến chủ đề đó và sẵn sàng đón nhận bối cảnh câu chuyện.",
+            "Không có lợi ích gì đáng kể.",
+            "Giúp biết trước đáp án."
+        ],
+        "correct_answer": "Kích hoạt 'Schema' (Kiến thức nền) trong não bộ, giúp bạn lôi ra các từ vựng liên quan đến chủ đề đó và sẵn sàng đón nhận bối cảnh câu chuyện.",
+        "explanation": "Nếu tiêu đề là 'Whale Conservation' (Bảo tồn cá voi), bạn sẽ chuẩn bị tâm lý nghe về biển, sự tuyệt chủng, săn bắt... Việc này tăng 50% khả năng nghe hiểu."
+    },
+    {
+        "quiz_id": "11de56b9",
+        "question_text": "Nếu bạn bị lỡ mất một câu trả lời (Missed an answer) trong lúc băng đang chạy, phản xạ kỷ luật nhất là gì?",
+        "options": [
+            "Dừng lại suy nghĩ cố nhớ xem họ vừa nói gì.",
+            "Chấp nhận bỏ qua ngay lập tức, nhanh chóng di chuyển mắt xuống câu tiếp theo để không bị lỡ hiệu ứng dây chuyền (Domino effect).",
+            "Bật khóc và bỏ thi.",
+            "Tháo tai nghe ra."
+        ],
+        "correct_answer": "Chấp nhận bỏ qua ngay lập tức, nhanh chóng di chuyển mắt xuống câu tiếp theo để không bị lỡ hiệu ứng dây chuyền (Domino effect).",
+        "explanation": "Băng chỉ chạy 1 lần duy nhất. Tiếc nuối 1 câu sẽ khiến bạn mất tiếp 3 câu sau đó vì không còn biết người nói đang ở đoạn nào."
+    },
+    {
+        "quiz_id": "5197af9e",
+        "question_text": "Trong phần thi Đánh vần tên (Spelling), hai chữ cái nào thí sinh Việt Nam thường xuyên nghe nhầm lẫn nhất?",
+        "options": [
+            "A và O",
+            "G và J, E và I",
+            "B và P",
+            "S và X"
+        ],
+        "correct_answer": "G và J, E và I",
+        "explanation": "Chữ 'G' (/dʒiː/) và 'J' (/dʒeɪ/); chữ 'E' (/i:/) và 'I' (/aɪ/) là những cái bẫy kinh điển cướp điểm của thí sinh do phát âm tiếng Việt khác biệt."
+    },
+    {
+        "quiz_id": "5197af9e",
+        "question_text": "Khi nghe phân biệt các số đuôi '-teen' (như 13, 14) và đuôi '-ty' (như 30, 40), đặc điểm phát âm nào giúp bạn nhận ra số đúng?",
+        "options": [
+            "Số có đuôi -teen được đọc ngắn hơn.",
+            "Trong đuôi '-teen', trọng âm nhấn mạnh và kéo dài ở âm tiết thứ hai (thir-TEEN); trong đuôi '-ty', trọng âm nhấn ở âm tiết đầu và đuôi đọc lướt (THIR-ty).",
+            "Hai số này được phát âm y hệt nhau, phải đoán theo ngữ cảnh.",
+            "Đuôi '-ty' có âm /s/ ở cuối."
+        ],
+        "correct_answer": "Trong đuôi '-teen', trọng âm nhấn mạnh và kéo dài ở âm tiết thứ hai (thir-TEEN); trong đuôi '-ty', trọng âm nhấn ở âm tiết đầu và đuôi đọc lướt (THIR-ty).",
+        "explanation": "Trọng âm là chìa khóa duy nhất. Người bản xứ thường đọc lướt chữ 't' trong số 30 thành âm /d/ (thir-dy), nhưng với 13 thì chữ 'TEEN' luôn được kéo dài rõ ràng."
+    },
+    {
+        "quiz_id": "5197af9e",
+        "question_text": "Định dạng ngày tháng trong tiếng Anh có thể được người nói đọc bằng nhiều cách. Nếu đáp án cần điền giới hạn 1 từ và/hoặc 1 số, bạn nghe thấy 'the 15th of November', bạn sẽ viết thế nào vào bài thi?",
+        "options": [
+            "fifteenth of November",
+            "15th of November",
+            "15 November",
+            "November the 15th"
+        ],
+        "correct_answer": "15 November",
+        "explanation": "'15 November' được tính là 1 số (15) và 1 từ (November), hoàn toàn hợp lệ và tránh được lỗi sai chính tả chữ 'th'."
+    },
+    {
+        "quiz_id": "930a1850",
+        "question_text": "Kỹ năng 'Paraphrasing' trong bài thi Listening có nghĩa là gì?",
+        "options": [
+            "Băng ghi âm sẽ đọc chính xác từng chữ được in trên đề thi.",
+            "Nội dung băng ghi âm sẽ diễn đạt lại ý của câu hỏi bằng các từ đồng nghĩa (Synonyms) hoặc cấu trúc ngữ pháp khác, buộc thí sinh phải nghe hiểu ý thay vì bắt chữ khóa.",
+            "Người nói sẽ đọc một ngôn ngữ khác.",
+            "Người nói sẽ phát âm sai từ cố ý."
+        ],
+        "correct_answer": "Nội dung băng ghi âm sẽ diễn đạt lại ý của câu hỏi bằng các từ đồng nghĩa (Synonyms) hoặc cấu trúc ngữ pháp khác, buộc thí sinh phải nghe hiểu ý thay vì bắt chữ khóa.",
+        "explanation": "Đây là cốt lõi của IELTS Listening. Nếu đề ghi 'cheap', băng có thể nói 'cost-effective' hoặc 'inexpensive'."
+    },
+    {
+        "quiz_id": "930a1850",
+        "question_text": "Nếu câu hỏi trong đề ghi 'Lack of space', bạn nên chuẩn bị tâm lý để nghe cụm từ nào đồng nghĩa trong đoạn băng?",
+        "options": [
+            "A lot of room.",
+            "Not enough room / Insufficient space.",
+            "Space exploration.",
+            "Empty space."
+        ],
+        "correct_answer": "Not enough room / Insufficient space.",
+        "explanation": "'Lack of' thường được paraphrase thành 'not enough', 'insufficient', hoặc 'shortage of'. Việc dự đoán trước các synonyms này giúp não bộ phản xạ tức thì khi âm thanh phát lên."
+    },
+    {
+        "quiz_id": "930a1850",
+        "question_text": "Sự thay đổi 'Word class' (Từ loại) là một hình thức paraphrase cực kỳ phổ biến. Nếu đề bài sử dụng Danh từ 'A reduction in price', đoạn băng có thể dùng Động từ nào?",
+        "options": [
+            "The price is increased.",
+            "They reduced the price / Prices were lowered.",
+            "It is very cheap.",
+            "Price reduction is good."
+        ],
+        "correct_answer": "They reduced the price / Prices were lowered.",
+        "explanation": "Tác giả chuyển đổi linh hoạt giữa Danh từ (reduction) và Động từ (reduce/lower) để ẩn giấu đáp án."
+    },
+    {
+        "quiz_id": "63308e54",
+        "question_text": "Sau khi kết thúc trọn vẹn 4 Section (khoảng 30 phút) trong bài thi IELTS Listening trên GIẤY (Paper-based), thí sinh sẽ có thêm bao nhiêu thời gian để làm gì?",
+        "options": [
+            "Có 5 phút để đi vệ sinh.",
+            "Có 10 phút để chuyển (transfer) đáp án từ đề thi sang tờ Answer Sheet chính thức.",
+            "Không có thời gian, phải nộp bài ngay.",
+            "Có 2 phút để kiểm tra lại với bạn bên cạnh."
+        ],
+        "correct_answer": "Có 10 phút để chuyển (transfer) đáp án từ đề thi sang tờ Answer Sheet chính thức.",
+        "explanation": "Trong lúc nghe, bạn nên viết nháp thật nhanh lên đề thi. 10 phút cuối cùng này là lúc để nắn nót viết vào Answer Sheet và kiểm tra cẩn thận chính tả."
+    },
+    {
+        "quiz_id": "63308e54",
+        "question_text": "Khi chuyển đáp án (transfer answers), lỗi nào sau đây dẫn đến việc bạn bị mất điểm oan uổng nhất?",
+        "options": [
+            "Viết hoa toàn bộ các chữ cái (ALL CAPS).",
+            "Ghi nhầm vị trí số thứ tự câu hỏi (ví dụ: đáp án câu 15 lại ghi vào ô 16), dẫn đến sai hàng loạt.",
+            "Sử dụng bút chì thay vì bút bi.",
+            "Chữ viết quá đẹp."
+        ],
+        "correct_answer": "Ghi nhầm vị trí số thứ tự câu hỏi (ví dụ: đáp án câu 15 lại ghi vào ô 16), dẫn đến sai hàng loạt.",
+        "explanation": "Lỗi lệch dòng (Misalignment) là cơn ác mộng. Bạn nên luôn dùng ngón tay chỉ vào số thứ tự trên đề và trên Answer sheet để đối chiếu."
+    },
+    {
+        "quiz_id": "63308e54",
+        "question_text": "Quy định về việc Viết hoa (Capitalization) trong tờ Answer Sheet của IELTS Listening là gì?",
+        "options": [
+            "Bắt buộc phải viết hoa chữ cái đầu tiên của mọi từ.",
+            "Tuyệt đối không được viết hoa.",
+            "Chỉ viết hoa tên người.",
+            "Có thể viết hoa toàn bộ tất cả các chữ cái (ALL CAPS) để đảm bảo độ rõ ràng và giám khảo dễ đọc nhất."
+        ],
+        "correct_answer": "Có thể viết hoa toàn bộ tất cả các chữ cái (ALL CAPS) để đảm bảo độ rõ ràng và giám khảo dễ đọc nhất.",
+        "explanation": "Hội đồng thi khuyến khích thí sinh viết ALL CAPS (ví dụ: COMPUTER thay vì computer) để tránh việc chữ viết tay quá xấu khiến giám khảo không dịch được hoặc sai quy tắc viết hoa tên riêng."
+    },
+    {
+        "quiz_id": "d03fe735",
+        "question_text": "Trong IELTS Speaking Part 1, mục đích chính của các câu hỏi về bản thân (Hometown, Work/Study, Accommodation) là gì?",
+        "options": [
+            "Đánh giá vốn từ vựng học thuật chuyên sâu của bạn.",
+            "Giúp bạn thư giãn, làm nóng (warm-up) bằng các chủ đề quen thuộc và kiểm tra khả năng giao tiếp trôi chảy hàng ngày.",
+            "Đánh giá khả năng tranh luận phản biện của bạn.",
+            "Kiểm tra kiến thức địa lý và xã hội học của bạn."
+        ],
+        "correct_answer": "Giúp bạn thư giãn, làm nóng (warm-up) bằng các chủ đề quen thuộc và kiểm tra khả năng giao tiếp trôi chảy hàng ngày.",
+        "explanation": "Part 1 đóng vai trò như một cuộc phỏng vấn làm quen nhỏ. Giám khảo không mong đợi những triết lý cao siêu mà muốn thấy sự tự nhiên và trôi chảy (Fluency) của bạn."
+    },
+    {
+        "quiz_id": "d03fe735",
+        "question_text": "Độ dài lý tưởng nhất cho một câu trả lời trong IELTS Speaking Part 1 là bao nhiêu?",
+        "options": [
+            "Chỉ 1 từ (Ví dụ: Yes / No).",
+            "Khoảng 2-3 câu (Trả lời trực tiếp vào trọng tâm, sau đó mở rộng bằng 1 lý do hoặc 1 chi tiết nhỏ).",
+            "Càng dài càng tốt, nói liên tục cho đến khi giám khảo ngắt lời.",
+            "Khoảng 5 phút cho mỗi câu hỏi."
+        ],
+        "correct_answer": "Khoảng 2-3 câu (Trả lời trực tiếp vào trọng tâm, sau đó mở rộng bằng 1 lý do hoặc 1 chi tiết nhỏ).",
+        "explanation": "Trả lời quá ngắn sẽ không đủ dữ liệu chấm điểm (under-developed), trả lời quá dài sẽ lan man (off-topic) và chiếm mất thời gian của các câu hỏi khác."
+    },
+    {
+        "quiz_id": "d03fe735",
+        "question_text": "Khi giám khảo hỏi 'Do you work or are you a student?', bạn KHÔNG NÊN mở đầu câu trả lời bằng cách nào?",
+        "options": [
+            "Well, currently I'm a senior at...",
+            "I'm working as an accountant for...",
+            "As you can see in my resume...",
+            "At the moment, I'm pursuing a degree in..."
+        ],
+        "correct_answer": "As you can see in my resume...",
+        "explanation": "Giám khảo IELTS Speaking hoàn toàn không biết bạn là ai và không có hồ sơ của bạn. Bạn phải trả lời như thể đang nói chuyện với một người mới quen."
+    },
+    {
+        "quiz_id": "5289bd94",
+        "question_text": "Khi được hỏi về một chủ đề quen thuộc nhưng bạn chưa bao giờ làm (ví dụ: 'Do you like gardening?'), bạn nên làm gì?",
+        "options": [
+            "Nói dối rằng bạn rất thích và bịa ra một câu chuyện.",
+            "Im lặng vì không biết nói gì.",
+            "Thành thật nói 'Không', sau đó giải thích lý do tại sao hoặc nói về một sở thích khác thay thế.",
+            "Hỏi ngược lại giám khảo xem họ có thích không."
+        ],
+        "correct_answer": "Thành thật nói 'Không', sau đó giải thích lý do tại sao hoặc nói về một sở thích khác thay thế.",
+        "explanation": "IELTS là bài thi ngôn ngữ, không phải bài kiểm tra sự thật. Việc nói 'To be honest, I don't have a green thumb because...' là một cách trả lời cực kỳ tự nhiên và được điểm cao."
+    },
+    {
+        "quiz_id": "5289bd94",
+        "question_text": "Cấu trúc 'Used to' rất hữu ích trong Part 1 để làm gì?",
+        "options": [
+            "Dự đoán tương lai.",
+            "Kéo dài thời gian suy nghĩ.",
+            "So sánh thói quen/sở thích trong quá khứ với hiện tại để làm câu trả lời phong phú hơn.",
+            "Hỏi đường."
+        ],
+        "correct_answer": "So sánh thói quen/sở thích trong quá khứ với hiện tại để làm câu trả lời phong phú hơn.",
+        "explanation": "Việc mở rộng thời gian (Time expansion) là kỹ thuật xuất sắc. Ví dụ: 'I used to hate vegetables as a kid, but now I eat them daily'."
+    },
+    {
+        "quiz_id": "5289bd94",
+        "question_text": "Để thay thế cho từ 'I like' lặp đi lặp lại quá nhiều lần trong Part 1, bạn có thể dùng cụm từ nào?",
+        "options": [
+            "I am angry at...",
+            "I am a big fan of... / I'm really into...",
+            "I ignore...",
+            "I force myself to..."
+        ],
+        "correct_answer": "I am a big fan of... / I'm really into...",
+        "explanation": "Sử dụng đa dạng các cụm từ thể hiện sở thích (I'm keen on, I'm passionate about) giúp tăng điểm tiêu chí Lexical Resource."
+    },
+    {
+        "quiz_id": "cf4eb31c",
+        "question_text": "Trong Speaking Part 2 (Mô tả người), yếu tố nào quan trọng hơn việc chỉ liệt kê ngoại hình (tóc, mắt, chiều cao)?",
+        "options": [
+            "Nói chính xác tuổi của họ.",
+            "Kể về thu nhập của họ.",
+            "Miêu tả tính cách, phẩm chất và kể một kỷ niệm hoặc câu chuyện nhỏ giải thích tại sao họ lại có ảnh hưởng đến bạn.",
+            "Đọc tiểu sử của họ trên Wikipedia."
+        ],
+        "correct_answer": "Miêu tả tính cách, phẩm chất và kể một kỷ niệm hoặc câu chuyện nhỏ giải thích tại sao họ lại có ảnh hưởng đến bạn.",
+        "explanation": "Miêu tả ngoại hình rất dễ cạn ý tưởng. Việc kể một câu chuyện (Anecdote) chứng minh tính cách của họ sẽ giúp bạn dễ dàng nói trôi chảy suốt 2 phút."
+    },
+    {
+        "quiz_id": "cf4eb31c",
+        "question_text": "Bạn có 1 phút chuẩn bị (Take notes) trước khi nói Part 2. Cách ghi chú nào hiệu quả nhất?",
+        "options": [
+            "Viết hoàn chỉnh từng câu từng chữ rồi đọc lại.",
+            "Không viết gì cả, chỉ nhắm mắt suy nghĩ.",
+            "Chỉ viết các từ khóa (Keywords), cụm từ vựng (Collocations) và các ý chính theo cấu trúc câu hỏi gợi ý.",
+            "Vẽ chân dung người đó ra giấy."
+        ],
+        "correct_answer": "Chỉ viết các từ khóa (Keywords), cụm từ vựng (Collocations) và các ý chính theo cấu trúc câu hỏi gợi ý.",
+        "explanation": "Bạn không bao giờ có đủ 1 phút để viết thành câu. Viết từ khóa giúp bạn có 'điểm neo' để nhìn vào khi lỡ quên ý, giữ được sự giao tiếp bằng mắt (Eye-contact)."
+    },
+    {
+        "quiz_id": "cf4eb31c",
+        "question_text": "Để miêu tả một người rất dễ gần và thân thiện, bạn dùng Idiom nào?",
+        "options": [
+            "A tough cookie.",
+            "A pain in the neck.",
+            "Down-to-earth.",
+            "A dark horse."
+        ],
+        "correct_answer": "Down-to-earth.",
+        "explanation": "'Down-to-earth' là thành ngữ rất tự nhiên chỉ một người thực tế, giản dị, thân thiện và không hề kiêu ngạo."
+    },
+    {
+        "quiz_id": "687df7f4",
+        "question_text": "Khi mô tả một Sự kiện hoặc Địa điểm (Event & Place) trong Part 2, việc sử dụng các 'Sensory details' (Chi tiết giác quan) mang lại lợi ích gì?",
+        "options": [
+            "Làm giám khảo khó hiểu hơn.",
+            "Giúp bức tranh miêu tả trở nên sống động và chân thực hơn (ví dụ: mùi thức ăn, tiếng ồn ào, màu sắc rực rỡ).",
+            "Làm tốn thời gian vô ích.",
+            "Chứng minh bạn không nói dối."
+        ],
+        "correct_answer": "Giúp bức tranh miêu tả trở nên sống động và chân thực hơn (ví dụ: mùi thức ăn, tiếng ồn ào, màu sắc rực rỡ).",
+        "explanation": "Việc sử dụng tính từ miêu tả chi tiết (picturesque, deafening, mouth-watering) đẩy điểm Vocabulary của bạn lên mức 7.0+ dễ dàng."
+    },
+    {
+        "quiz_id": "687df7f4",
+        "question_text": "Nếu bạn đang nói Part 2 mà bị 'bí ý tưởng' (Run out of ideas) trước khi hết 2 phút, bạn nên sử dụng chiến thuật nào?",
+        "options": [
+            "Nói 'I'm done' và im lặng.",
+            "Lặp lại chính xác những gì vừa nói.",
+            "Chuyển hướng (Pivot) sang việc nói về cảm xúc tương lai: 'If I have a chance, I would definitely go there again because...'.",
+            "Hỏi giám khảo xem họ đã đi đến đó chưa."
+        ],
+        "correct_answer": "Chuyển hướng (Pivot) sang việc nói về cảm xúc tương lai: 'If I have a chance, I would definitely go there again because...'.",
+        "explanation": "Kéo dài bài nói bằng cách thêm một giả định tương lai (Future conditional) là chiếc phao cứu sinh hoàn hảo để lấp đầy 15-20 giây còn thiếu."
+    },
+    {
+        "quiz_id": "687df7f4",
+        "question_text": "Từ vựng nào thay thế tốt nhất cho từ 'beautiful' khi miêu tả một phong cảnh thiên nhiên hùng vĩ?",
+        "options": [
+            "Nice",
+            "Breathtaking / Spectacular",
+            "Okay",
+            "Normal"
+        ],
+        "correct_answer": "Breathtaking / Spectacular",
+        "explanation": "'Breathtaking' (đẹp đến nín thở) là tính từ mô tả nâng cao (Advanced adjectives) cực kỳ ghi điểm trong chủ đề Places."
+    },
+    {
+        "quiz_id": "08367e36",
+        "question_text": "Trong chủ đề 'Mô tả một trải nghiệm' (Describe an experience), lỗi ngữ pháp nghiêm trọng nhất khiến thí sinh bị trừ điểm nặng là gì?",
+        "options": [
+            "Không dùng thì Tương lai.",
+            "Không sử dụng câu bị động.",
+            "Sử dụng sai các Thì quá khứ (Ví dụ: dùng thì Hiện tại đơn để kể về một chuyến đi năm ngoái).",
+            "Không dùng câu điều kiện."
+        ],
+        "correct_answer": "Sử dụng sai các Thì quá khứ (Ví dụ: dùng thì Hiện tại đơn để kể về một chuyến đi năm ngoái).",
+        "explanation": "Đã kể lại trải nghiệm (Experience) thì 90% câu chuyện nằm ở Quá khứ. Việc kiểm soát tốt Past Simple, Past Continuous và Past Perfect là tiêu chí chấm điểm GRA cốt lõi."
+    },
+    {
+        "quiz_id": "08367e36",
+        "question_text": "Để bài nói Part 2 có tính liên kết chặt chẽ (Coherence), bạn nên sử dụng các từ nối (Signpost words) như thế nào?",
+        "options": [
+            "Không dùng từ nối nào cả.",
+            "Dùng thật nhiều 'and' và 'so'.",
+            "Dùng các từ chuyển ý tự nhiên như 'Initially...', 'Then...', 'Unexpectedly...', 'Looking back now...'.",
+            "Dùng các từ học thuật cứng nhắc như 'Furthermore', 'Moreover'."
+        ],
+        "correct_answer": "Dùng các từ chuyển ý tự nhiên như 'Initially...', 'Then...', 'Unexpectedly...', 'Looking back now...'.",
+        "explanation": "Văn nói (Spoken English) chuộng sự tự nhiên. Các từ nối như 'Moreover', 'Furthermore' phù hợp cho Writing, trong khi Speaking ưu tiên 'To begin with', 'Another thing is', 'Eventually'."
+    },
+    {
+        "quiz_id": "08367e36",
+        "question_text": "Câu hỏi cuối cùng trên thẻ gợi ý (Cue card) thường là 'Explain how you felt about it'. Tại sao phần này lại quan trọng nhất?",
+        "options": [
+            "Vì nó là câu hỏi duy nhất có điểm.",
+            "Vì đây là phần cho phép bạn sử dụng đa dạng các từ vựng diễn tả cảm xúc và đưa ra phản tư (reflection) sâu sắc, dễ mở rộng ý nhất.",
+            "Vì nó là câu hỏi dễ nhất.",
+            "Vì nó giúp bạn đánh giá giám khảo."
+        ],
+        "correct_answer": "Vì đây là phần cho phép bạn sử dụng đa dạng các từ vựng diễn tả cảm xúc và đưa ra phản tư (reflection) sâu sắc, dễ mở rộng ý nhất.",
+        "explanation": "Cảm xúc là thứ không có giới hạn. Thay vì miêu tả sự vật (rất dễ hết ý), việc nói về bài học rút ra, sự thay đổi trong tâm trí sẽ giúp bạn nói trơn tru đến khi hết giờ."
+    },
+    {
+        "quiz_id": "34165735",
+        "question_text": "Sự khác biệt cốt lõi giữa Speaking Part 1 và Part 3 là gì?",
+        "options": [
+            "Part 3 bạn phải tự nói một mình không có giám khảo.",
+            "Part 1 hỏi về thông tin cá nhân; Part 3 yêu cầu thảo luận về các vấn đề xã hội trừu tượng mang tính vĩ mô (không dùng trải nghiệm cá nhân làm trọng tâm).",
+            "Part 3 yêu cầu nói nhanh gấp đôi.",
+            "Part 1 chấm điểm từ vựng, Part 3 chấm điểm ngữ pháp."
+        ],
+        "correct_answer": "Part 1 hỏi về thông tin cá nhân; Part 3 yêu cầu thảo luận về các vấn đề xã hội trừu tượng mang tính vĩ mô (không dùng trải nghiệm cá nhân làm trọng tâm).",
+        "explanation": "Trong Part 3, bạn không nên nói 'Tôi thích...' mà phải nói 'Nhiều người trong xã hội hiện đại tin rằng...'. Bạn đang đóng vai trò một nhà phân tích xã hội."
+    },
+    {
+        "quiz_id": "34165735",
+        "question_text": "Cấu trúc trả lời nào là tối ưu nhất để giải quyết một câu hỏi phức tạp trong Part 3 (ví dụ: So sánh, Phân tích nguyên nhân)?",
+        "options": [
+            "Trả lời 1 từ rồi cười.",
+            "Cấu trúc A.R.E.A (Answer - Reason - Example - Alternative/Result).",
+            "Cấu trúc chép lại câu hỏi của giám khảo.",
+            "Cấu trúc kể chuyện cổ tích."
+        ],
+        "correct_answer": "Cấu trúc A.R.E.A (Answer - Reason - Example - Alternative/Result).",
+        "explanation": "Đưa ra câu trả lời trực diện -> Giải thích tại sao -> Nêu ví dụ xã hội minh họa -> Rút ra kết luận. Đây là format của một đoạn văn Argumentative thu nhỏ."
+    },
+    {
+        "quiz_id": "34165735",
+        "question_text": "Nếu giám khảo đặt một câu hỏi Part 3 quá khó và bạn cần vài giây để suy nghĩ, bạn nên nói gì?",
+        "options": [
+            "Uhhh... I don't know.",
+            "That's a very interesting question. I've never really thought about it before, but I suppose...",
+            "Skip this question please.",
+            "Im lặng hoàn toàn nhìn chằm chằm giám khảo."
+        ],
+        "correct_answer": "That's a very interesting question. I've never really thought about it before, but I suppose...",
+        "explanation": "Kỹ thuật 'Buying time' (câu giờ) bằng ngôn ngữ tự nhiên không những không bị trừ điểm mà còn thể hiện sự trôi chảy và khả năng làm chủ cuộc giao tiếp của bạn."
+    },
+    {
+        "quiz_id": "4908c859",
+        "question_text": "Tiêu chí 'Fluency' (Sự trôi chảy) trong IELTS Speaking được đánh giá dựa trên yếu tố nào?",
+        "options": [
+            "Nói cực kỳ nhanh không kịp thở.",
+            "Không bao giờ được dừng lại.",
+            "Khả năng duy trì nhịp độ nói đều đặn, ngắt nghỉ đúng chỗ (Chunking) và giảm thiểu tối đa các khoảng ngập ngừng ngắc ngứ (Hesitation) liên quan đến việc tìm từ vựng/ngữ pháp.",
+            "Chỉ nói những câu đơn giản."
+        ],
+        "correct_answer": "Khả năng duy trì nhịp độ nói đều đặn, ngắt nghỉ đúng chỗ (Chunking) và giảm thiểu tối đa các khoảng ngập ngừng ngắc ngứ (Hesitation) liên quan đến việc tìm từ vựng/ngữ pháp.",
+        "explanation": "Sự trôi chảy không phải là Tốc độ (Speed). Nói chậm nhưng nhịp điệu mượt mà, ngắt nghỉ đúng cụm nghĩa sẽ đạt điểm Fluency cao hơn nói nhanh mà bị vấp liên tục."
+    },
+    {
+        "quiz_id": "4908c859",
+        "question_text": "Việc sử dụng các 'Fillers' (Từ chêm) như 'Well', 'You know', 'Actually' có làm bạn bị trừ điểm không?",
+        "options": [
+            "Có, sẽ bị trừ điểm rất nặng.",
+            "Không, nếu được sử dụng một cách tự nhiên và vừa phải để giữ lượt lời, chúng giúp ngôn ngữ nói trở nên chân thực như người bản xứ.",
+            "Tùy thuộc vào giám khảo.",
+            "Có, vì nó là ngôn ngữ bất lịch sự."
+        ],
+        "correct_answer": "Không, nếu được sử dụng một cách tự nhiên và vừa phải để giữ lượt lời, chúng giúp ngôn ngữ nói trở nên chân thực như người bản xứ.",
+        "explanation": "Tuy nhiên, lạm dụng (Overuse) từ chêm ở mọi câu, ví dụ 'like, you know, ummm' sẽ làm giảm điểm trôi chảy vì nó chứng tỏ bạn đang chật vật tìm từ."
+    },
+    {
+        "quiz_id": "4908c859",
+        "question_text": "Hành động 'Self-correction' (Tự sửa lỗi ngữ pháp trong lúc nói) có ảnh hưởng thế nào đến điểm số?",
+        "options": [
+            "Tự sửa lỗi luôn làm tăng điểm ngữ pháp.",
+            "Nếu thỉnh thoảng tự sửa lỗi nhỏ, điều đó không sao. Nhưng nếu bạn liên tục vấp và tự sửa lỗi (over-correction), điểm Fluency của bạn sẽ bị kéo xuống nghiêm trọng.",
+            "Tự sửa lỗi khiến bạn bị hủy bài thi.",
+            "Tự sửa lỗi không ảnh hưởng gì."
+        ],
+        "correct_answer": "Nếu thỉnh thoảng tự sửa lỗi nhỏ, điều đó không sao. Nhưng nếu bạn liên tục vấp và tự sửa lỗi (over-correction), điểm Fluency của bạn sẽ bị kéo xuống nghiêm trọng.",
+        "explanation": "Trong văn nói, đôi khi việc bỏ qua một lỗi ngữ pháp nhỏ để duy trì luồng giao tiếp trôi chảy lại tốt hơn là cứ ngập ngừng sửa đi sửa lại."
+    },
+    {
+        "quiz_id": "b13b2176",
+        "question_text": "Tiêu chí 'Pronunciation' (Phát âm) trong IELTS Speaking KHÔNG đánh giá điều gì?",
+        "options": [
+            "Ngữ điệu (Intonation) và Trọng âm (Stress).",
+            "Việc bạn có giọng (Accent) giống hệt người Anh hay người Mỹ hay không.",
+            "Sự phát âm rõ ràng các âm cuối (Ending sounds).",
+            "Việc ngắt nghỉ cụm từ (Chunking)."
+        ],
+        "correct_answer": "Việc bạn có giọng (Accent) giống hệt người Anh hay người Mỹ hay không.",
+        "explanation": "IELTS chấp nhận mọi loại Accent (giọng địa phương) miễn là phát âm của bạn rõ ràng, có ngữ điệu tốt và không gây cản trở cho việc nghe hiểu (Intelligibility)."
+    },
+    {
+        "quiz_id": "b13b2176",
+        "question_text": "Nếu bạn không nghe rõ câu hỏi của giám khảo, bạn nên làm gì?",
+        "options": [
+            "Im lặng đoán mò câu hỏi và trả lời lạc đề.",
+            "Lịch sự yêu cầu giám khảo lặp lại câu hỏi: 'Sorry, I didn't quite catch that. Could you repeat the question, please?'.",
+            "Hỏi giám khảo bằng tiếng Việt.",
+            "Nói 'Pass' để chuyển câu hỏi."
+        ],
+        "correct_answer": "Lịch sự yêu cầu giám khảo lặp lại câu hỏi: 'Sorry, I didn't quite catch that. Could you repeat the question, please?'.",
+        "explanation": "Việc yêu cầu lặp lại (ở Part 1 và 3) hoàn toàn không bị trừ điểm. Nó thể hiện kỹ năng giao tiếp tự nhiên khi gặp sự cố."
+    },
+    {
+        "quiz_id": "b13b2176",
+        "question_text": "Giám khảo thường xuyên ngắt lời (Interrupt) bạn trong lúc nói. Điều này có nghĩa là gì?",
+        "options": [
+            "Bạn đang nói rất tệ và họ muốn kết thúc sớm.",
+            "Đó là quy trình kiểm soát thời gian bình thường của bài thi; họ cần ngắt bạn để chuyển sang câu hỏi khác nhằm đảm bảo đủ thời lượng cho toàn bộ bài test.",
+            "Bạn đã làm họ tức giận.",
+            "Họ đang buồn ngủ."
+        ],
+        "correct_answer": "Đó là quy trình kiểm soát thời gian bình thường của bài thi; họ cần ngắt bạn để chuyển sang câu hỏi khác nhằm đảm bảo đủ thời lượng cho toàn bộ bài test.",
+        "explanation": "Đừng hoảng sợ khi bị ngắt lời. Điều đó thậm chí có thể là tín hiệu tốt cho thấy bạn nói quá trôi chảy và cung cấp đủ thông tin nên họ không cần nghe thêm."
+    },
+    {
+        "quiz_id": "629eff7b",
+        "question_text": "Thuật ngữ 'Tertiary education' (hoặc Higher education) chỉ cấp bậc học nào?",
+        "options": [
+            "Mẫu giáo.",
+            "Cấp 3 (Trung học phổ thông).",
+            "Giáo dục Đại học và Sau đại học.",
+            "Giáo dục nghề nghiệp tại nhà."
+        ],
+        "correct_answer": "Giáo dục Đại học và Sau đại học.",
+        "explanation": "'Tertiary education' là từ vựng C1 thay thế hoàn hảo cho cụm 'University education' trong các bài luận về giáo dục."
+    },
+    {
+        "quiz_id": "629eff7b",
+        "question_text": "Khái niệm 'Curriculum' trong trường học có nghĩa là gì?",
+        "options": [
+            "Thời khóa biểu hàng ngày.",
+            "Chương trình học, bao gồm tất cả các môn học và nội dung được giảng dạy trong một cơ sở giáo dục.",
+            "Quy định về đồng phục.",
+            "Khuôn viên trường học."
+        ],
+        "correct_answer": "Chương trình học, bao gồm tất cả các môn học và nội dung được giảng dạy trong một cơ sở giáo dục.",
+        "explanation": "Ví dụ: 'Extracurricular activities' (Hoạt động ngoại khóa) là những hoạt động nằm ngoài cái 'curriculum' này."
+    },
+    {
+        "quiz_id": "629eff7b",
+        "question_text": "Từ 'Literacy rate' dùng để chỉ tỷ lệ gì trong một quốc gia?",
+        "options": [
+            "Tỷ lệ thất nghiệp.",
+            "Tỷ lệ sinh đẻ.",
+            "Tỷ lệ người biết chữ (biết đọc và biết viết).",
+            "Tỷ lệ tội phạm."
+        ],
+        "correct_answer": "Tỷ lệ người biết chữ (biết đọc và biết viết).",
+        "explanation": "Ngược lại, 'Illiteracy' (nạn mù chữ) là một chủ đề lớn trong các bài thảo luận về các quốc gia đang phát triển."
+    },
+    {
+        "quiz_id": "11d2f539",
+        "question_text": "Collocation 'Sedentary lifestyle' ám chỉ một lối sống như thế nào, thường dẫn đến các vấn đề sức khỏe?",
+        "options": [
+            "Lối sống ăn chay trường.",
+            "Lối sống thụ động, ngồi nhiều, thiếu vận động thể chất.",
+            "Lối sống thích mạo hiểm.",
+            "Lối sống luôn di chuyển, du lịch."
+        ],
+        "correct_answer": "Lối sống thụ động, ngồi nhiều, thiếu vận động thể chất.",
+        "explanation": "Đây là nguyên nhân số một được trích dẫn khi phân tích tình trạng 'Obesity' (béo phì) trong xã hội hiện đại."
+    },
+    {
+        "quiz_id": "11d2f539",
+        "question_text": "Thuật ngữ 'Preventative medicine' (Y tế dự phòng) có mục đích gì?",
+        "options": [
+            "Chữa trị cho người đã mắc bệnh nan y.",
+            "Ngăn ngừa bệnh tật xảy ra ngay từ đầu thông qua tiêm chủng, khám định kỳ và lối sống lành mạnh.",
+            "Sản xuất các thiết bị phẫu thuật.",
+            "Nghiên cứu về các bệnh trong quá khứ."
+        ],
+        "correct_answer": "Ngăn ngừa bệnh tật xảy ra ngay từ đầu thông qua tiêm chủng, khám định kỳ và lối sống lành mạnh.",
+        "explanation": "Trong IELTS, thường có sự so sánh giữa 'Preventative medicine' (phòng bệnh) và 'Curative medicine' (chữa bệnh)."
+    },
+    {
+        "quiz_id": "11d2f539",
+        "question_text": "Sự lây lan nhanh chóng của một căn bệnh truyền nhiễm trong một khu vực lớn hoặc trên toàn thế giới được gọi là gì?",
+        "options": [
+            "Allergy (Dị ứng).",
+            "Epidemic / Pandemic (Dịch bệnh / Đại dịch).",
+            "Injury (Chấn thương).",
+            "Syndrome (Hội chứng)."
+        ],
+        "correct_answer": "Epidemic / Pandemic (Dịch bệnh / Đại dịch).",
+        "explanation": "Epidemic là dịch bệnh khu vực; Pandemic là đại dịch quy mô toàn cầu (như Covid-19)."
+    },
+    {
+        "quiz_id": "d26f5a65",
+        "question_text": "Khái niệm 'Carbon footprint' (Dấu chân carbon) đo lường điều gì?",
+        "options": [
+            "Kích thước bánh xe của phương tiện.",
+            "Tổng lượng khí nhà kính (chủ yếu là CO2) mà các hành động của một cá nhân, tổ chức hoặc quốc gia thải ra môi trường.",
+            "Số lượng cây cối được trồng lại.",
+            "Diện tích của một khu rừng bị cháy."
+        ],
+        "correct_answer": "Tổng lượng khí nhà kính (chủ yếu là CO2) mà các hành động của một cá nhân, tổ chức hoặc quốc gia thải ra môi trường.",
+        "explanation": "Để bảo vệ môi trường, con người cần phải 'reduce their carbon footprint' (giảm thiểu dấu chân carbon)."
+    },
+    {
+        "quiz_id": "d26f5a65",
+        "question_text": "Các nguồn năng lượng như Mặt trời, Gió, Nước được gọi chung bằng thuật ngữ gì?",
+        "options": [
+            "Fossil fuels (Nhiên liệu hóa thạch).",
+            "Renewable energy (Năng lượng tái tạo).",
+            "Nuclear power (Năng lượng hạt nhân).",
+            "Toxic waste (Chất thải độc hại)."
+        ],
+        "correct_answer": "Renewable energy (Năng lượng tái tạo).",
+        "explanation": "Năng lượng tái tạo (Renewable energy) không thể bị cạn kiệt, trái ngược với Nhiên liệu hóa thạch (Fossil fuels) như than đá và dầu mỏ."
+    },
+    {
+        "quiz_id": "d26f5a65",
+        "question_text": "Sự tuyệt chủng của nhiều loài động vật (Extinction) thường có nguyên nhân chính từ hành động nào của con người?",
+        "options": [
+            "Habitat destruction (Phá hủy môi trường sống tự nhiên).",
+            "Animal feeding (Cho động vật ăn).",
+            "Building zoos (Xây dựng sở thú).",
+            "Taking photographs (Chụp ảnh động vật)."
+        ],
+        "correct_answer": "Habitat destruction (Phá hủy môi trường sống tự nhiên).",
+        "explanation": "Việc tàn phá rừng (deforestation) và đô thị hóa dẫn đến mất đi môi trường sống (habitat loss) là đòn chí mạng đối với đa dạng sinh học."
+    },
+    {
+        "quiz_id": "4ea309f8",
+        "question_text": "Tính từ 'Obsolete' được dùng để miêu tả một công nghệ như thế nào?",
+        "options": [
+            "Đang là xu hướng mới nhất.",
+            "Lỗi thời, cổ hủ, không còn được sử dụng nữa vì đã bị thay thế bởi công nghệ mới hơn.",
+            "Đắt đỏ nhất.",
+            "Khó sử dụng."
+        ],
+        "correct_answer": "Lỗi thời, cổ hủ, không còn được sử dụng nữa vì đã bị thay thế bởi công nghệ mới hơn.",
+        "explanation": "Ví dụ: 'Typewriters have become obsolete' (Máy đánh chữ đã trở nên lỗi thời)."
+    },
+    {
+        "quiz_id": "4ea309f8",
+        "question_text": "Ngược lại với Obsolete, thuật ngữ nào miêu tả những công nghệ tiên tiến nhất, hiện đại nhất hiện nay?",
+        "options": [
+            "Second-hand.",
+            "Cutting-edge / State-of-the-art.",
+            "Traditional.",
+            "Analog."
+        ],
+        "correct_answer": "Cutting-edge / State-of-the-art.",
+        "explanation": "Đây là 2 tính từ ghép cấp độ C1 rất hay dùng trong Writing và Speaking khi miêu tả công nghệ mới."
+    },
+    {
+        "quiz_id": "4ea309f8",
+        "question_text": "Khái niệm 'Artificial Intelligence' (AI) đề cập đến điều gì?",
+        "options": [
+            "Những con robot đồ chơi.",
+            "Trí tuệ nhân tạo: khả năng của máy móc có thể mô phỏng tư duy, học hỏi và giải quyết vấn đề giống như bộ não con người.",
+            "Mạng lưới kết nối internet toàn cầu.",
+            "Một loại virus máy tính."
+        ],
+        "correct_answer": "Trí tuệ nhân tạo: khả năng của máy móc có thể mô phỏng tư duy, học hỏi và giải quyết vấn đề giống như bộ não con người.",
+        "explanation": "AI là một trong những Mega-trends (siêu xu hướng) xuất hiện liên tục trong đề thi IELTS gần đây."
+    },
+    {
+        "quiz_id": "3e297630",
+        "question_text": "Collocation 'Urban sprawl' (Sự bành trướng đô thị) miêu tả hiện tượng gì?",
+        "options": [
+            "Sự phát triển các công viên cây xanh trong thành phố.",
+            "Sự lan rộng nhanh chóng và mất kiểm soát của các khu vực đô thị ra các vùng nông thôn xung quanh.",
+            "Việc xây dựng nhà chọc trời.",
+            "Việc cấm xe cộ vào trung tâm."
+        ],
+        "correct_answer": "Sự lan rộng nhanh chóng và mất kiểm soát của các khu vực đô thị ra các vùng nông thôn xung quanh.",
+        "explanation": "Urban sprawl là hệ quả tiêu cực của Overpopulation (bùng nổ dân số), gây tắc nghẽn giao thông và phá hủy đất nông nghiệp."
+    },
+    {
+        "quiz_id": "3e297630",
+        "question_text": "Sự hòa nhập và bị đồng hóa văn hóa của người nhập cư vào quốc gia sở tại được gọi là gì?",
+        "options": [
+            "Cultural heritage.",
+            "Cultural assimilation.",
+            "Culture shock.",
+            "Cultural isolation."
+        ],
+        "correct_answer": "Cultural assimilation.",
+        "explanation": "Assimilation (sự đồng hóa) là khi người thiểu số từ bỏ bản sắc riêng để thích nghi hoàn toàn với văn hóa dòng chính."
+    },
+    {
+        "quiz_id": "3e297630",
+        "question_text": "Khái niệm 'Social mobility' (Sự dịch chuyển xã hội) đề cập đến khả năng gì của một cá nhân?",
+        "options": [
+            "Khả năng đi du lịch nhiều nước.",
+            "Khả năng vươn lên thay đổi tầng lớp, vị thế kinh tế - xã hội của mình nhờ vào năng lực và giáo dục.",
+            "Khả năng sử dụng mạng xã hội.",
+            "Khả năng giao tiếp đa ngôn ngữ."
+        ],
+        "correct_answer": "Khả năng vươn lên thay đổi tầng lớp, vị thế kinh tế - xã hội của mình nhờ vào năng lực và giáo dục.",
+        "explanation": "Một xã hội công bằng là xã hội có 'high social mobility', nơi con nhà nghèo vẫn có thể trở thành tỷ phú."
+    },
+    {
+        "quiz_id": "11acf6ae",
+        "question_text": "Hiện tượng 'Inflation' (Lạm phát) ảnh hưởng thế nào đến nền kinh tế?",
+        "options": [
+            "Làm cho mọi thứ trở nên miễn phí.",
+            "Sự gia tăng liên tục của mức giá chung, dẫn đến sự suy giảm sức mua của đồng tiền (tiền mất giá).",
+            "Sự gia tăng giá trị của đồng tiền.",
+            "Sự kết thúc của thương mại quốc tế."
+        ],
+        "correct_answer": "Sự gia tăng liên tục của mức giá chung, dẫn đến sự suy giảm sức mua của đồng tiền (tiền mất giá).",
+        "explanation": "Inflation là kẻ thù của 'Cost of living' (chi phí sinh hoạt). Lạm phát cao khiến cuộc sống của người dân khó khăn hơn."
+    },
+    {
+        "quiz_id": "11acf6ae",
+        "question_text": "Chỉ số GDP (Gross Domestic Product) dùng để đo lường điều gì?",
+        "options": [
+            "Tổng số lượng dân cư của một quốc gia.",
+            "Tổng sản phẩm quốc nội: giá trị thị trường của tất cả hàng hóa và dịch vụ được sản xuất ra trong một quốc gia.",
+            "Số tiền nợ của chính phủ.",
+            "Tỷ lệ người thất nghiệp."
+        ],
+        "correct_answer": "Tổng sản phẩm quốc nội: giá trị thị trường của tất cả hàng hóa và dịch vụ được sản xuất ra trong một quốc gia.",
+        "explanation": "GDP là thước đo quy mô và sức khỏe kinh tế của một quốc gia."
+    },
+    {
+        "quiz_id": "11acf6ae",
+        "question_text": "Thuật ngữ 'Cost of living' (Chi phí sinh hoạt) có nghĩa là gì?",
+        "options": [
+            "Số tiền để mua một ngôi nhà.",
+            "Số tiền trung bình cần thiết để trang trải các nhu cầu cơ bản như thức ăn, nhà ở, y tế và quần áo tại một khu vực nhất định.",
+            "Thuế thu nhập cá nhân.",
+            "Số tiền tiết kiệm được trong một năm."
+        ],
+        "correct_answer": "Số tiền trung bình cần thiết để trang trải các nhu cầu cơ bản như thức ăn, nhà ở, y tế và quần áo tại một khu vực nhất định.",
+        "explanation": "'High cost of living' (Chi phí sinh hoạt đắt đỏ) là bất lợi lớn nhất khi sống ở các 'metropolises' (siêu đô thị)."
+    },
+    {
+        "quiz_id": "6b8b49d0",
+        "question_text": "Thuật ngữ 'Juvenile delinquency' dùng để chỉ loại tội phạm nào?",
+        "options": [
+            "Tội phạm công nghệ cao.",
+            "Hành vi phạm pháp do trẻ vị thành niên, thanh thiếu niên gây ra.",
+            "Tội phạm giết người hàng loạt.",
+            "Hành vi trốn thuế của doanh nghiệp."
+        ],
+        "correct_answer": "Hành vi phạm pháp do trẻ vị thành niên, thanh thiếu niên gây ra.",
+        "explanation": "Đây là topic cực kỳ quen thuộc trong Writing Task 2. Nguyên nhân thường do 'lack of parental supervision' (thiếu sự quản lý của cha mẹ)."
+    },
+    {
+        "quiz_id": "6b8b49d0",
+        "question_text": "Mục đích của việc áp dụng các hình phạt nghiêm khắc như một 'Deterrent' là gì?",
+        "options": [
+            "Để trả thù tội phạm.",
+            "Để tạo ra sự răn đe, ngăn chặn tội phạm tương lai vì sợ hãi hậu quả.",
+            "Để lấy tiền nộp phạt xây đường.",
+            "Để giáo dục lại người phạm tội."
+        ],
+        "correct_answer": "Để tạo ra sự răn đe, ngăn chặn tội phạm tương lai vì sợ hãi hậu quả.",
+        "explanation": "Danh từ 'Deterrent' (sự răn đe) là mục tiêu cốt lõi của hệ thống pháp luật (Legal system) để duy trì trật tự xã hội."
+    },
+    {
+        "quiz_id": "6b8b49d0",
+        "question_text": "Chương trình 'Rehabilitation' trong hệ thống nhà tù có chức năng gì?",
+        "options": [
+            "Tra tấn tù nhân.",
+            "Cải tạo, phục hồi nhân phẩm và dạy nghề cho phạm nhân để họ tái hòa nhập cộng đồng sau khi ra tù.",
+            "Giam giữ chung thân.",
+            "Buộc tội nhân nộp phạt."
+        ],
+        "correct_answer": "Cải tạo, phục hồi nhân phẩm và dạy nghề cho phạm nhân để họ tái hòa nhập cộng đồng sau khi ra tù.",
+        "explanation": "Trái ngược với việc chỉ trừng phạt (punishment), các nước phát triển chú trọng vào 'rehabilitation' để giảm tỷ lệ tái phạm (reoffending rate)."
+    },
+    {
+        "quiz_id": "9bfacf02",
+        "question_text": "Khái niệm 'Cultural heritage' (Di sản văn hóa) bao gồm những gì?",
+        "options": [
+            "Chỉ bao gồm các di tích lịch sử bằng đá.",
+            "Những giá trị, phong tục, nghệ thuật, và công trình lịch sử được truyền lại từ các thế hệ trước cho thế hệ tương lai.",
+            "Những bộ phim mới được sản xuất năm nay.",
+            "Văn hóa của người ngoài hành tinh."
+        ],
+        "correct_answer": "Những giá trị, phong tục, nghệ thuật, và công trình lịch sử được truyền lại từ các thế hệ trước cho thế hệ tương lai.",
+        "explanation": "Bảo tồn di sản văn hóa (Preserving cultural heritage) là nhiệm vụ sống còn trong kỷ nguyên toàn cầu hóa."
+    },
+    {
+        "quiz_id": "9bfacf02",
+        "question_text": "Trường phái 'Abstract art' (Nghệ thuật trừu tượng) có đặc điểm gì?",
+        "options": [
+            "Vẽ lại một bức ảnh giống hệt thực tế 100%.",
+            "Sử dụng màu sắc, hình khối và đường nét để biểu đạt cảm xúc và ý tưởng mà không mô tả chính xác hay rõ ràng các vật thể trong thế giới thực.",
+            "Chỉ sử dụng màu đen và trắng.",
+            "Chỉ vẽ phong cảnh thiên nhiên."
+        ],
+        "correct_answer": "Sử dụng màu sắc, hình khối và đường nét để biểu đạt cảm xúc và ý tưởng mà không mô tả chính xác hay rõ ràng các vật thể trong thế giới thực.",
+        "explanation": "Nghệ thuật trừu tượng đòi hỏi người xem phải có trí tưởng tượng phong phú để tự giải mã ý nghĩa của bức tranh."
+    },
+    {
+        "quiz_id": "9bfacf02",
+        "question_text": "Tính từ 'Aesthetic' (Thuộc về thẩm mỹ) liên quan đến việc đánh giá điều gì?",
+        "options": [
+            "Đánh giá tính năng kỹ thuật của một chiếc máy.",
+            "Đánh giá cái đẹp, giá trị nghệ thuật và sự thưởng thức cái đẹp.",
+            "Đánh giá đạo đức con người.",
+            "Đánh giá giá trị bằng tiền mặt."
+        ],
+        "correct_answer": "Đánh giá cái đẹp, giá trị nghệ thuật và sự thưởng thức cái đẹp.",
+        "explanation": "Ví dụ: 'The building has little aesthetic appeal' (Tòa nhà đó không có nhiều sức hấp dẫn về mặt thẩm mỹ)."
+    },
+    {
+        "quiz_id": "f4032265",
+        "question_text": "Khi đi du lịch 'Off the beaten track' (Tránh xa lối mòn), bạn sẽ trải nghiệm điều gì?",
+        "options": [
+            "Đi đến các thành phố du lịch đông đúc nhất thế giới.",
+            "Đi đến những vùng sâu vùng xa, hoang sơ, ít người biết đến và không bị thương mại hóa.",
+            "Đi du lịch bằng xe lửa tốc độ cao.",
+            "Chỉ đi dạo trong trung tâm thương mại."
+        ],
+        "correct_answer": "Đi đến những vùng sâu vùng xa, hoang sơ, ít người biết đến và không bị thương mại hóa.",
+        "explanation": "Đây là idiom hoàn hảo để miêu tả xu hướng du lịch khám phá của giới trẻ, tránh xa sự xô bồ (hustle and bustle) của đô thị."
+    },
+    {
+        "quiz_id": "f4032265",
+        "question_text": "Collocation 'An influx of tourists' có nghĩa là gì?",
+        "options": [
+            "Sự vắng bóng của khách du lịch.",
+            "Sự đổ bộ, ồ ạt kéo đến của một số lượng khổng lồ khách du lịch vào một khu vực.",
+            "Một tai nạn giao thông liên quan đến du lịch.",
+            "Sự quản lý du lịch chặt chẽ."
+        ],
+        "correct_answer": "Sự đổ bộ, ồ ạt kéo đến của một số lượng khổng lồ khách du lịch vào một khu vực.",
+        "explanation": "Sự đổ bộ này (influx) thường mang lại lợi ích kinh tế (economic boost) nhưng lại phá hủy môi trường địa phương (environmental degradation)."
+    },
+    {
+        "quiz_id": "f4032265",
+        "question_text": "Mô hình 'Ecotourism' (Du lịch sinh thái) đặt nguyên tắc nào lên hàng đầu?",
+        "options": [
+            "Xây dựng các khách sạn 5 sao sang trọng giữa rừng.",
+            "Khám phá tự nhiên nhưng phải giảm thiểu tối đa tác động xấu đến môi trường sinh thái và hỗ trợ cộng đồng bản địa.",
+            "Săn bắt các loài thú quý hiếm.",
+            "Tổ chức các lễ hội âm nhạc ồn ào."
+        ],
+        "correct_answer": "Khám phá tự nhiên nhưng phải giảm thiểu tối đa tác động xấu đến môi trường sinh thái và hỗ trợ cộng đồng bản địa.",
+        "explanation": "Ecotourism là giải pháp 'sustainable' (bền vững) cho ngành công nghiệp không khói."
+    },
+    {
+        "quiz_id": "71b58ba2",
+        "question_text": "Thuật ngữ 'Censorship' (Sự kiểm duyệt) của chính phủ đối với truyền thông nghĩa là gì?",
+        "options": [
+            "Việc cung cấp internet miễn phí cho người dân.",
+            "Hành động kiểm soát, ngăn chặn hoặc xóa bỏ các thông tin, sách báo, tin tức được cho là nhạy cảm, độc hại hoặc đi ngược lại lợi ích của nhà nước.",
+            "Việc sản xuất các chương trình truyền hình thực tế.",
+            "Việc phỏng vấn người dân trên đường phố."
+        ],
+        "correct_answer": "Hành động kiểm soát, ngăn chặn hoặc xóa bỏ các thông tin, sách báo, tin tức được cho là nhạy cảm, độc hại hoặc đi ngược lại lợi ích của nhà nước.",
+        "explanation": "Censorship luôn là trung tâm của các cuộc tranh luận về 'Freedom of speech' (Quyền tự do ngôn luận)."
+    },
+    {
+        "quiz_id": "71b58ba2",
+        "question_text": "Khái niệm 'Mass media' (Phương tiện truyền thông đại chúng) bao gồm những kênh nào?",
+        "options": [
+            "Chỉ những bức thư tay viết cá nhân.",
+            "Tất cả các công cụ truyền đạt thông tin (như Báo chí, TV, Radio, Internet) có khả năng tiếp cận một lượng khán giả khổng lồ cùng lúc.",
+            "Những cuộc họp kín của chính phủ.",
+            "Tin nhắn SMS cá nhân."
+        ],
+        "correct_answer": "Tất cả các công cụ truyền đạt thông tin (như Báo chí, TV, Radio, Internet) có khả năng tiếp cận một lượng khán giả khổng lồ cùng lúc.",
+        "explanation": "Mass media có sức mạnh định hình dư luận xã hội (shaping public opinion) vô cùng to lớn."
+    },
+    {
+        "quiz_id": "71b58ba2",
+        "question_text": "Hiện tượng 'Biased reporting' trong báo chí bị lên án vì lý do gì?",
+        "options": [
+            "Vì bài báo được viết quá ngắn.",
+            "Vì việc đưa tin thiếu khách quan, bị bóp méo, thiên vị cho một phe phái hoặc tổ chức nhằm thao túng nhận thức của người đọc.",
+            "Vì bài báo không có hình ảnh màu sắc.",
+            "Vì giá tờ báo quá đắt."
+        ],
+        "correct_answer": "Vì việc đưa tin thiếu khách quan, bị bóp méo, thiên vị cho một phe phái hoặc tổ chức nhằm thao túng nhận thức của người đọc.",
+        "explanation": "Báo chí có đạo đức phải tuân thủ tính 'Objective' (khách quan). Biased reporting là hành vi phi đạo đức, thường dẫn đến 'fake news'."
+    },
+    {
+        "quiz_id": "e9ce9c96",
+        "question_text": "Trong bài thi IELTS Writing Task 1 (Line Graph), cụm từ 'An upward trend' miêu tả xu hướng nào?",
+        "options": [
+            "Dữ liệu giữ nguyên không đổi.",
+            "Dữ liệu có xu hướng tăng lên trong một khoảng thời gian.",
+            "Dữ liệu giảm xuống nhanh chóng.",
+            "Dữ liệu dao động liên tục."
+        ],
+        "correct_answer": "Dữ liệu có xu hướng tăng lên trong một khoảng thời gian.",
+        "explanation": "Đây là cụm từ cơ bản và cực kỳ quan trọng để mô tả xu hướng tổng quan (Overview) của một biểu đồ đường đi lên."
+    },
+    {
+        "quiz_id": "e9ce9c96",
+        "question_text": "Động từ 'Peak at' trong biểu đồ đường được dùng để chỉ mốc nào?",
+        "options": [
+            "Điểm xuất phát ban đầu của dữ liệu.",
+            "Điểm thấp nhất của biểu đồ (đáy).",
+            "Chạm đến điểm cao nhất, đỉnh cao nhất của biểu đồ trước khi bắt đầu đi xuống.",
+            "Điểm giao nhau của hai đường đồ thị."
+        ],
+        "correct_answer": "Chạm đến điểm cao nhất, đỉnh cao nhất của biểu đồ trước khi bắt đầu đi xuống.",
+        "explanation": "Ví dụ: 'The number of visitors peaked at 5,000 in July' (Lượng khách chạm đỉnh 5,000 vào tháng 7)."
+    },
+    {
+        "quiz_id": "e9ce9c96",
+        "question_text": "Cụm từ 'Fluctuate wildly' được sử dụng khi đường đồ thị có hình dáng như thế nào?",
+        "options": [
+            "Tăng một cách nhẹ nhàng và ổn định.",
+            "Dao động, lên xuống liên tục với biên độ lớn và không thể hiện một xu hướng tăng giảm rõ rệt nào.",
+            "Đi ngang thẳng tắp.",
+            "Rơi tự do tạo thành góc vuông."
+        ],
+        "correct_answer": "Dao động, lên xuống liên tục với biên độ lớn và không thể hiện một xu hướng tăng giảm rõ rệt nào.",
+        "explanation": "'Fluctuate' (dao động) là từ vựng đắt giá để miêu tả sự bất ổn định của số liệu trong một giai đoạn nhất định."
+    },
+    {
+        "quiz_id": "06035948",
+        "question_text": "Khi phân tích biểu đồ Tròn (Pie Chart), danh từ nào là thích hợp nhất để nói về các phần được chia ra (tính bằng %)?",
+        "options": [
+            "The speed",
+            "The distance",
+            "The proportion / The percentage",
+            "The length"
+        ],
+        "correct_answer": "The proportion / The percentage",
+        "explanation": "Pie chart biểu diễn tỷ lệ phần trăm của một tổng thể. Dùng từ 'The proportion of' hoặc 'The percentage of' là bắt buộc."
+    },
+    {
+        "quiz_id": "06035948",
+        "question_text": "Thay vì viết '50%', bạn có thể dùng cụm từ phân số nào để bài viết đa dạng hơn?",
+        "options": [
+            "A quarter",
+            "Exactly half",
+            "A third",
+            "A minority"
+        ],
+        "correct_answer": "Exactly half",
+        "explanation": "Chuyển đổi linh hoạt giữa Tỷ lệ % (50%) và Phân số (A half / One in two) là kỹ năng ghi điểm Lexical Resource trong Task 1."
+    },
+    {
+        "quiz_id": "06035948",
+        "question_text": "Trạng từ 'Respectively' (Tương ứng, theo thứ tự lần lượt) được sử dụng thế nào trong câu văn Task 1?",
+        "options": [
+            "Dùng ở đầu câu để mở bài.",
+            "Dùng ở cuối câu để gán chính xác các số liệu với các chủ thể đã liệt kê phía trước (Ví dụ: A and B were 10% and 20% respectively).",
+            "Dùng để chỉ sự tôn trọng đối với người đọc.",
+            "Dùng để kết thúc bài viết."
+        ],
+        "correct_answer": "Dùng ở cuối câu để gán chính xác các số liệu với các chủ thể đã liệt kê phía trước (Ví dụ: A and B were 10% and 20% respectively).",
+        "explanation": "Đây là công cụ gom ý (grouping) thần thánh, giúp bạn trình bày 2-3 số liệu trong cùng một câu một cách rành mạch mà không bị lặp cấu trúc."
+    },
+    {
+        "quiz_id": "d4f5f626",
+        "question_text": "Lỗi sai nguy hiểm nhất khi mô tả một Bảng số liệu (Table) có quá nhiều thông tin là gì?",
+        "options": [
+            "Viết bài bằng bút bi đỏ.",
+            "Cố gắng liệt kê và viết ra TẤT CẢ mọi con số có trong bảng một cách máy móc như một cái máy tính.",
+            "Chỉ mô tả những con số lớn nhất và nhỏ nhất.",
+            "Viết phần Overview (Tổng quan)."
+        ],
+        "correct_answer": "Cố gắng liệt kê và viết ra TẤT CẢ mọi con số có trong bảng một cách máy móc như một cái máy tính.",
+        "explanation": "IELTS yêu cầu bạn 'Summarize' (Tóm tắt) bằng cách 'selecting and reporting the main features' (chọn lọc tính năng chính). Đưa toàn bộ số liệu vào bài sẽ khiến bạn bị trừ điểm Task Achievement vì không biết chọn lọc."
+    },
+    {
+        "quiz_id": "d4f5f626",
+        "question_text": "Trong dạng bài Mixed Charts (Biểu đồ kết hợp, ví dụ 1 Pie chart + 1 Bar chart), phần Overview (Tổng quan) của bạn cần phải làm gì?",
+        "options": [
+            "Chỉ viết về biểu đồ có nhiều hình ảnh hơn.",
+            "Chỉ viết về Bar chart.",
+            "Bắt buộc phải tóm tắt xu hướng chính hoặc đặc điểm nổi bật nhất của CẢ HAI biểu đồ.",
+            "Giải thích tại sao họ lại gộp hai biểu đồ lại."
+        ],
+        "correct_answer": "Bắt buộc phải tóm tắt xu hướng chính hoặc đặc điểm nổi bật nhất của CẢ HAI biểu đồ.",
+        "explanation": "Bỏ sót một trong hai biểu đồ ở phần Overview sẽ khiến bạn không bao giờ đạt được Band 7.0+ ở tiêu chí Task Achievement."
+    },
+    {
+        "quiz_id": "d4f5f626",
+        "question_text": "Khi hai biểu đồ trong bài Mixed Charts có mối liên hệ với nhau, kỹ thuật nào giúp bài viết của bạn ăn điểm cao?",
+        "options": [
+            "Viết hai đoạn văn hoàn toàn rời rạc.",
+            "Tìm ra sự Tương quan (Correlation) hoặc điểm giao thoa giữa dữ liệu của biểu đồ 1 và biểu đồ 2 để đề cập (nếu có thể).",
+            "Cộng dồn số liệu của hai biểu đồ lại.",
+            "Bỏ qua biểu đồ thứ hai."
+        ],
+        "correct_answer": "Tìm ra sự Tương quan (Correlation) hoặc điểm giao thoa giữa dữ liệu của biểu đồ 1 và biểu đồ 2 để đề cập (nếu có thể).",
+        "explanation": "Sự so sánh chéo (Cross-comparison) giữa hai biểu đồ cho thấy khả năng phân tích dữ liệu đa chiều của bạn."
+    },
+    {
+        "quiz_id": "0763e16d",
+        "question_text": "Trong dạng bài Process (Quy trình sản xuất), tại sao 'Câu bị động' (Passive Voice) lại là điểm ngữ pháp bắt buộc?",
+        "options": [
+            "Vì nó làm bài viết dài hơn.",
+            "Vì trong quy trình công nghiệp, trọng tâm nằm ở CÁC BƯỚC ĐƯỢC THỰC HIỆN lên vật thể, chứ người thực hiện (công nhân) không quan trọng. (Ví dụ: The tea leaves are picked).",
+            "Vì câu chủ động bị cấm dùng trong IELTS.",
+            "Vì nó giúp câu văn có nhịp điệu hay hơn."
+        ],
+        "correct_answer": "Vì trong quy trình công nghiệp, trọng tâm nằm ở CÁC BƯỚC ĐƯỢC THỰC HIỆN lên vật thể, chứ người thực hiện (công nhân) không quan trọng. (Ví dụ: The tea leaves are picked).",
+        "explanation": "Nếu bạn dùng 'Workers pick the tea leaves, then they dry them', phong cách viết sẽ trở thành kể chuyện (informal). Dùng bị động 'are picked, are dried' tạo ra sự khách quan học thuật."
+    },
+    {
+        "quiz_id": "0763e16d",
+        "question_text": "Khi miêu tả các bước liên tiếp nhau trong một Process, nhóm từ vựng (Sequencing words) nào sau đây là quan trọng nhất?",
+        "options": [
+            "I think, In my opinion, Personally.",
+            "First, Following this, Subsequently, Finally.",
+            "Because, So, Due to.",
+            "North, South, East, West."
+        ],
+        "correct_answer": "First, Following this, Subsequently, Finally.",
+        "explanation": "Các từ chỉ trình tự thời gian (chronological order) đóng vai trò như dây xích liên kết các giai đoạn rời rạc trong hình vẽ thành một chuỗi quy trình mạch lạc."
+    },
+    {
+        "quiz_id": "0763e16d",
+        "question_text": "Khi mô tả sự thay đổi của một Bản đồ (Map) qua 2 mốc thời gian, nhóm từ vựng nào dùng để chỉ 'Sự xây dựng mới' và 'Sự phá bỏ'?",
+        "options": [
+            "Increase, Decrease, Fluctuate.",
+            "Construct / Build / Erect (Xây mới) và Demolish / Knock down (Phá bỏ).",
+            "Read, Write, Listen.",
+            "Buy, Sell, Trade."
+        ],
+        "correct_answer": "Construct / Build / Erect (Xây mới) và Demolish / Knock down (Phá bỏ).",
+        "explanation": "Việc sử dụng chính xác các động từ biến đổi không gian (Transformation verbs) là yếu tố quyết định điểm Vocabulary trong dạng Map."
+    },
+    {
+        "quiz_id": "8269458d",
+        "question_text": "Trong IELTS General Training Task 1 (Thư cá nhân / Informal Letter), lời chào mở đầu và kết thúc nào là phù hợp nhất khi viết cho một người bạn thân?",
+        "options": [
+            "Dear Sir/Madam, / Yours faithfully,",
+            "To whom it may concern, / Best regards,",
+            "Dear [Tên bạn], / Best wishes, hoặc Lots of love,",
+            "Hello Mr. Smith, / Yours sincerely,"
+        ],
+        "correct_answer": "Dear [Tên bạn], / Best wishes, hoặc Lots of love,",
+        "explanation": "Trong văn phong thân mật (Informal), bạn phải dùng tên gọi trực tiếp (first name) và các lời kết thư ấm áp, không được dùng các cụm từ hành chính cứng nhắc."
+    },
+    {
+        "quiz_id": "8269458d",
+        "question_text": "Việc sử dụng Contractions (dạng viết tắt như I'm, don't, can't) có được chấp nhận trong Thư cá nhân (Informal Letter) không?",
+        "options": [
+            "Tuyệt đối không, sẽ bị trừ điểm ngay.",
+            "Chỉ được dùng 1 lần duy nhất.",
+            "Hoàn toàn được chấp nhận và thậm chí ĐƯỢC KHUYẾN KHÍCH, vì nó thể hiện đúng giọng điệu thân mật, gần gũi của đời sống hàng ngày.",
+            "Được dùng nhưng phải viết hoa toàn bộ."
+        ],
+        "correct_answer": "Hoàn toàn được chấp nhận và thậm chí ĐƯỢC KHUYẾN KHÍCH, vì nó thể hiện đúng giọng điệu thân mật, gần gũi của đời sống hàng ngày.",
+        "explanation": "Sử dụng 'I am not' thay vì 'I'm not' với bạn thân sẽ khiến bức thư nghe giống như robot hoặc đang giận dỗi. 'Tone' (Giọng điệu) là tiêu chí cực quan trọng trong GT Task 1."
+    },
+    {
+        "quiz_id": "8269458d",
+        "question_text": "Trong Thư cá nhân, sau phần chào hỏi, bạn nên mở đầu bức thư bằng câu nào để tạo sự tự nhiên?",
+        "options": [
+            "I am writing to formally request...",
+            "Hope you're doing well! / It was great to hear from you last week.",
+            "Please be informed that...",
+            "According to the recent data..."
+        ],
+        "correct_answer": "Hope you're doing well! / It was great to hear from you last week.",
+        "explanation": "Những câu hỏi thăm sức khỏe hoặc nhắc lại kỷ niệm nhỏ là cách 'warm-up' tiêu chuẩn trong giao tiếp thân mật trước khi đi vào nội dung chính."
+    },
+    {
+        "quiz_id": "55d5d28f",
+        "question_text": "Thế nào là bối cảnh của một bức Thư bán trang trọng (Semi-formal Letter)?",
+        "options": [
+            "Viết cho một người bạn thời thơ ấu để rủ đi chơi.",
+            "Viết cho một người mà bạn BIẾT RÕ TÊN, có quan hệ xã giao hoặc công việc (ví dụ: Đồng nghiệp, Chủ nhà, Giáo viên, Hàng xóm) nhưng không thân thiết như bạn bè.",
+            "Viết cho Chủ tịch nước hoặc người đứng đầu tập đoàn chưa từng gặp mặt.",
+            "Viết để kiện cáo ra tòa án."
+        ],
+        "correct_answer": "Viết cho một người mà bạn BIẾT RÕ TÊN, có quan hệ xã giao hoặc công việc (ví dụ: Đồng nghiệp, Chủ nhà, Giáo viên, Hàng xóm) nhưng không thân thiết như bạn bè.",
+        "explanation": "Mức độ Formal nằm ở giữa: Bạn không được suồng sã như với bạn thân, nhưng cũng không cần cứng nhắc lạnh lùng như với cơ quan nhà nước."
+    },
+    {
+        "quiz_id": "55d5d28f",
+        "question_text": "Lời chào mở đầu chuẩn mực nhất cho một bức Thư bán trang trọng (Semi-formal) là gì?",
+        "options": [
+            "Hi bro,",
+            "Dear Sir/Madam,",
+            "Dear Mr./Mrs./Ms. [Họ của người nhận],",
+            "To all concerned,"
+        ],
+        "correct_answer": "Dear Mr./Mrs./Ms. [Họ của người nhận],",
+        "explanation": "Vì bạn biết tên họ (ví dụ thầy giáo Smith, chủ nhà Jones), bạn phải dùng chức danh + Họ (Last name). Dùng 'Dear Sir/Madam' là sai bối cảnh vì nó dành cho người chưa biết tên."
+    },
+    {
+        "quiz_id": "55d5d28f",
+        "question_text": "Trong thư bán trang trọng xin lỗi sếp vì đến trễ cuộc họp, câu nào sau đây có 'Tone' (Giọng điệu) phù hợp nhất?",
+        "options": [
+            "Sorry I was late, traffic was crazy!",
+            "I am writing to express my deepest and most profound apologies for my unpunctuality...",
+            "Please accept my apologies for arriving late to the meeting. I had an unexpected issue with my car.",
+            "My bad for being late."
+        ],
+        "correct_answer": "Please accept my apologies for arriving late to the meeting. I had an unexpected issue with my car.",
+        "explanation": "Câu 3 giữ được sự tôn trọng, rõ ràng nhưng không bị 'làm quá' kịch tính như câu 2, và cũng không suồng sã kiểu đường phố như câu 1 và 4."
+    },
+    {
+        "quiz_id": "6e54a9fe",
+        "question_text": "Bối cảnh nào yêu cầu bạn phải viết một bức Thư trang trọng (Formal Letter)?",
+        "options": [
+            "Viết cho người yêu cũ.",
+            "Viết cho hàng xóm mượn dụng cụ.",
+            "Viết cho một công ty, tổ chức, hoặc một người có thẩm quyền mà bạn KHÔNG BIẾT TÊN (ví dụ: Quản lý nhà hàng, Hội đồng thành phố) để phàn nàn hoặc yêu cầu thông tin.",
+            "Viết thiệp chúc mừng sinh nhật."
+        ],
+        "correct_answer": "Viết cho một công ty, tổ chức, hoặc một người có thẩm quyền mà bạn KHÔNG BIẾT TÊN (ví dụ: Quản lý nhà hàng, Hội đồng thành phố) để phàn nàn hoặc yêu cầu thông tin.",
+        "explanation": "Formal Letter áp dụng cho các tương tác hành chính, kinh doanh với người lạ hoàn toàn."
+    },
+    {
+        "quiz_id": "6e54a9fe",
+        "question_text": "Cặp Lời chào (Greeting) và Lời kết (Sign-off) nào là BẮT BUỘC ĐI KÈM với nhau trong Formal Letter khi bạn không biết tên người nhận?",
+        "options": [
+            "Dear Mr. John, / Yours faithfully,",
+            "Dear Sir or Madam, / Yours faithfully,",
+            "Dear Sir or Madam, / Yours sincerely,",
+            "Hi there, / See you soon,"
+        ],
+        "correct_answer": "Dear Sir or Madam, / Yours faithfully,",
+        "explanation": "Đây là quy tắc vàng của tiếng Anh Anh: Không biết tên (Sir/Madam) thì kết bằng 'Yours faithfully'. Biết tên (Mr. Brown) thì kết bằng 'Yours sincerely'."
+    },
+    {
+        "quiz_id": "6e54a9fe",
+        "question_text": "Khi bắt đầu một lá thư phàn nàn (Letter of complaint) trang trọng, cấu trúc nào là chuyên nghiệp nhất?",
+        "options": [
+            "I hate your company because...",
+            "I am writing to express my extreme dissatisfaction with...",
+            "Your service is totally rubbish.",
+            "I want to complain right now about..."
+        ],
+        "correct_answer": "I am writing to express my extreme dissatisfaction with...",
+        "explanation": "Dù tức giận đến đâu, ngôn ngữ trong Formal Letter vẫn phải giữ sự điềm tĩnh và học thuật. 'Express dissatisfaction' là cụm từ đắt giá cho dạng bài này."
+    },
+    {
+        "quiz_id": "64a0942d",
+        "question_text": "Trong tiêu chí chấm điểm 'Task Achievement' của Writing Task 1 Academic, lỗi nào sẽ khiến bạn không bao giờ vượt qua Band 5.0?",
+        "options": [
+            "Thiếu mất một vài dấu phẩy.",
+            "Quên không viết phần Overview (Tổng quan) hoặc viết Overview nhưng không tóm tắt được xu hướng/đặc điểm chính.",
+            "Sử dụng sai thì quá khứ.",
+            "Chữ viết tay hơi xấu."
+        ],
+        "correct_answer": "Quên không viết phần Overview (Tổng quan) hoặc viết Overview nhưng không tóm tắt được xu hướng/đặc điểm chính.",
+        "explanation": "Luật của IELTS quy định rất rõ: 'No overview, no more than Band 5 for Task Achievement'. Overview là trái tim của bài báo cáo số liệu."
+    },
+    {
+        "quiz_id": "64a0942d",
+        "question_text": "Trong Task 1, việc bạn đưa 'Ý kiến cá nhân' (Ví dụ: 'Tỷ lệ tội phạm tăng có lẽ là do thất nghiệp') vào bài phân tích biểu đồ sẽ dẫn đến hậu quả gì?",
+        "options": [
+            "Được cộng thêm điểm vì hiểu biết sâu sắc xã hội.",
+            "Bị trừ điểm Task Achievement vì bài thi chỉ yêu cầu mô tả khách quan dữ liệu có trên hình, nghiêm cấm suy diễn nguyên nhân/kết quả cá nhân.",
+            "Không ảnh hưởng gì.",
+            "Được giám khảo khen ngợi."
+        ],
+        "correct_answer": "Bị trừ điểm Task Achievement vì bài thi chỉ yêu cầu mô tả khách quan dữ liệu có trên hình, nghiêm cấm suy diễn nguyên nhân/kết quả cá nhân.",
+        "explanation": "Task 1 kiểm tra khả năng 'Report' (Báo cáo) số liệu. Chức năng đưa quan điểm cá nhân (Opinion) chỉ dành riêng cho Task 2."
+    },
+    {
+        "quiz_id": "64a0942d",
+        "question_text": "Việc sử dụng các cụm từ (Chunks) thuộc lòng học vẹt (ví dụ: 'It is patently obvious from the graph that...') ảnh hưởng thế nào đến điểm Lexical Resource?",
+        "options": [
+            "Giúp đạt Band 8.0 trở lên dễ dàng.",
+            "Giám khảo sẽ bỏ qua, không tính các từ đó vào tổng số từ của bài và có thể trừ điểm vì tính thiếu tự nhiên (Cliché/Memorized language).",
+            "Giúp bài viết dài hơn và chắc chắn điểm cao.",
+            "Giám khảo rất thích các cụm từ này."
+        ],
+        "correct_answer": "Giám khảo sẽ bỏ qua, không tính các từ đó vào tổng số từ của bài và có thể trừ điểm vì tính thiếu tự nhiên (Cliché/Memorized language).",
+        "explanation": "IELTS trừng phạt rất nặng việc học thuộc lòng các 'template' sáo rỗng. Bạn phải chứng minh năng lực tự xây dựng câu từ dữ liệu thực tế."
+    },
+    {
+        "quiz_id": "ed1b7ceb",
+        "question_text": "Bước ĐẦU TIÊN và quan trọng nhất khi nhận được đề tài IELTS Writing Task 2 là gì?",
+        "options": [
+            "Cầm bút viết ngay lập tức để tiết kiệm thời gian.",
+            "Dành 3-5 phút để phân tích đề: gạch chân từ khóa chủ đề (Topic words), xác định rõ yêu cầu câu hỏi (Task words), và lập dàn ý (Outline).",
+            "Đếm số dòng nháp.",
+            "Viết phần Kết bài trước."
+        ],
+        "correct_answer": "Dành 3-5 phút để phân tích đề: gạch chân từ khóa chủ đề (Topic words), xác định rõ yêu cầu câu hỏi (Task words), và lập dàn ý (Outline).",
+        "explanation": "Phân tích sai đề (Off-topic) sẽ khiến bạn bị giam điểm Task Response ở Band 5.0 dù ngữ pháp và từ vựng của bạn xuất sắc đến đâu. Planning là bước không thể bỏ qua."
+    },
+    {
+        "quiz_id": "ed1b7ceb",
+        "question_text": "Trong đề bài Task 2, 'Task words' (Từ khóa yêu cầu) có chức năng gì?",
+        "options": [
+            "Cung cấp chủ đề (ví dụ: Giáo dục, Môi trường).",
+            "Chỉ định chính xác dạng bài và cấu trúc bạn phải viết (Ví dụ: 'To what extent do you agree?', 'Discuss both views').",
+            "Là những từ vựng khó bạn phải đưa vào bài.",
+            "Đánh lừa thí sinh."
+        ],
+        "correct_answer": "Chỉ định chính xác dạng bài và cấu trúc bạn phải viết (Ví dụ: 'To what extent do you agree?', 'Discuss both views').",
+        "explanation": "Nếu đề yêu cầu 'Discuss both views and give your opinion' mà bạn chỉ bảo vệ khăng khăng 1 bên, bạn đã thất bại hoàn toàn trong việc phản hồi yêu cầu (Task Response)."
+    },
+    {
+        "quiz_id": "ed1b7ceb",
+        "question_text": "Khi đề bài có chứa một từ mang tính tuyệt đối (Ví dụ: 'The BEST way to reduce traffic is...'), bạn nên tiếp cận nó như thế nào khi lên dàn ý?",
+        "options": [
+            "Đồng ý tuyệt đối mà không suy nghĩ.",
+            "Thừa nhận đây là một cách tốt, nhưng phản biện rằng nó KHÔNG PHẢI LÀ DUY NHẤT hay TỐT NHẤT bằng cách đề xuất thêm các cách khác (Balanced approach).",
+            "Bỏ qua từ 'BEST' và viết bình thường.",
+            "Chỉ trích người ra đề."
+        ],
+        "correct_answer": "Thừa nhận đây là một cách tốt, nhưng phản biện rằng nó KHÔNG PHẢI LÀ DUY NHẤT hay TỐT NHẤT bằng cách đề xuất thêm các cách khác (Balanced approach).",
+        "explanation": "Phản biện lại tính 'tuyệt đối hóa' (extremes) là một kỹ năng tư duy bậc cao (Band 7+) giúp bài viết có chiều sâu và sắc bén hơn."
+    },
+    {
+        "quiz_id": "415ffae0",
+        "question_text": "Đối với dạng bài 'Opinion Essay' (Do you agree or disagree?), yêu cầu bắt buộc đối với câu Thesis Statement ở phần Mở bài là gì?",
+        "options": [
+            "Phải đưa ra quan điểm cá nhân (Opinion) một cách RÕ RÀNG, DỨT KHOÁT ngay từ đầu và duy trì nó xuyên suốt toàn bài.",
+            "Phải giấu kín quan điểm cá nhân cho đến tận câu cuối cùng của bài.",
+            "Phải liệt kê toàn bộ các ý phụ sẽ viết trong thân bài.",
+            "Phải đặt một câu hỏi mở."
+        ],
+        "correct_answer": "Phải đưa ra quan điểm cá nhân (Opinion) một cách RÕ RÀNG, DỨT KHOÁT ngay từ đầu và duy trì nó xuyên suốt toàn bài.",
+        "explanation": "Tiêu chí Band 7+ Task Response yêu cầu 'presents a clear position throughout the response'. Người đọc phải biết bạn ủng hộ hay phản đối ngay sau khi đọc xong Mở bài."
+    },
+    {
+        "quiz_id": "415ffae0",
+        "question_text": "Nếu bạn chọn 'Strongly Agree' (Đồng ý hoàn toàn) trong Opinion Essay, cấu trúc Thân bài của bạn sẽ như thế nào?",
+        "options": [
+            "Body 1 viết về Agree, Body 2 viết về Disagree.",
+            "Cả Body 1 và Body 2 đều đưa ra các luận điểm và bằng chứng để bảo vệ cho việc tại sao bạn lại Agree.",
+            "Chỉ viết 1 đoạn Body thật dài.",
+            "Không cần viết Thân bài."
+        ],
+        "correct_answer": "Cả Body 1 và Body 2 đều đưa ra các luận điểm và bằng chứng để bảo vệ cho việc tại sao bạn lại Agree.",
+        "explanation": "Đã chọn Strong approach (Một chiều) thì toàn bộ các đoạn Thân bài phải phục vụ như những cột trụ để chống đỡ cho góc nhìn đó, không được tự mâu thuẫn."
+    },
+    {
+        "quiz_id": "415ffae0",
+        "question_text": "Thế nào là cách tiếp cận 'Balanced approach' (Partly agree) trong bài Opinion?",
+        "options": [
+            "Đồng ý ở Mở bài nhưng phản đối ở Kết bài.",
+            "Công nhận tính hợp lý của quan điểm đề bài trong một số trường hợp (Body 1), nhưng đồng thời chỉ ra những hạn chế hoặc điều kiện ngoại lệ của nó (Body 2).",
+            "Nửa câu đầu đồng ý, nửa câu sau phản đối.",
+            "Không chọn bên nào cả."
+        ],
+        "correct_answer": "Công nhận tính hợp lý của quan điểm đề bài trong một số trường hợp (Body 1), nhưng đồng thời chỉ ra những hạn chế hoặc điều kiện ngoại lệ của nó (Body 2).",
+        "explanation": "Ví dụ: 'Tôi đồng ý rằng công nghệ giúp việc học tiện lợi hơn, nhưng phản đối việc nó có thể thay thế hoàn toàn giáo viên trên lớp'. Đây là cách viết rất sâu sắc."
+    },
+    {
+        "quiz_id": "82c4022f",
+        "question_text": "Dạng bài 'Discuss both views and give your opinion' yêu cầu sự phân bổ dung lượng bài viết như thế nào?",
+        "options": [
+            "Dành 90% bài viết để nói về quan điểm bạn ủng hộ.",
+            "Bắt buộc phải dành sự thảo luận tương đương (Balanced coverage) cho cả Góc nhìn 1 (Body 1) và Góc nhìn 2 (Body 2), sau đó lồng ghép ý kiến của bạn vào.",
+            "Chỉ thảo luận góc nhìn mà bạn ghét.",
+            "Bỏ qua ý kiến cá nhân."
+        ],
+        "correct_answer": "Bắt buộc phải dành sự thảo luận tương đương (Balanced coverage) cho cả Góc nhìn 1 (Body 1) và Góc nhìn 2 (Body 2), sau đó lồng ghép ý kiến của bạn vào.",
+        "explanation": "Lỗi phổ biến nhất là thí sinh chỉ giải thích sơ sài quan điểm họ không thích. Bạn phải hóa vai thành người ủng hộ phe kia để giải thích 'Tại sao họ lại nghĩ vậy' một cách công bằng."
+    },
+    {
+        "quiz_id": "82c4022f",
+        "question_text": "Khi phân tích Góc nhìn (View) mà bạn KHÔNG ĐỒNG TÌNH, bạn nên dùng ngôn ngữ nào để giữ tính khách quan?",
+        "options": [
+            "I strongly believe that...",
+            "It is completely stupid to think that...",
+            "Proponents of this view argue that... / It is understandable why some people believe...",
+            "I hate this idea..."
+        ],
+        "correct_answer": "Proponents of this view argue that... / It is understandable why some people believe...",
+        "explanation": "Sử dụng 'Ngôn ngữ của bên thứ ba' (Third-party language) giúp bạn tường thuật lại ý kiến của người khác một cách khách quan mà không biến nó thành ý kiến của chính mình."
+    },
+    {
+        "quiz_id": "82c4022f",
+        "question_text": "Trong dạng Discussion Essay, bạn có thể đưa 'Your opinion' (Ý kiến cá nhân) vào những vị trí nào?",
+        "options": [
+            "Chỉ được để ở Kết bài.",
+            "Chỉ để ở Thân bài.",
+            "Tốt nhất nên nêu rõ ở Mở bài (Thesis), củng cố nó ở đoạn Body tương ứng với view bạn chọn, và khẳng định lại ở Kết bài.",
+            "Giấu nhẹm đi."
+        ],
+        "correct_answer": "Tốt nhất nên nêu rõ ở Mở bài (Thesis), củng cố nó ở đoạn Body tương ứng với view bạn chọn, và khẳng định lại ở Kết bài.",
+        "explanation": "Luôn luôn trả lời câu hỏi của đề bài ở ngay đoạn Introduction để đáp ứng tiêu chí 'A clear position throughout'."
+    },
+    {
+        "quiz_id": "39073fd0",
+        "question_text": "Đối với câu hỏi 'Do the advantages OUTWEIGH the disadvantages?', mục tiêu lập luận của bài là gì?",
+        "options": [
+            "Chỉ liệt kê điểm tốt và điểm xấu rồi dừng lại.",
+            "Phải phân tích cả hai mặt, sau đó chứng minh một cách logic rằng sức nặng (tầm quan trọng/hệ quả) của mặt này lớn hơn và áp đảo hoàn toàn mặt kia.",
+            "Đếm xem bên nào có số lượng luận điểm nhiều hơn thì bên đó thắng.",
+            "Không cần phân tích điểm xấu."
+        ],
+        "correct_answer": "Phải phân tích cả hai mặt, sau đó chứng minh một cách logic rằng sức nặng (tầm quan trọng/hệ quả) của mặt này lớn hơn và áp đảo hoàn toàn mặt kia.",
+        "explanation": "Outweigh không phải là số lượng (Quality > Quantity). Bạn có thể có 3 nhược điểm nhỏ, nhưng 1 ưu điểm mang tính cách mạng thì ưu điểm vẫn Outweigh."
+    },
+    {
+        "quiz_id": "39073fd0",
+        "question_text": "Cấu trúc tối ưu cho Thân bài dạng 'Outweigh' là gì nếu bạn cho rằng Ưu điểm lớn hơn?",
+        "options": [
+            "Body 1: Phân tích Nhược điểm (để nhượng bộ). Body 2: Phân tích Ưu điểm và giải thích tại sao Ưu điểm lại mang tính quyết định, vượt trội hơn.",
+            "Cả hai Body đều viết về Ưu điểm.",
+            "Trộn lẫn ưu nhược điểm vào cùng một đoạn.",
+            "Viết Ưu điểm trước, không viết Nhược điểm."
+        ],
+        "correct_answer": "Body 1: Phân tích Nhược điểm (để nhượng bộ). Body 2: Phân tích Ưu điểm và giải thích tại sao Ưu điểm lại mang tính quyết định, vượt trội hơn.",
+        "explanation": "Theo quy tắc 'Save the best for last', đoạn văn bảo vệ lập trường của bạn nên nằm sau cùng để tạo đòn quyết định (climax) trước khi vào Kết bài."
+    },
+    {
+        "quiz_id": "39073fd0",
+        "question_text": "Từ nối nào hiệu quả nhất để bắt đầu đoạn Body 2 chuyển từ Nhược điểm sang Ưu điểm vượt trội?",
+        "options": [
+            "Similarly,...",
+            "In conclusion,...",
+            "Despite the aforementioned drawbacks, I am convinced that the benefits are far more significant.",
+            "For example,..."
+        ],
+        "correct_answer": "Despite the aforementioned drawbacks, I am convinced that the benefits are far more significant.",
+        "explanation": "Câu Topic sentence này thực hiện 2 nhiệm vụ: (1) Tóm lược đoạn 1 bằng một mệnh đề nhượng bộ (Despite...), và (2) Khẳng định dứt khoát chủ đề của đoạn 2."
+    },
+    {
+        "quiz_id": "5ad4cdc0",
+        "question_text": "Dạng bài 'Causes and Solutions' (Nguyên nhân & Giải pháp) yêu cầu tính logic (Cause-Effect match) như thế nào?",
+        "options": [
+            "Liệt kê càng nhiều nguyên nhân càng tốt.",
+            "Các Giải pháp đề xuất ở Đoạn 2 bắt buộc phải NHẮM TRỰC TIẾP vào việc triệt tiêu hoặc cải thiện các Nguyên nhân đã được xác định ở Đoạn 1.",
+            "Nguyên nhân và giải pháp không cần liên quan đến nhau.",
+            "Giải pháp phải được thực hiện trong quá khứ."
+        ],
+        "correct_answer": "Các Giải pháp đề xuất ở Đoạn 2 bắt buộc phải NHẮM TRỰC TIẾP vào việc triệt tiêu hoặc cải thiện các Nguyên nhân đã được xác định ở Đoạn 1.",
+        "explanation": "Tính mạch lạc (Coherence) nằm ở sự tương thích. Nếu nguyên nhân béo phì là 'ăn fast-food', giải pháp phải là 'đánh thuế fast-food', chứ không thể là 'cấm bán xe máy'."
+    },
+    {
+        "quiz_id": "5ad4cdc0",
+        "question_text": "Khi mở đầu đoạn văn về Nguyên nhân, cụm từ học thuật nào sau đây là chuyên nghiệp nhất?",
+        "options": [
+            "There are some reasons why this happens.",
+            "This phenomenon can be attributed to several underlying factors.",
+            "Because of this...",
+            "I will tell you the causes now."
+        ],
+        "correct_answer": "This phenomenon can be attributed to several underlying factors.",
+        "explanation": "Cụm 'be attributed to' (được quy cho/có nguyên nhân từ) và 'underlying factors' (các yếu tố sâu xa) nâng Band điểm từ vựng của bạn lên mức 7.0+."
+    },
+    {
+        "quiz_id": "5ad4cdc0",
+        "question_text": "Để đề xuất giải pháp, cấu trúc ngữ pháp nào thường được sử dụng phổ biến và mang tính khách quan (Objective tone)?",
+        "options": [
+            "You should...",
+            "We must...",
+            "To tackle this issue, several feasible measures should be implemented by...",
+            "I order the government to..."
+        ],
+        "correct_answer": "To tackle this issue, several feasible measures should be implemented by...",
+        "explanation": "Việc sử dụng câu bị động (Passive voice) với Modal verbs (should be implemented) là chuẩn mực của Academic Writing khi đưa ra khuyến nghị."
+    },
+    {
+        "quiz_id": "a8b5cec3",
+        "question_text": "Dạng bài 'Two-part Questions' (Đề bài có 2 câu hỏi trực tiếp) yêu cầu cấu trúc bài viết như thế nào?",
+        "options": [
+            "Gộp chung trả lời cho 2 câu vào 1 đoạn văn duy nhất.",
+            "Bỏ qua câu hỏi khó, chỉ trả lời câu dễ.",
+            "Mỗi câu hỏi phải được trả lời và phát triển trọn vẹn trong một đoạn Thân bài riêng biệt (Body 1 trả lời câu 1, Body 2 trả lời câu 2).",
+            "Chỉ trả lời ở phần Kết luận."
+        ],
+        "correct_answer": "Mỗi câu hỏi phải được trả lời và phát triển trọn vẹn trong một đoạn Thân bài riêng biệt (Body 1 trả lời câu 1, Body 2 trả lời câu 2).",
+        "explanation": "Bất kỳ sự mất cân đối nào (ví dụ: viết quá dài cho câu 1 mà chỉ viết 2 dòng cho câu 2) sẽ khiến bạn bị phạt lỗi Task Response do không trả lời đầy đủ các phần của đề bài."
+    },
+    {
+        "quiz_id": "a8b5cec3",
+        "question_text": "Ở phần Mở bài của dạng Two-part questions, câu Thesis Statement của bạn phải chứa thông tin gì?",
+        "options": [
+            "Chỉ cần nói 'I will discuss this in my essay'.",
+            "Phải tóm tắt ngắn gọn câu trả lời cho CẢ HAI câu hỏi một cách trực diện.",
+            "Không cần Thesis Statement.",
+            "Chỉ trả lời câu hỏi thứ nhất."
+        ],
+        "correct_answer": "Phải tóm tắt ngắn gọn câu trả lời cho CẢ HAI câu hỏi một cách trực diện.",
+        "explanation": "Giám khảo cần thấy được 'Roadmap' của bạn. Bạn không nên giấu câu trả lời. Hãy đưa ra câu trả lời cốt lõi ngay từ Mở bài."
+    },
+    {
+        "quiz_id": "a8b5cec3",
+        "question_text": "Nếu câu hỏi 1 hỏi về 'Why' (Nguyên nhân) và câu hỏi 2 hỏi về 'Positive or Negative' (Đánh giá), bài viết của bạn sẽ kết hợp tính chất của hai dạng bài nào?",
+        "options": [
+            "Cause & Solution và Opinion.",
+            "Không có dạng bài nào.",
+            "Cause & Effect và Discussion.",
+            "Cause (Nguyên nhân) và Opinion (Luận điểm đánh giá)."
+        ],
+        "correct_answer": "Cause (Nguyên nhân) và Opinion (Luận điểm đánh giá).",
+        "explanation": "Two-part questions bản chất là sự 'lai tạo' (hybrid) của các dạng bài cơ bản. Bạn phải linh hoạt áp dụng cách viết của từng dạng cho từng đoạn văn tương ứng."
+    },
+    {
+        "quiz_id": "0bf00e78",
+        "question_text": "Tiêu chí 'Grammatical Range and Accuracy' (GRA) để đạt Band 7.0+ yêu cầu điều gì?",
+        "options": [
+            "Sử dụng 100% câu đơn để tránh mọi lỗi sai chính tả.",
+            "Sử dụng chính xác và linh hoạt sự kết hợp giữa câu đơn và các cấu trúc câu phức (Complex structures như Mệnh đề quan hệ, Câu điều kiện, Bị động), chấp nhận một vài lỗi nhỏ không ảnh hưởng đến nghĩa.",
+            "Không được mắc bất kỳ một lỗi ngữ pháp nào dù là nhỏ nhất.",
+            "Dùng thật nhiều dấu chấm phẩy."
+        ],
+        "correct_answer": "Sử dụng chính xác và linh hoạt sự kết hợp giữa câu đơn và các cấu trúc câu phức (Complex structures như Mệnh đề quan hệ, Câu điều kiện, Bị động), chấp nhận một vài lỗi nhỏ không ảnh hưởng đến nghĩa.",
+        "explanation": "IELTS đánh giá cao sự đa dạng (Range). Việc dám thử sức với câu phức tạo ra giá trị cao hơn là chỉ thu mình viết câu đơn an toàn."
+    },
+    {
+        "quiz_id": "0bf00e78",
+        "question_text": "Trong tiêu chí Lexical Resource, cụm từ 'Uncommon lexical items' nghĩa là gì?",
+        "options": [
+            "Những từ vựng cổ xưa từ thế kỷ 16 không ai dùng nữa.",
+            "Những từ vựng dài nhất trong từ điển.",
+            "Những từ vựng, Collocations, và Idiomatic expressions mang tính học thuật, chính xác với ngữ cảnh chủ đề, mà người dùng cơ bản thường ít biết đến (ví dụ: 'mitigate' thay vì 'reduce').",
+            "Những từ tự bịa ra."
+        ],
+        "correct_answer": "Những từ vựng, Collocations, và Idiomatic expressions mang tính học thuật, chính xác với ngữ cảnh chủ đề, mà người dùng cơ bản thường ít biết đến (ví dụ: 'mitigate' thay vì 'reduce').",
+        "explanation": "Dùng từ 'hiếm' nhưng sai ngữ cảnh (inappropriate context) sẽ kéo điểm bạn xuống Band 5. Từ vựng ăn điểm phải là 'Uncommon' nhưng được dùng cực kỳ tự nhiên (Natural)."
+    },
+    {
+        "quiz_id": "0bf00e78",
+        "question_text": "Việc lạm dụng quá mức (Overuse) các từ nối (Linking words như Furthermore, Moreover, Consequently) ở đầu mọi câu văn sẽ gây ra vấn đề gì đối với tiêu chí Coherence & Cohesion?",
+        "options": [
+            "Giúp đạt Band 9.0 dễ dàng.",
+            "Gây ra hiện tượng 'Mechanical Cohesion' (Liên kết máy móc/thiếu tự nhiên), làm bài văn trở nên nặng nề và bị trừ điểm.",
+            "Làm cho ngữ pháp tốt hơn.",
+            "Làm giám khảo vui vẻ."
+        ],
+        "correct_answer": "Gây ra hiện tượng 'Mechanical Cohesion' (Liên kết máy móc/thiếu tự nhiên), làm bài văn trở nên nặng nề và bị trừ điểm.",
+        "explanation": "Sự liên kết đỉnh cao (Band 8+) là sự liên kết bằng Đại từ thay thế (This, That, These issues) và sự trôi chảy của logic, chứ không phải nhồi nhét quá nhiều từ nối."
+    },
+    {
+        "quiz_id": "6f13fe92",
+        "question_text": "Thời lượng khuyên dùng tối ưu để phân bổ cho Writing Task 2 trong tổng thời gian 60 phút của phần thi Writing là bao nhiêu?",
+        "options": [
+            "20 phút.",
+            "30 phút.",
+            "40 phút (gấp đôi thời gian của Task 1 vì Task 2 chiếm 2/3 tổng số điểm Writing).",
+            "60 phút."
+        ],
+        "correct_answer": "40 phút (gấp đôi thời gian của Task 1 vì Task 2 chiếm 2/3 tổng số điểm Writing).",
+        "explanation": "Đừng bao giờ ăn lẹm thời gian của Task 2 cho Task 1. Một bài Task 2 dang dở sẽ kéo sập toàn bộ điểm thi Writing của bạn."
+    },
+    {
+        "quiz_id": "6f13fe92",
+        "question_text": "Trong 40 phút làm Task 2, thời gian dành cho bước Lập dàn ý (Planning) và Rà soát lỗi (Proofreading) nên được phân bổ như thế nào?",
+        "options": [
+            "Bỏ qua cả hai bước này để viết liên tục 40 phút.",
+            "Khoảng 5 phút đầu để phân tích đề & lập dàn ý chi tiết, và 3-5 phút cuối cùng để đọc lại sửa lỗi chính tả/ngữ pháp nhỏ.",
+            "30 phút lập dàn ý, 10 phút viết.",
+            "Lập dàn ý sau khi đã viết xong."
+        ],
+        "correct_answer": "Khoảng 5 phút đầu để phân tích đề & lập dàn ý chi tiết, và 3-5 phút cuối cùng để đọc lại sửa lỗi chính tả/ngữ pháp nhỏ.",
+        "explanation": "5 phút planning giúp bạn không bao giờ bị 'bí ý' hoặc đi lạc đề giữa chừng. 3 phút proofreading giúp bạn cứu vớt 0.5 Band bằng cách sửa các lỗi số nhiều/số ít, mạo từ (a/an/the) vô ý."
+    },
+    {
+        "quiz_id": "6f13fe92",
+        "question_text": "Số lượng từ (Word count) lý tưởng nhất cho IELTS Writing Task 2 để đảm bảo phát triển ý sâu sắc mà không bị trừ điểm vì lan man là bao nhiêu?",
+        "options": [
+            "Dưới 250 từ.",
+            "Chính xác 250 từ.",
+            "Khoảng 260 đến 300 từ.",
+            "Trên 500 từ."
+        ],
+        "correct_answer": "Khoảng 260 đến 300 từ.",
+        "explanation": "Viết dưới 250 từ sẽ bị phạt nặng (Underlength penalty). Viết quá dài (hơn 350 từ) làm tăng nguy cơ sai ngữ pháp, lạc đề và mất thời gian soát lỗi. Mức 270-280 từ là con số vàng."
+    }
+]

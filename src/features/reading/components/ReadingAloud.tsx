@@ -15,7 +15,7 @@ export function ReadingAloud() {
   const { startRecording, stopRecording, audioBlob } = useMediaRecorder()
   const { speak, isSpeaking } = useTTS()
 
-  const [phase, setPhase] = useState<'idle' | 'reading' | 'done'>('idle')
+  const [phase, setPhase] = useState<'idle' | 'reading' | 'processing' | 'done'>('idle')
   const [elapsedSec, setElapsedSec] = useState(0)
   const [finalTranscript, setFinalTranscript] = useState('')
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
@@ -97,7 +97,7 @@ export function ReadingAloud() {
     })
   }, [transcript, interimTranscript, phase, passageWordsClean])
 
-  if (!passage) return null
+  // Early return AFTER all hooks - moved down below all useCallback/useEffect
 
   const handleStart = useCallback(() => {
     clearError()
@@ -112,16 +112,16 @@ export function ReadingAloud() {
     // Start timer
     timerRef.current = setInterval(() => setElapsedSec(s => s + 1), 1000)
 
-    // Start recording + STT
+    // Start recording (always)
     startRecording()
+
+    // On desktop, additionally use Web Speech API for real-time karaoke
     if (isSupported) {
       try { startListening('en-US') } catch { /* ignore */ }
     }
   }, [clearError, resetSTT, isSupported, startListening, startRecording, passageWords])
 
   const handleStop = useCallback(() => {
-    setPhase('done')
-
     if (timerRef.current) {
       clearInterval(timerRef.current)
       timerRef.current = null
@@ -132,27 +132,71 @@ export function ReadingAloud() {
       try { stopListening() } catch { /* ignore */ }
     }
 
-    // Mark remaining unread words as skipped
-    setWordStatuses(prev => prev.map(s => s === 'unread' || s === 'current' ? 'skipped' : s))
-
+    // If Web Speech API already has a transcript (desktop), go straight to done
     if (transcript) {
       setFinalTranscript(transcript)
+      setWordStatuses(prev => prev.map(s => s === 'unread' || s === 'current' ? 'skipped' : s))
+      setPhase('done')
+    } else {
+      // Mobile: go to 'processing' → wait for Whisper → then update karaoke → then 'done'
+      setPhase('processing')
     }
   }, [isSupported, stopListening, stopRecording, transcript])
 
-  // Whisper fallback when audioBlob available
+  // Whisper fallback when audioBlob available (mobile processing phase)
   useEffect(() => {
-    if (phase === 'done' && audioBlob && !finalTranscript && !isTranscribing) {
+    if (phase === 'processing' && audioBlob && !finalTranscript && !isTranscribing) {
       transcribeAudio(audioBlob, 'en').then(text => {
-        if (text) setFinalTranscript(text)
+        if (text) {
+          setFinalTranscript(text)
+          // Process karaoke matching with the full Whisper transcript
+          const sttWords = text.trim().toLowerCase().replace(/[^\w\s'-]/g, '').split(/\s+/).filter(Boolean)
+          setWordStatuses(prev => {
+            const updated = [...prev]
+            let passageIdx = 0 // start from beginning for full matching
+
+            for (const spokenWord of sttWords) {
+              if (passageIdx >= passageWordsClean.length) break
+              const expectedWord = passageWordsClean[passageIdx]
+
+              if (wordsMatch(spokenWord, expectedWord)) {
+                updated[passageIdx] = 'correct'
+                passageIdx++
+              } else if (passageIdx + 1 < passageWordsClean.length && wordsMatch(spokenWord, passageWordsClean[passageIdx + 1])) {
+                updated[passageIdx] = 'skipped'
+                updated[passageIdx + 1] = 'correct'
+                passageIdx += 2
+              } else {
+                updated[passageIdx] = 'wrong'
+                passageIdx++
+              }
+            }
+
+            // Mark remaining unread words as skipped
+            for (let i = passageIdx; i < updated.length; i++) {
+              if (updated[i] === 'unread' || updated[i] === 'current') {
+                updated[i] = 'skipped'
+              }
+            }
+
+            matchIndexRef.current = passageIdx
+            return updated
+          })
+        } else {
+          // Whisper returned nothing → mark all as skipped
+          setWordStatuses(prev => prev.map(s => s === 'unread' || s === 'current' ? 'skipped' : s))
+        }
+        setPhase('done')
       })
     }
-  }, [phase, audioBlob, finalTranscript, isTranscribing, transcribeAudio])
+  }, [phase, audioBlob, finalTranscript, isTranscribing, transcribeAudio, passageWordsClean])
 
-  // Use Web Speech transcript if available
+  // Desktop: Use Web Speech transcript if available
   useEffect(() => {
-    if (phase === 'done' && transcript && !finalTranscript) {
+    if (phase === 'processing' && transcript && !finalTranscript) {
       setFinalTranscript(transcript)
+      setWordStatuses(prev => prev.map(s => s === 'unread' || s === 'current' ? 'skipped' : s))
+      setPhase('done')
     }
   }, [phase, transcript, finalTranscript])
 
@@ -165,6 +209,9 @@ export function ReadingAloud() {
     resetSTT()
     clearError()
   }, [passageWords, resetSTT, clearError])
+
+  // Early return AFTER all hooks
+  if (!passage) return null
 
   const handleSubmit = async () => {
     const text = finalTranscript || transcript
@@ -330,6 +377,14 @@ export function ReadingAloud() {
           </button>
         )}
 
+        {phase === 'processing' && (
+          <div className="flex flex-col items-center gap-3">
+            <div className="w-20 h-20 rounded-full bg-primary-500/20 flex items-center justify-center">
+              <Loader2 className="w-8 h-8 text-primary-400 animate-spin" />
+            </div>
+          </div>
+        )}
+
         {phase === 'done' && isTranscribing && (
           <div className="flex items-center gap-2 text-xs text-surface-200/40">
             <Loader2 className="w-4 h-4 animate-spin text-primary-400" />
@@ -340,7 +395,8 @@ export function ReadingAloud() {
         <p className="text-xs text-surface-200/40">
           {phase === 'idle' ? 'Nhấn để bắt đầu đọc' :
            phase === 'reading' ? `Đang ghi âm — ${formatTime(elapsedSec)}` :
-           isTranscribing ? 'Đang xử lý...' : 'Đã ghi xong!'}
+           phase === 'processing' ? 'Đang nhận dạng giọng nói...' :
+           'Đã ghi xong!'}
         </p>
 
         {/* Transcript preview */}

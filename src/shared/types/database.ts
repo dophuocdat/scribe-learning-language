@@ -321,3 +321,76 @@ export interface WritingCheck {
   quality_score: number | null
   created_at: string
 }
+
+/* ===== Learning Path Types ===== */
+
+export interface UserLearningPath {
+  id: string
+  user_id: string
+  current_level: string
+  target_level: string
+  focus_area: 'general' | 'communication' | 'ielts' | 'toeic'
+  path_courses: (string | PathCheckpoint)[]
+  created_at: string
+  updated_at: string
+}
+
+export interface PathCheckpoint {
+  type: 'checkpoint'
+  label: string
+  courses: string[]
+}
+
+export interface UserCheckpointResult {
+  id: string
+  user_id: string
+  checkpoint_label: string
+  course_ids: string[]
+  score: number
+  passed: boolean
+  completed_at: string
+}
+
+/* Learning Path — Derived types (frontend only) */
+
+export interface CourseWithProgress {
+  id: string
+  title: string
+  difficulty_level: string
+  category_name: string
+  total_lessons: number
+  completed_lessons: number
+  last_activity_date: string | null
+  status: 'completed' | 'needs_review' | 'in_progress' | 'not_started'
+  is_next: boolean
+}
+
+export interface CheckpointNode {
+  type: 'checkpoint'
+  label: string
+  review_course_ids: string[]
+  status: 'passed' | 'ready' | 'locked'
+}
+
+export type RoadmapNode = CourseWithProgress | CheckpointNode
+
+export interface CheckpointQuestion {
+  id: string
+  question_text: string
+  question_type: string
+  options: string[]
+  source_course: string
+}
+
+export interface CheckpointQuizResponse {
+  checkpoint_id: string
+  questions: CheckpointQuestion[]
+  total_questions: number
+  passing_score: number
+}
+
+export interface CheckpointSubmitResponse {
+  score: number
+  passed: boolean
+  results: { question_id: string; correct: boolean; correct_answer: string }[]
+}
